@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		使用hexo建立博客 | 
+		克隆指定分支 | 
 	 
 	porridgechen890的笔记
 	</title>
@@ -96,13 +96,80 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										00工作
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										00Git
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/04/13/00%E5%B7%A5%E4%BD%9C/00Git/git%E5%9F%BA%E7%A1%80/">
+										git基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/04/13/00%E5%B7%A5%E4%BD%9C/00Git/test2/">
+										test2
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2021/04/13/00%E5%B7%A5%E4%BD%9C/00Git/%E5%85%8B%E9%9A%86%E6%8C%87%E5%AE%9A%E5%88%86%E6%94%AF/">
+										克隆指定分支
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										01hexo
 									</a>
 									
 							<ul>
-								<li class="file active">
-									<a href="/2021/04/13/01hexo/%E4%BD%BF%E7%94%A8hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
-										使用hexo建立博客
+								<li class="file">
+									<a href="/2021/04/13/01hexo/01%E4%BD%BF%E7%94%A8hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
+										01使用hexo建立博客
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/04/13/01hexo/02%E5%A6%82%E4%BD%95%E5%BE%80%E6%96%87%E7%AB%A0%E9%87%8C%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">
+										02如何往文章里添加图片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/04/13/01hexo/03%E5%A6%82%E4%BD%95%E5%BC%95%E7%94%A8%E7%AB%99%E5%86%85%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%87%E7%AB%A0/">
+										03如何引用站内的其他文章
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -198,16 +265,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	使用hexo建立博客
+	克隆指定分支
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2021/04/13/01hexo/%E4%BD%BF%E7%94%A8hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/" class="leancloud_visitors" data-flag-title="使用hexo建立博客"></span>
+			阅读量:<span id="/2021/04/13/00%E5%B7%A5%E4%BD%9C/00Git/%E5%85%8B%E9%9A%86%E6%8C%87%E5%AE%9A%E5%88%86%E6%94%AF/" class="leancloud_visitors" data-flag-title="克隆指定分支"></span>
 		</span>
 	
 	<span>porridgechen890</span>
-	<span>2021-04-13 14:33:56</span>
+	<span>2021-04-13 15:55:57</span>
     
 		<div id="article-categories">
             
@@ -216,52 +283,23 @@
 </div>
 
 <div id="article-content">
-	<h1 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h1><p>安装<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git</a>，安装<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Node.js</a>。</p>
-<h1 id="初始化目录"><a href="#初始化目录" class="headerlink" title="初始化目录"></a>初始化目录</h1><ol>
-<li>新建文件夹，如 <code>D:\MyBlog</code> 。 在该目录下执行 <code>npm install hexo-cli -g</code>。</li>
-<li>在 <code>D:\MyBlog</code> 下新建文件夹，如 <code>D:\MyBlog\Hexo</code> ，在该目录下执行 <code>hexo init</code> 和 <code>npm install hexo-deployer-git --save</code> 。</li>
-</ol>
-<h1 id="本地查看效果"><a href="#本地查看效果" class="headerlink" title="本地查看效果"></a>本地查看效果</h1><ol>
-<li>生成 <code>hexo g</code> 。</li>
-<li>启动服务 <code>hexo s</code> 。</li>
-<li>打开 <code>http://localhost:4000</code> 。</li>
-</ol>
-<h1 id="远程配置"><a href="#远程配置" class="headerlink" title="远程配置"></a>远程配置</h1><p>用gitee举例。</p>
-<ol>
-<li>建仓库。仓库名跟用户名同名。</li>
-<li>开启pages服务。“服务”-&gt;“Gitee Pages”。选择部署分支，部署目录，是否强制使用https。</li>
-<li>配置公钥。</li>
-</ol>
-<h1 id="推送到远程"><a href="#推送到远程" class="headerlink" title="推送到远程"></a>推送到远程</h1><ol>
-<li>修改 <code>_config.yml</code> 里 <code>depoly</code> 字段。</li>
-<li>推送 <code>hexo d</code> 。</li>
-</ol>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
-<li><code>git --version</code> 检查git的环境。</li>
-<li><code>node -v</code> 和 <code>npm -v</code> 检查node.js的环境。</li>
-<li><code>hexo clean</code> 也是一个比较常用的命令，用来清理。</li>
-<li><code>hexo n &quot;page1&quot;</code> 用来新建文章。</li>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36759224/article/details/82121420">搭建过程的参考文章</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/gahowong/hexo-theme-tree">所使用的博客主题来源</a></li>
-</ol>
-
+	
 </div>
 
 
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2021/04/13/04%E5%8E%86%E5%8F%B2/%E8%B0%A5%E5%8F%B7%E3%80%81%E5%BA%99%E5%8F%B7%E3%80%81%E5%B9%B4%E5%8F%B7/">
+              <a href="/2021/04/13/01hexo/02%E5%A6%82%E4%BD%95%E5%BE%80%E6%96%87%E7%AB%A0%E9%87%8C%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  谥号、庙号、年号
+                  
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2021/04/10/02macos/%E5%A6%82%E4%BD%95%E8%AE%A9%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/">
-                如何让终端使用代理
+              <a href="/2021/04/13/00%E5%B7%A5%E4%BD%9C/00Git/git%E5%9F%BA%E7%A1%80/">
+                git基础
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
