@@ -1,291 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-	
-	<!-- title -->
-	
-	<title>
-	
-		git基础 | 
-	 
-	porridgechen890的笔记
-	</title>
-	
-	<!-- keywords,description -->
-	 
-		<meta name="description" content="porridgechen890的笔记" />
-	
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-	<!-- favicon -->
-	
-	<link rel="shortcut icon" href="/favicon.ico">
-	
-  
 
-	
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
 <link rel="stylesheet" href="/css/main.css">
 
-	
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
 
 
-	
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;porridgechen890.gitee.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.3.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="查看手册如：git help log或者git log --help 创建仓库的两种方式 本地初始化  cd到目标文件夹下，执行git init。  跟远程建立连接git remote add &lt;name&gt; &lt;url&gt;name一般是取origin。  克隆远程仓库到本地  git clone &lt;url&gt;    git clone默认会把远程仓库整个给clone下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git基础">
+<meta property="og:url" content="https://porridgechen890.gitee.io/2021/04/13/00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/00Git/git%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="查看手册如：git help log或者git log --help 创建仓库的两种方式 本地初始化  cd到目标文件夹下，执行git init。  跟远程建立连接git remote add &lt;name&gt; &lt;url&gt;name一般是取origin。  克隆远程仓库到本地  git clone &lt;url&gt;    git clone默认会把远程仓库整个给clone下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-13T07:35:18.000Z">
+<meta property="article:modified_time" content="2021-04-16T02:33:30.382Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
 
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
 
-	
-<script src="/js/main.js"></script>
+<link rel="canonical" href="https://porridgechen890.gitee.io/2021/04/13/00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/00Git/git%E5%9F%BA%E7%A1%80/">
 
-	
-		
-<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
 
-		
-<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
 
-	
-	
-		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-<meta name="generator" content="Hexo 5.4.0"></head>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;porridgechen890.gitee.io&#x2F;2021&#x2F;04&#x2F;13&#x2F;00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8&#x2F;00Git&#x2F;git%E5%9F%BA%E7%A1%80&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;04&#x2F;13&#x2F;00工具使用&#x2F;00Git&#x2F;git基础&#x2F;&quot;,&quot;title&quot;:&quot;git基础&quot;}</script>
 
-<body>
-	<header id="header">
-    <a id="title" href="/" class="logo">porridgechen890的笔记</a>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>git基础 | porridgechen890的笔记</title><script src="/js/config.js"></script>
+  
 
-	<ul id="menu">
-		<li class="menu-item">
-			<a href="/about" class="menu-item-link">ABOUT</a>
-		</li>
-		
-		<li class="menu-item">
-			<a href="https://blog.gaho.xyz/" class="menu-item-link" target="_blank">
-				另一个世界
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="https://github.com/gahowong" class="menu-item-link" target="_blank">
-				<i class="fa fa-github fa-2x"></i>
-			</a>
-		</li>
-	</ul>
-</header>
 
-	
-<div id="sidebar">
-	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
-	
-	<div id="site-toc">
-		<input id="search-input" class="search-input" type="text" placeholder="search...">
-		<div id="tree">
-			
 
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										00工具使用
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										00Git
-									</a>
-									
-							<ul>
-								<li class="file active">
-									<a href="/2021/04/13/00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/00Git/git%E5%9F%BA%E7%A1%80/">
-										git基础
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										01正则表达式
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/01%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E5%88%A9%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9C%A8AndroidStudio%E9%87%8C%E8%BF%87%E6%BB%A4%E6%97%A5%E5%BF%97/">
-										利用正则表达式在AndroidStudio里过滤日志
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										01hexo
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/01hexo/01%E4%BD%BF%E7%94%A8hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
-										01使用hexo建立博客
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/01hexo/02%E5%A6%82%E4%BD%95%E5%BE%80%E6%96%87%E7%AB%A0%E9%87%8C%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">
-										02如何往文章里添加图片
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/01hexo/03%E5%A6%82%E4%BD%95%E5%BC%95%E7%94%A8%E7%AB%99%E5%86%85%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%87%E7%AB%A0/">
-										03如何引用站内的其他文章
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										02macos
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2021/04/10/02macos/%E5%A6%82%E4%BD%95%E8%AE%A9%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/">
-										如何让终端使用代理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										03影评
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/03%E5%BD%B1%E8%AF%84/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/">
-										你的名字
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										04历史
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/04%E5%8E%86%E5%8F%B2/%E5%8D%97%E5%8C%97%E6%9C%9D/">
-										南北朝
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/04%E5%8E%86%E5%8F%B2/%E6%98%8E%E5%B4%87%E7%A5%AF%E5%B8%9D/">
-										明崇祯帝
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/04/13/04%E5%8E%86%E5%8F%B2/%E8%B0%A5%E5%8F%B7%E3%80%81%E5%BA%99%E5%8F%B7%E3%80%81%E5%B9%B4%E5%8F%B7/">
-										谥号、庙号、年号
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-		</div>
-	</div>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">porridgechen890的笔记</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-	<!-- 引入正文 -->
-	<div id="content">
-		<h1 id="article-title">
 
-	git基础
-</h1>
-<div class="article-meta">
-	
-		<span>
-			阅读量:<span id="/2021/04/13/00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/00Git/git%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="git基础"></span>
-		</span>
-	
-	<span>porridgechen890</span>
-	<span>2021-04-13 15:35:18</span>
-    
-		<div id="article-categories">
-            
-		</div>
-    
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%8B%E5%86%8C"><span class="nav-number">1.</span> <span class="nav-text">查看手册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">创建仓库的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81"><span class="nav-number">3.</span> <span class="nav-text">查看仓库状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">4.</span> <span class="nav-text">添加文件到暂存区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4"><span class="nav-number">5.</span> <span class="nav-text">提交</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="nav-number">6.</span> <span class="nav-text">查看提交记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="nav-number">7.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC"><span class="nav-number">8.</span> <span class="nav-text">回退版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">推送本地修改到远程仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E7%9A%84%E6%9C%80%E6%96%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">10.</span> <span class="nav-text">拉取远程的最新代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%B4%A6%E6%88%B7"><span class="nav-number">11.</span> <span class="nav-text">配置账户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-clean"><span class="nav-number">12.</span> <span class="nav-text">git clean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E9%92%A5%E7%AE%A1%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">公钥管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rebase%E9%85%8D%E5%90%88merge%E4%BD%BF%E7%94%A8"><span class="nav-number">14.</span> <span class="nav-text">rebase配合merge使用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description">porridgechen890的笔记</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
 </div>
 
-<div id="article-content">
-	<h1 id="查看手册"><a href="#查看手册" class="headerlink" title="查看手册"></a>查看手册</h1><p>如：<code>git help log</code>或者<code>git log --help</code></p>
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://porridgechen890.gitee.io/2021/04/13/00%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/00Git/git%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+      <meta itemprop="description" content="porridgechen890的笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-13 15:35:18" itemprop="dateCreated datePublished" datetime="2021-04-13T15:35:18+08:00">2021-04-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-16 10:33:30" itemprop="dateModified" datetime="2021-04-16T10:33:30+08:00">2021-04-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7-Git/" itemprop="url" rel="index"><span itemprop="name">工具 - Git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="查看手册"><a href="#查看手册" class="headerlink" title="查看手册"></a>查看手册</h1><p>如：<code>git help log</code>或者<code>git log --help</code></p>
 <h1 id="创建仓库的两种方式"><a href="#创建仓库的两种方式" class="headerlink" title="创建仓库的两种方式"></a>创建仓库的两种方式</h1><ol>
 <li><p>本地初始化</p>
 <p> cd到目标文件夹下，执行<code>git init</code>。</p>
@@ -337,107 +289,74 @@
 <p>添加成功后，输入<code>ssh -T git@gitee.com</code>来测试是否可以正常连接。</p>
 <h1 id="rebase配合merge使用"><a href="#rebase配合merge使用" class="headerlink" title="rebase配合merge使用"></a>rebase配合merge使用</h1><p>多人协作的话需要分支，分支上开发一个功能完成后需要合并到主干上，但是主干上不想要多余的提交记录。此时，可以使用变基。过程大概是这个样子。<br>git branch dev<br>git switch dev<br>//modify sth<br>git commit -m ‘dev 1’<br>//modify sth<br>git commit -m ‘dev 2’<br>git rebase -i startpoint endpoint//不写endpoint的话就是HEAD<br>//select pick reword fixup and so on<br>git switch master<br>git merge dev</p>
 
-</div>
-
-
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2021/04/13/01hexo/02%E5%A6%82%E4%BD%95%E5%BE%80%E6%96%87%E7%AB%A0%E9%87%8C%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  
-              </a>
-            
-        </div>
-        <div class="item right">
-            
-              <a href="/2021/04/13/03%E5%BD%B1%E8%AF%84/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/">
-                
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
-        </div>
     </div>
 
+    
+    
+    
 
+    <footer class="post-footer">
 
-	<div id="vcomments"></div>
+        
 
-
-<script>
-	
-		// 评论
-		new Valine({
-			av: AV,
-			el: '#vcomments',
-			notify: false,
-			verify: false,
-			path: window.location.pathname,
-			appId: 'ibLmmHeXBa3pjhjLvSD3g0uV-gzGzoHsz',
-			appKey: 'nlajhUhnt261YpKXS8qU6V7Q',
-			placeholder: '请输入评论',
-			avatar: 'retro',
-			recordIP: false
-		})
-	
-	
-    // 显示次数
-		function showTime(Counter) {
-			var query = new AV.Query("Counter");
-			if($(".leancloud_visitors").length > 0){
-				var url = $(".leancloud_visitors").attr('id').trim();
-				// where field
-				query.equalTo("words", url);
-				// count
-				query.count().then(function (number) {
-					// There are number instances of MyClass where words equals url.
-					$(document.getElementById(url)).text(number?  number : '--');
-				}, function (error) {
-					// error is an instance of AVError.
-				});
-			}
-		}
-		// 追加pv
-		function addCount(Counter) {
-			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'wujun234.github.io';
-			var Counter = AV.Object.extend("Counter");
-			var query = new Counter;
-			query.save({
-				words: url
-			}).then(function (object) {
-			})
-		}
-		$(function () {
-			var Counter = AV.Object.extend("Counter");
-			addCount(Counter);
-			showTime(Counter);
-		});
-	
-</script>
-	</div>
-	<div id="footer">
-	<p>
-<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-<script>
-    var now = new Date(); 
-    function createtime() { 
-        var grt= new Date("02/21/2020 00:00:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
-        now.setTime(now.getTime()+250); 
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = "小破站已安全运行 "+dnum+" 天 "; 
-        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
-    } 
-setInterval("createtime()",250);
-</script>
-	<br>
-	梦里不知身是客
-	</p> 
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/13/03%E5%BD%B1%E8%AF%84/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/" rel="prev" title="你的名字">
+                  <i class="fa fa-chevron-left"></i> 你的名字
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/13/01hexo/02%E5%A6%82%E4%BD%95%E5%BE%80%E6%96%87%E7%AB%A0%E9%87%8C%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/" rel="next" title="如何往文章里添加图片">
+                  如何往文章里添加图片 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
-	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
 </body>
 </html>
