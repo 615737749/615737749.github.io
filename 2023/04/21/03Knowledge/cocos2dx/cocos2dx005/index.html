@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="源码注释&#x2F;** ClippingNode is a subclass of Node.  * It draws its content (children) clipped using a stencil.  * The stencil is an other Node that will not be drawn.  * The clipping is done using the alpha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos2dx之ClippingNode">
+<meta property="og:url" content="https://615737749.github.io/2023/04/21/03Knowledge/cocos2dx/cocos2dx005/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="源码注释&#x2F;** ClippingNode is a subclass of Node.  * It draws its content (children) clipped using a stencil.  * The stencil is an other Node that will not be drawn.  * The clipping is done using the alpha">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-21T06:04:33.000Z">
+<meta property="article:modified_time" content="2024-06-17T06:45:48.894Z">
+<meta property="article:author" content="porridgechen890">
+<meta property="article:tag" content="cocos2dx">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2023/04/21/03Knowledge/cocos2dx/cocos2dx005/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2023/04/21/03Knowledge/cocos2dx/cocos2dx005/","path":"2023/04/21/03Knowledge/cocos2dx/cocos2dx005/","title":"cocos2dx之ClippingNode"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cocos2dx之ClippingNode | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">72</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E6%B3%A8%E9%87%8A"><span class="nav-number">1.</span> <span class="nav-text">源码注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alpha%E9%80%9A%E9%81%93"><span class="nav-number">2.</span> <span class="nav-text">Alpha通道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E7%94%A8%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">典型用法</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2023/04/21/03Knowledge/cocos2dx/cocos2dx005/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="cocos2dx之ClippingNode | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cocos2dx之ClippingNode
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-21 14:04:33" itemprop="dateCreated datePublished" datetime="2023-04-21T14:04:33+08:00">2023-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="源码注释"><a href="#源码注释" class="headerlink" title="源码注释"></a>源码注释</h1><pre><code class="highlight cpp"><span class="comment">/** ClippingNode is a subclass of Node.</span>
+<span class="comment"> * It draws its content (children) clipped using a stencil.</span>
+<span class="comment"> * The stencil is an other Node that will not be drawn.</span>
+<span class="comment"> * The clipping is done using the alpha part of the stencil (adjusted with an alphaThreshold).</span>
+<span class="comment"> */</span></code></pre>
+
+<ul>
+<li><p>翻译注释：</p>
+<ul>
+<li><p>ClippingNode是Node的子类。</p>
+</li>
+<li><p>它通过一个模板节点去裁剪添加到它的子节点们。</p>
+</li>
+<li><p>模板节点不会被渲染出来。</p>
+</li>
+<li><p>裁剪是通过Alpha通道来实现的。</p>
+</li>
+</ul>
+</li>
+<li><p>补充说明：</p>
+<ul>
+<li><p>模板可以是一张图（即一个Sprite），也可以是一个DrawNode，甚至可以是一个Node（这个Node再添加如Sprite一类的子节点）。</p>
+</li>
+<li><p>setInverted(true或者false)裁剪成模板里面还是外面。</p>
+</li>
+<li><p>setAlphaThreshold(GLfloat n)。n的取值范围是0到1，模板图片会被n给分割成大于n和小于n的，从而形成丢弃和保留的部分。</p>
+<p>  如果一张图有三种alpha通道值，那么可以通过修改n值，来裁剪出不同的形状。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Alpha通道"><a href="#Alpha通道" class="headerlink" title="Alpha通道"></a>Alpha通道</h1><p>关于Alpha通道，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/suogasus/p/5311264.html">什么是Alpha通道？</a></p>
+<ul>
+<li><p>摘录其中几句话：</p>
+<ul>
+<li><p>一个使用每个像素16比特存储的位图，对于图形中的每一个像素而言，可能以5个比特表示红色，5个比特表示绿色，5个比特表示蓝色，最后一个比特是阿尔法。在这种情况下，它表示透明或者不透明，因为阿尔法比特只有0或1两种不同表示的可能性。又如一个使用32个比特存储的位图，每8个比特表示红绿蓝，和阿尔法通道。在这种情况下，就不光可以表示透明还是不透明，阿尔法通道还可以表示256级的半透明度，因为阿尔法通道有8个比特可以有256种不同的数据表示可能性。</p>
+</li>
+<li><p>Alpha通道储存一个值，其外在表现是透明度，Alpha通道和透明度没啥关系。</p>
+</li>
+<li><p>真正让图片变透明的不是Alpha，而是Alpha所代表的数值和其他数值做了一次运算。比如你有一张图片你想抠出图片中间的一部分，在PS里你会建立一个蒙板，然后在蒙板里把不需要的地方填充成黑色，需要的留成白色，这个时候实际上是是做了一次乘法。用黑色所代表的数值0去乘以你所填充的地方，那么这个地方就变透明了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="典型用法"><a href="#典型用法" class="headerlink" title="典型用法"></a>典型用法</h1><pre><code class="highlight cpp"><span class="comment">//第一种方法：通过Sprite去裁剪</span>
+<span class="comment">//这张图的路径cocos2d-x-3.17/tests/cpp-tests/Resources/Images/hole_effect.png</span>
+<span class="keyword">auto</span> stencil = Sprite::<span class="built_in">create</span>(<span class="string">&quot;res/hole_effect.png&quot;</span>);
+<span class="keyword">auto</span> clip = ClippingNode::<span class="built_in">create</span>(stencil);
+clip-&gt;<span class="built_in">setPosition</span>(<span class="built_in">Vec2</span>(visibleSize.width / <span class="number">2</span>, visibleSize.height / <span class="number">2</span>));
+clip-&gt;<span class="built_in">setAlphaThreshold</span>(<span class="number">0.05</span>);
+clip-&gt;<span class="built_in">setInverted</span>(<span class="literal">true</span>);
+<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(clip);
+<span class="comment">//这张图的路径cocos2d-x-3.17/tests/cpp-tests/Resources/Images/MagentaSquare.png</span>
+<span class="keyword">auto</span> content = Sprite::<span class="built_in">create</span>(<span class="string">&quot;res/MagentaSquare.png&quot;</span>);
+clip-&gt;<span class="built_in">addChild</span>(content);</code></pre>
+
+<pre><code class="highlight cpp"><span class="comment">//第二种方法：通过DrawNode（多边形）去裁剪，这种方法不需要setAlphaThreshold</span>
+<span class="keyword">auto</span> stencil = DrawNode::<span class="built_in">create</span>();
+<span class="type">const</span> <span class="type">int</span> cnt = <span class="number">720</span>;<span class="comment">//用多少个点来画一个圆</span>
+<span class="type">int</span> r = <span class="number">10</span>;<span class="comment">//圆的半径</span>
+Vec2 arr[cnt];<span class="comment">//组成圆的每个点的横纵坐标</span>
+<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; cnt; i++)
+&#123;
+    arr[i].x = r * <span class="built_in">cos</span>( (<span class="number">360.0f</span>/cnt) * i * (M_PI/<span class="number">180</span>) );
+    arr[i].y = r * <span class="built_in">sin</span>( (<span class="number">360.0f</span>/cnt) * i * (M_PI/<span class="number">180</span>) );
+&#125;<span class="comment">//不要写成360/cnt，脸一黑</span>
+stencil-&gt;<span class="built_in">drawPolygon</span>(arr, cnt, Color4F::BLUE, <span class="number">0</span>, Color4F::ORANGE);
+<span class="keyword">auto</span> clip = ClippingNode::<span class="built_in">create</span>(stencil);
+clip-&gt;<span class="built_in">setPosition</span>(<span class="built_in">Vec2</span>(visibleSize.width / <span class="number">2</span>, visibleSize.height / <span class="number">2</span>));
+clip-&gt;<span class="built_in">setInverted</span>(<span class="literal">true</span>);
+<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(clip);
+<span class="keyword">auto</span> content = Sprite::<span class="built_in">create</span>(<span class="string">&quot;res/MagentaSquare.png&quot;</span>);
+clip-&gt;<span class="built_in">addChild</span>(content);</code></pre>
+
+<pre><code class="highlight cpp"><span class="comment">//第三种方法：通过DrawNode（点）去裁剪，这种方法需要setAlphaThreshold</span>
+<span class="keyword">auto</span> stencil = DrawNode::<span class="built_in">create</span>();
+<span class="comment">//DrawNode还有drawDot()和drawCircle()两个方法。</span>
+stencil-&gt;<span class="built_in">drawDot</span>(<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>), <span class="number">10</span>, Color4F::BLUE);
+<span class="keyword">auto</span> clip = ClippingNode::<span class="built_in">create</span>(stencil);
+clip-&gt;<span class="built_in">setPosition</span>(<span class="built_in">Vec2</span>(visibleSize.width / <span class="number">2</span>, visibleSize.height / <span class="number">2</span>));
+<span class="comment">//如果不调用setAlphaThreshold(0.1)的话，裁剪出来是方的😂</span>
+clip-&gt;<span class="built_in">setAlphaThreshold</span>(<span class="number">0.1</span>);
+clip-&gt;<span class="built_in">setInverted</span>(<span class="literal">true</span>);
+<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(clip);
+<span class="keyword">auto</span> content = Sprite::<span class="built_in">create</span>(<span class="string">&quot;res/MagentaSquare.png&quot;</span>);
+clip-&gt;<span class="built_in">addChild</span>(content);</code></pre>
+
+<pre><code class="highlight cpp"><span class="comment">//第四种方法：模板节点可以是Node类型，下边再添加Sprite，这样也是可以的。</span>
+<span class="keyword">auto</span> stencil = Node::<span class="built_in">create</span>();
+<span class="keyword">auto</span> spr1 = Sprite::<span class="built_in">create</span>(<span class="string">&quot;res/hole_effect.png&quot;</span>);
+stencil-&gt;<span class="built_in">addChild</span>(spr1);
+<span class="comment">//同理，content也可以是空的Sprite，下边再添加Sprite。</span></code></pre>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cocos2dx/" rel="tag"># cocos2dx</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/20/04Hexo/Gridea001/" rel="prev" title="使用Gridea建立博客">
+                  <i class="fa fa-angle-left"></i> 使用Gridea建立博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/09/02Tool/Github/Github001/" rel="next" title="加快Github访问速度">
+                  加快Github访问速度 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+</html>
