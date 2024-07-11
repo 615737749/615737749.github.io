@@ -82,7 +82,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">75</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">76</span></a></li>
   </ul>
 </nav>
 
@@ -119,13 +119,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -147,6 +147,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/05/10/03Knowledge/ios/ios001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/10/03Knowledge/ios/ios001/" class="post-title-link" itemprop="url">将 Firebase 添加至您的 iOS 项目</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-10 17:57:09" itemprop="dateCreated datePublished" datetime="2021-05-10T17:57:09+08:00">2021-05-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://firebase.google.cn/docs/ios/setup">官网文档</a></p>
+<h1 id="生成并添加配置文件"><a href="#生成并添加配置文件" class="headerlink" title="生成并添加配置文件"></a>生成并添加配置文件</h1><ol>
+<li>在 Firebase 控制台里创建项目，并填入 iOS 项目的 Bundle Identifier</li>
+<li>下载 GoogleService-Info.plist 文件，在 Xcode 中以 Create groups 的方式添加该文件。</li>
+</ol>
+<h1 id="同步库文件"><a href="#同步库文件" class="headerlink" title="同步库文件"></a>同步库文件</h1><ol>
+<li>在 <code>xxx.xcodeproj</code>文件所在的目录下打开终端，使用 <code>pod init</code> 命令生成 <code>Podfile</code> 文件。</li>
+<li>打开 <code>Podfile</code> ，写入如下内容： <pre><code class="highlight plaintext">platform :ios, &#x27;10.0&#x27;
+target &#x27;xxx-mobile&#x27; do
+pod &#x27;Firebase/Analytics&#x27;
+pod &#x27;Firebase/Auth&#x27;
+pod &#x27;Firebase/Firestore&#x27;
+end</code></pre></li>
+<li>使用 <code>pod install --repo-update</code> 命令下载第三方库。</li>
+</ol>
+<h1 id="初始化Firebase"><a href="#初始化Firebase" class="headerlink" title="初始化Firebase"></a>初始化Firebase</h1><ol>
+<li>下载第三方库成功后，打开 <code>xxx.xcworkspace</code> 文件。</li>
+<li>在 <code>AppController.mm</code> 文件里包含头文件 <code>#import &lt;Firebase.h&gt;</code> 。</li>
+<li>在 <code>didFinishLaunchingWithOptions</code> 函数中添加初始化的代码 <code>[FIRApp configure]</code> 。</li>
+</ol>
+<h1 id="运行报错"><a href="#运行报错" class="headerlink" title="运行报错"></a>运行报错</h1><p>我遇到了这样一个错误<code>Undefined symbol: _OBJC_CLASS_$_FIRApp</code><br/><br>在执行 <code>pod update</code> 和 <code>pod install</code> 的时候，需要留意下面的那些提示，比如：<br/></p>
+<pre><code class="highlight plaintext">[!] The `work_crush_bonbons-mobile [Release]` target overrides the `GCC_PREPROCESSOR_DEFINITIONS` build setting defined in `Pods/Target Support Files/Pods-work_crush_bonbons-mobile/Pods-work_crush_bonbons-mobile.release.xcconfig&#x27;. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.</code></pre>
+<p>然后我就按照它的提示，去找到 <code>GCC_PREPROCESSOR_DEFINITIONS</code> 这个设置，然后加上 <code>$(inherited)</code> ，再次执行 <code>pod update</code> 和 <code>pod install</code> 就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3165,94 +3267,6 @@ root.mainloop()</code></pre>
 <p>拷贝id_rsa.pub里面的内容，粘贴到github或者gitee里。</p>
 <p>添加成功后，输入<code>ssh -T git@gitee.com</code>来测试是否可以正常连接。</p>
 <h1 id="rebase配合merge使用"><a href="#rebase配合merge使用" class="headerlink" title="rebase配合merge使用"></a>rebase配合merge使用</h1><p>多人协作的话需要分支，分支上开发一个功能完成后需要合并到主干上，但是主干上不想要多余的提交记录。此时，可以使用变基。过程大概是这个样子。<br>git branch dev<br>git switch dev<br>&#x2F;&#x2F;modify sth<br>git commit -m ‘dev 1’<br>&#x2F;&#x2F;modify sth<br>git commit -m ‘dev 2’<br>git rebase -i startpoint endpoint&#x2F;&#x2F;不写endpoint的话就是HEAD<br>&#x2F;&#x2F;select pick reword fixup and so on<br>git switch master<br>git merge dev</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/04/13/05History/History002/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="porridgechen890">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="porridgechen890的笔记">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | porridgechen890的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/13/05History/History002/" class="post-title-link" itemprop="url">南北朝</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-13 15:19:45" itemprop="dateCreated datePublished" datetime="2021-04-13T15:19:45+08:00">2021-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/05%E5%8E%86%E5%8F%B2/" itemprop="url" rel="index"><span itemprop="name">05历史</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><p>祖逖<br>  东晋时期杰出的军事家。<br>  北伐。<br>  闻鸡起舞。</p>
-</li>
-<li><p>桓温<br>  东晋时期军事家、政治家、权臣。<br>  晋明帝司马绍女婿（司马绍父司马睿）。<br>  一个人若不能流芳百世，那就应该遗臭万年。</p>
-</li>
-<li><p>谢安<br>  东晋时期政治家、名士。<br>  东山再起。</p>
-<blockquote>
-<p>隐居于会稽郡山阴县之东山。<br>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭。<br>常和王羲之等游山玩水。</p>
-</blockquote>
-</li>
-</ul>
 
       
     </div>

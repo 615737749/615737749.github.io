@@ -82,7 +82,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">75</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">76</span></a></li>
   </ul>
 </nav>
 
@@ -119,13 +119,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -147,6 +147,118 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2023/12/25/03Knowledge/cocos2dx/cocos2dx006/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/25/03Knowledge/cocos2dx/cocos2dx006/" class="post-title-link" itemprop="url">cocos2dx fairygui</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-25T00:00:00+08:00">2023-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="FGUI介绍"><a href="#FGUI介绍" class="headerlink" title="FGUI介绍"></a>FGUI介绍</h1><p><a target="_blank" rel="noopener" href="https://www.fairygui.com/">官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fairygui.com/docs/sdk/cocos2dx">fgui关于cocos2dx的教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fairygui/FairyGUI-cocos2dx">git仓库地址</a></p>
+<h1 id="运行demo"><a href="#运行demo" class="headerlink" title="运行demo"></a>运行demo</h1><ol>
+<li><p>克隆仓库</p>
+</li>
+<li><p>下载3.x版本cocos2dx命名成cocos2d放在Examples根目录。cocos2dx源码需要改动一处地方才能通过编译，打开2d&#x2F;CCLabel.h，大约在672行，为updateBMFontScale函数打上virtual修饰符。即<code>virtual void updateBMFontScale();</code>。</p>
+<p> 注：我用的3.17.2。</p>
+</li>
+<li><p>报错处理：box2d项目卸载掉。</p>
+</li>
+<li><p>报错处理：void GLoader3D::onChangeSpine()函数的函数体全注释掉。</p>
+</li>
+<li><p>报错处理：每个项目都检查一下平台工具集，我用的vs2015，所以用的平台工具集是v140_xp。</p>
+</li>
+<li><p>报错处理：运行exe的时候报错，需要把Resources文件夹拷贝到Debug.win32下面去。</p>
+</li>
+<li><p>修改gitignore：</p>
+ <pre><code class="highlight plaintext">Examples/proj.win32/Debug.win32
+Examples/proj.win32/Examples.VC.db
+Examples/proj.win32/Examples.VC.VC.opendb
+Examples/proj.win32/ipch
+libfairygui/proj.win32/Debug.win32</code></pre></li>
+</ol>
+<h1 id="引入其他工程"><a href="#引入其他工程" class="headerlink" title="引入其他工程"></a>引入其他工程</h1><ol>
+<li><p>拷贝代码文件，并添加头文件搜索路径</p>
+</li>
+<li><p>拷贝库文件，并添加依赖项。（WIN32的话可以直接拷贝到exe执行目录，就可以省去添加库文件搜索路径这一步骤）</p>
+</li>
+<li><p>修改updateBMFontScale。</p>
+</li>
+<li><p>报错：写入程序数据库.pdb时出错；请检查是否是磁盘空间不足、路径无效或权限不够。</p>
+<p> 调试信息格式可改为无。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1360,84 +1472,6 @@ group by 关卡号</code></pre>
 <pre><code class="highlight plaintext">openssl sha1 -binary key.txt &gt; key_sha.txt</code></pre>
 
 <pre><code class="highlight plaintext">openssl base64 -in key_sha.txt &gt; key_base64.txt</code></pre>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2023/07/09/02Tool/Github/Github001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="porridgechen890">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="porridgechen890的笔记">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | porridgechen890的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/09/02Tool/Github/Github001/" class="post-title-link" itemprop="url">加快Github访问速度</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-09 23:09:01" itemprop="dateCreated datePublished" datetime="2023-07-09T23:09:01+08:00">2023-07-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/02%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">02工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://github.com/aardio/Ghips">https://github.com/aardio/Ghips</a></p>
-
       
     </div>
 
