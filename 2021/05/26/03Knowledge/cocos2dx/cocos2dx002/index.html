@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="如何移除不需要的纹理？  cocos2d::Director::getInstance()-&gt;getTextureCache()-&gt;removeUnusedTextures();  假设我们把这句话叫做XXX。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos2dx_texture_cache">
+<meta property="og:url" content="https://615737749.github.io/2021/05/26/03Knowledge/cocos2dx/cocos2dx002/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="如何移除不需要的纹理？  cocos2d::Director::getInstance()-&gt;getTextureCache()-&gt;removeUnusedTextures();  假设我们把这句话叫做XXX。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-26T02:23:33.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.586Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2021/05/26/03Knowledge/cocos2dx/cocos2dx002/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2021/05/26/03Knowledge/cocos2dx/cocos2dx002/","path":"2021/05/26/03Knowledge/cocos2dx/cocos2dx002/","title":"cocos2dx_texture_cache"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cocos2dx_texture_cache | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/05/26/03Knowledge/cocos2dx/cocos2dx002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="cocos2dx_texture_cache | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cocos2dx_texture_cache
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-26 10:23:33" itemprop="dateCreated datePublished" datetime="2021-05-26T10:23:33+08:00">2021-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ol>
+<li><p>如何移除不需要的纹理？</p>
+<p> cocos2d::Director::getInstance()-&gt;getTextureCache()-&gt;removeUnusedTextures();</p>
+<p> 假设我们把这句话叫做XXX。</p>
+</li>
+</ol>
+<span id="more"></span>
+
+<ol>
+<li><p>何时需要移除不需要的纹理？</p>
+<p> 切换场景的时候（假设是A场景切换到B场景，那就是A场景的析构函数，或者B场景的构造函数）。</p>
+<p> 这两个地方我都写了XXX，结果不生效。</p>
+ <pre><code class="highlight cpp">SceneA::~<span class="built_in">SceneA</span>()
+&#123;
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">removeUnusedTextures</span>();
+&#125;</code></pre>
+
+ <pre><code class="highlight cpp">SceneB::<span class="built_in">SceneB</span>()
+&#123;
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">removeUnusedTextures</span>();
+&#125;</code></pre>
+</li>
+<li><p>为啥不生效呢？</p>
+<p> 不知道。</p>
+<p> 我们可以用 cocos2d::Director::getInstance()-&gt;getTextureCache()-&gt;getCachedTextureInfo() 来打印纹理缓存信息。</p>
+<p> 我打印过后发现，我想要移除的纹理的引用计数是等于1的，可没有移除成功。</p>
+</li>
+<li><p>怎么解决呢？</p>
+<p> 我测试过后发现，如果在切换场景前，把A场景里把对应的节点移除掉，再去调用XXX。就可以了。</p>
+ <pre><code class="highlight cpp"><span class="function"><span class="type">bool</span> <span class="title">SceneA::init</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">if</span> (!cocos2d::Scene::<span class="built_in">init</span>())
+    &#123;
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    &#125;
+
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">removeUnusedTextures</span>();
+
+    <span class="keyword">auto</span> vorigin = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getVisibleOrigin</span>();
+    <span class="keyword">auto</span> vsize = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getVisibleSize</span>();
+
+    <span class="keyword">auto</span> sprite = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;HelloWorld.png&quot;</span>);
+    sprite-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(vsize.width / <span class="number">2</span> + vorigin.x, vsize.height / <span class="number">2</span> + vorigin.y));
+    <span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(sprite, <span class="number">0</span>, <span class="string">&quot;spr&quot;</span>);
+
+    <span class="keyword">auto</span> replace_scene_item = cocos2d::MenuItemImage::<span class="built_in">create</span>(<span class="string">&quot;res/a_1.png&quot;</span>, <span class="string">&quot;res/a_1.png&quot;</span>, <span class="built_in">CC_CALLBACK_1</span>(SceneA::OnClickReplaceScene, <span class="keyword">this</span>));
+    replace_scene_item-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(vorigin.x + vsize.width - replace_scene_item-&gt;<span class="built_in">getContentSize</span>().width / <span class="number">2</span>, vorigin.y + replace_scene_item-&gt;<span class="built_in">getContentSize</span>().height / <span class="number">2</span>));
+    <span class="keyword">auto</span> menu_node = cocos2d::Menu::<span class="built_in">create</span>(replace_scene_item, <span class="literal">nullptr</span>);
+    menu_node-&gt;<span class="built_in">setPosition</span>(cocos2d::Vec2::ZERO);
+    <span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(menu_node, <span class="number">1</span>, <span class="string">&quot;menu&quot;</span>);
+
+    <span class="keyword">auto</span> s = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">getCachedTextureInfo</span>();
+    cocos2d::<span class="built_in">log</span>(<span class="string">&quot;Scene A:\n%s&quot;</span>, s.<span class="built_in">c_str</span>());
+
+    <span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">SceneA::OnClickReplaceScene</span><span class="params">(cocos2d::Ref * sender)</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">this</span>-&gt;<span class="built_in">removeChildByName</span>(<span class="string">&quot;spr&quot;</span>, <span class="literal">true</span>);
+    <span class="built_in">dynamic_cast</span>&lt;cocos2d::MenuItemImage*&gt;(sender)-&gt;<span class="built_in">removeFromParentAndCleanup</span>(<span class="literal">true</span>);<span class="comment">//this-&gt;removeChildByName(&quot;menu&quot;, true);这样写不行，我也不知道为啥</span>
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">removeUnusedTextures</span>();
+    <span class="keyword">auto</span> scene = SceneB::<span class="built_in">create</span>();
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">replaceScene</span>(scene);
+&#125;</code></pre></li>
+</ol>
+<hr>
+<p>完整代码</p>
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">ifndef</span> __SCENE_A_H__</span>
+<span class="meta">#<span class="keyword">define</span> __SCENE_A_H__</span>
+
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cocos2d.h&quot;</span></span>
+
+<span class="keyword">class</span> <span class="title class_">SceneA</span> : <span class="keyword">public</span> cocos2d::Scene
+&#123;
+<span class="keyword">public</span>:
+    <span class="function"><span class="type">static</span> SceneA * <span class="title">create</span><span class="params">()</span></span>;
+<span class="keyword">private</span>:
+    <span class="keyword">virtual</span> ~<span class="built_in">SceneA</span>();
+    <span class="function"><span class="type">bool</span> <span class="title">init</span><span class="params">()</span></span>;
+    <span class="function"><span class="type">void</span> <span class="title">OnClickReplaceScene</span><span class="params">(cocos2d::Ref * sender)</span></span>;
+&#125;;
+
+<span class="meta">#<span class="keyword">endif</span></span>
+</code></pre>
+
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SceneA.h&quot;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SceneB.h&quot;</span></span>
+
+SceneA::~<span class="built_in">SceneA</span>()
+&#123;
+    <span class="comment">//cocos2d::Director::getInstance()-&gt;getTextureCache()-&gt;removeUnusedTextures();</span>
+&#125;
+
+<span class="function">SceneA * <span class="title">SceneA::create</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">auto</span> p = <span class="built_in">new</span> (std::nothrow) <span class="built_in">SceneA</span>();
+    <span class="keyword">if</span> (p &amp;&amp; p-&gt;<span class="built_in">init</span>())
+    &#123;
+        p-&gt;<span class="built_in">autorelease</span>();
+        <span class="keyword">return</span> p;
+    &#125;
+    <span class="keyword">delete</span> p;
+    p = <span class="literal">nullptr</span>;
+    <span class="keyword">return</span> <span class="literal">nullptr</span>;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">SceneA::init</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">if</span> (!cocos2d::Scene::<span class="built_in">init</span>())
+    &#123;
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    &#125;
+
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">removeUnusedTextures</span>();
+
+    <span class="keyword">auto</span> vorigin = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getVisibleOrigin</span>();
+    <span class="keyword">auto</span> vsize = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getVisibleSize</span>();
+
+    <span class="keyword">auto</span> sprite = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;HelloWorld.png&quot;</span>);
+    sprite-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(vsize.width / <span class="number">2</span> + vorigin.x, vsize.height / <span class="number">2</span> + vorigin.y));
+    <span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(sprite, <span class="number">0</span>, <span class="string">&quot;spr&quot;</span>);
+
+    <span class="keyword">auto</span> replace_scene_item = cocos2d::MenuItemImage::<span class="built_in">create</span>(<span class="string">&quot;res/a_1.png&quot;</span>, <span class="string">&quot;res/a_2.png&quot;</span>, <span class="built_in">CC_CALLBACK_1</span>(SceneA::OnClickReplaceScene, <span class="keyword">this</span>));
+    replace_scene_item-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(vorigin.x + vsize.width - replace_scene_item-&gt;<span class="built_in">getContentSize</span>().width / <span class="number">2</span>, vorigin.y + replace_scene_item-&gt;<span class="built_in">getContentSize</span>().height / <span class="number">2</span>));
+    <span class="keyword">auto</span> menu_node = cocos2d::Menu::<span class="built_in">create</span>(replace_scene_item, <span class="literal">nullptr</span>);
+    menu_node-&gt;<span class="built_in">setPosition</span>(cocos2d::Vec2::ZERO);
+    <span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(menu_node, <span class="number">1</span>, <span class="string">&quot;menu&quot;</span>);
+
+    <span class="keyword">auto</span> s = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">getCachedTextureInfo</span>();
+    cocos2d::<span class="built_in">log</span>(<span class="string">&quot;Scene A:\n%s&quot;</span>, s.<span class="built_in">c_str</span>());
+
+    <span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">SceneA::OnClickReplaceScene</span><span class="params">(cocos2d::Ref * sender)</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">this</span>-&gt;<span class="built_in">removeChildByName</span>(<span class="string">&quot;spr&quot;</span>, <span class="literal">true</span>);
+    <span class="built_in">dynamic_cast</span>&lt;cocos2d::MenuItemImage*&gt;(sender)-&gt;<span class="built_in">removeFromParentAndCleanup</span>(<span class="literal">true</span>);<span class="comment">//this-&gt;removeChildByName(&quot;menu&quot;, true);这样写不行，我也不知道为啥</span>
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">removeUnusedTextures</span>();
+    <span class="keyword">auto</span> scene = SceneB::<span class="built_in">create</span>();
+    cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">replaceScene</span>(scene);
+&#125;
+</code></pre>
+
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">ifndef</span> __SCENE_B_H__</span>
+<span class="meta">#<span class="keyword">define</span> __SCENE_B_H__</span>
+
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cocos2d.h&quot;</span></span>
+
+<span class="keyword">class</span> <span class="title class_">SceneB</span> : <span class="keyword">public</span> cocos2d::Scene
+&#123;
+<span class="keyword">public</span>:
+    <span class="function"><span class="type">static</span> SceneB * <span class="title">create</span><span class="params">()</span></span>;
+<span class="keyword">private</span>:
+    <span class="built_in">SceneB</span>();
+    <span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">init</span><span class="params">()</span></span>;
+    <span class="function"><span class="type">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;
+&#125;;
+
+<span class="meta">#<span class="keyword">endif</span></span>
+</code></pre>
+
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SceneB.h&quot;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SceneA.h&quot;</span></span>
+
+SceneB::<span class="built_in">SceneB</span>()
+&#123;
+    <span class="comment">//cocos2d::Director::getInstance()-&gt;getTextureCache()-&gt;removeUnusedTextures();</span>
+&#125;
+
+<span class="function">SceneB * <span class="title">SceneB::create</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">auto</span> p = <span class="built_in">new</span> (std::nothrow) <span class="built_in">SceneB</span>();
+    <span class="keyword">if</span> (p &amp;&amp; p-&gt;<span class="built_in">init</span>())
+    &#123;
+        p-&gt;<span class="built_in">autorelease</span>();
+        <span class="keyword">return</span> p;
+    &#125;
+    <span class="keyword">delete</span> p;
+    p = <span class="literal">nullptr</span>;
+    <span class="keyword">return</span> <span class="literal">nullptr</span>;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">SceneB::init</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">if</span> ( !cocos2d::Scene::<span class="built_in">init</span>() )
+    &#123;
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    &#125;
+
+    <span class="keyword">auto</span> visibleSize = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getVisibleSize</span>();
+    <span class="keyword">auto</span> origin = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getVisibleOrigin</span>();
+
+    <span class="keyword">auto</span> closeItem = cocos2d::MenuItemImage::<span class="built_in">create</span>(<span class="string">&quot;CloseNormal.png&quot;</span>, <span class="string">&quot;CloseSelected.png&quot;</span>, <span class="built_in">CC_CALLBACK_1</span>(SceneB::menuCloseCallback, <span class="keyword">this</span>));
+    closeItem-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(origin.x + visibleSize.width - closeItem-&gt;<span class="built_in">getContentSize</span>().width / <span class="number">2</span>, origin.y + closeItem-&gt;<span class="built_in">getContentSize</span>().height / <span class="number">2</span>));
+
+    <span class="keyword">auto</span> menu = cocos2d::Menu::<span class="built_in">create</span>(closeItem, <span class="literal">NULL</span>);
+    menu-&gt;<span class="built_in">setPosition</span>(cocos2d::Vec2::ZERO);
+    <span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(menu, <span class="number">1</span>);
+
+    <span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">SceneB::menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>
+<span class="function"></span>&#123;
+    <span class="keyword">auto</span> s = cocos2d::Director::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">getTextureCache</span>()-&gt;<span class="built_in">getCachedTextureInfo</span>();
+    cocos2d::<span class="built_in">log</span>(<span class="string">&quot;Scene B:\n%s&quot;</span>, s.<span class="built_in">c_str</span>());
+&#125;
+</code></pre>
+
+<hr>
+<p>输出结果</p>
+<pre><code class="highlight plaintext">Scene A:
+&quot;G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/HelloWorld.png&quot; rc=2 id=1 195 x 270 @ 32 bpp =&gt; 205 KB
+&quot;G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/res/a_1.png&quot; rc=2 id=2 60 x 60 @ 32 bpp =&gt; 14 KB
+&quot;G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/res/a_2.png&quot; rc=2 id=3 60 x 60 @ 32 bpp =&gt; 14 KB
+TextureCache dumpDebugInfo: 3 textures, for 233 KB (0.23 MB)
+
+cocos2d: QuadCommand: resizing index size from [-1] to [2560]
+cocos2d: TextureCache: removing unused texture: G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/HelloWorld.png
+cocos2d: TextureCache: removing unused texture: G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/res/a_1.png
+cocos2d: TextureCache: removing unused texture: G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/res/a_2.png
+Scene B:
+&quot;/cc_fps_images&quot; rc=4 id=4 999 x 54 @ 16 bpp =&gt; 105 KB
+&quot;G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/CloseNormal.png&quot; rc=2 id=1 40 x 40 @ 32 bpp =&gt; 6 KB
+&quot;G:/ZZZ/ccTestTexturecache/proj.win32/Debug.win32/Resources/CloseSelected.png&quot; rc=2 id=2 40 x 40 @ 32 bpp =&gt; 6 KB
+TextureCache dumpDebugInfo: 3 textures, for 117 KB (0.12 MB)</code></pre>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/25/02Tool/CocosStudio/CocosStudio002/" rel="prev" title="csb时间轴动画">
+                  <i class="fa fa-angle-left"></i> csb时间轴动画
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/01/02Tool/Git/Git004/" rel="next" title="Git合并分支到主分支时去掉冗余提交">
+                  Git合并分支到主分支时去掉冗余提交 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

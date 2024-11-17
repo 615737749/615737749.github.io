@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="修改 CCFileUtils 这个类 在头文件cocos2d&#x2F;cocos&#x2F;platform&#x2F;CCFileUtils.h里增加一个成员变量  class FileUtils &#123; protected: mutable std::unordered_map&lt;std::string, std::string&gt; _fullPathCache;&#x2F;&#x2F;原来就有的代码 std::unorder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图片加密">
+<meta property="og:url" content="https://615737749.github.io/2021/07/09/01Work/102_image_encrypt/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="修改 CCFileUtils 这个类 在头文件cocos2d&#x2F;cocos&#x2F;platform&#x2F;CCFileUtils.h里增加一个成员变量  class FileUtils &#123; protected: mutable std::unordered_map&lt;std::string, std::string&gt; _fullPathCache;&#x2F;&#x2F;原来就有的代码 std::unorder">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-09T09:53:56.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.569Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2021/07/09/01Work/102_image_encrypt/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2021/07/09/01Work/102_image_encrypt/","path":"2021/07/09/01Work/102_image_encrypt/","title":"图片加密"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图片加密 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-CCFileUtils-%E8%BF%99%E4%B8%AA%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">修改 CCFileUtils 这个类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-Image-%E8%BF%99%E4%B8%AA%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">修改 Image 这个类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E5%8A%A0%E5%AF%86%E5%9B%BE%E7%89%87%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">拷贝加密图片的可执行程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%99-Resources-%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%EF%BC%8C%E5%B9%B6%E8%B0%83%E6%95%B4%E8%B7%AF%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">给 Resources 目录下所有文件重命名，并调整路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E5%9B%BE%E7%89%87"><span class="nav-number">5.</span> <span class="nav-text">加密图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">运行程序</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/07/09/01Work/102_image_encrypt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图片加密 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图片加密
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-09 17:53:56" itemprop="dateCreated datePublished" datetime="2021-07-09T17:53:56+08:00">2021-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/01%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">01工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="修改-CCFileUtils-这个类"><a href="#修改-CCFileUtils-这个类" class="headerlink" title="修改 CCFileUtils 这个类"></a>修改 CCFileUtils 这个类</h1><ol>
+<li><p>在头文件<code>cocos2d/cocos/platform/CCFileUtils.h</code>里增加一个成员变量</p>
+ <pre><code class="highlight cpp"><span class="keyword">class</span> <span class="title class_">FileUtils</span> &#123;
+<span class="keyword">protected</span>:
+<span class="keyword">mutable</span> std::unordered_map&lt;std::string, std::string&gt; _fullPathCache;<span class="comment">//原来就有的代码</span>
+std::unordered_map&lt;std::string, std::string&gt; m_my_hash_map_xxxxx;<span class="comment">//新增的代码</span>
+&#125;</code></pre></li>
+</ol>
+<span id="more"></span>
+
+<ol>
+<li><p>在实现文件里修改一下构造函数，用来初始化刚才添加的map。并且修改一下获取全路径的函数。</p>
+ <pre><code class="highlight cpp">FileUtils::<span class="built_in">FileUtils</span>()
+    : _writablePath(<span class="string">&quot;&quot;</span>)
+&#123;
+    <span class="comment">//replace_flag_tai_shang_lao_jun</span>
+    <span class="comment">//replace_flag_tai_shang_lao_jun</span>
+&#125;
+
+<span class="function">std::string <span class="title">FileUtils::fullPathForFilename</span><span class="params">(<span class="type">const</span> std::string &amp;filename)</span> <span class="type">const</span></span>
+<span class="function"></span>&#123;
+    
+    DECLARE_GUARD;
+
+    <span class="keyword">if</span> (filename.<span class="built_in">empty</span>())
+    &#123;
+        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;
+    &#125;
+
+    std::string filename2 = filename;
+    <span class="keyword">if</span> (m_my_hash_map_xxxxx.<span class="built_in">find</span>(filename) != m_my_hash_map_xxxxx.<span class="built_in">end</span>())
+    &#123;
+        filename2 = m_my_hash_map_xxxxx.<span class="built_in">at</span>(filename);
+    &#125;
+
+    <span class="keyword">if</span> (<span class="built_in">isAbsolutePath</span>(filename2))
+    &#123;
+        <span class="keyword">return</span> filename2;
+    &#125;
+
+    <span class="comment">// Already Cached ?</span>
+    <span class="keyword">auto</span> cacheIter = _fullPathCache.<span class="built_in">find</span>(filename2);
+    <span class="keyword">if</span>(cacheIter != _fullPathCache.<span class="built_in">end</span>())
+    &#123;
+        <span class="keyword">return</span> cacheIter-&gt;second;
+    &#125;
+
+    <span class="comment">// Get the new file name.</span>
+    <span class="function"><span class="type">const</span> std::string <span class="title">newFilename</span><span class="params">( getNewFilename(filename2) )</span></span>;
+
+    std::string fullpath;
+
+    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; searchIt : _searchPathArray)
+    &#123;
+        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; resolutionIt : _searchResolutionsOrderArray)
+        &#123;
+            fullpath = <span class="keyword">this</span>-&gt;<span class="built_in">getPathForFilename</span>(newFilename, resolutionIt, searchIt);
+
+            <span class="keyword">if</span> (!fullpath.<span class="built_in">empty</span>())
+            &#123;
+                <span class="comment">// Using the filename passed in as key.</span>
+                _fullPathCache.<span class="built_in">emplace</span>(filename2, fullpath);
+                <span class="keyword">return</span> fullpath;
+            &#125;
+
+        &#125;
+    &#125;
+
+    <span class="keyword">if</span>(<span class="built_in">isPopupNotify</span>())&#123;
+        <span class="built_in">CCLOG</span>(<span class="string">&quot;cocos2d: fullPathForFilename: No file found at %s. Possible missing file.&quot;</span>, filename<span class="number">2.</span><span class="built_in">c_str</span>());
+    &#125;
+
+    <span class="comment">// The file wasn&#x27;t found, return empty string.</span>
+    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;
+&#125;</code></pre>
+
+<p> 说明1：构造函数里加了两句注释。这个注释是用来给Python脚本识别的，好在此处插入字符串。<br> 说明2：获取全路径函数的修改意图，就是在map里找一下，找到了就用心的文件名，否则用原来的。</p>
+</li>
+</ol>
+<h1 id="修改-Image-这个类"><a href="#修改-Image-这个类" class="headerlink" title="修改 Image 这个类"></a>修改 Image 这个类</h1><p><code>cocos2d/cocos/platform/CCImage.cpp</code>这个是实现文件的路径。</p>
+<pre><code class="highlight cpp"><span class="function"><span class="type">bool</span> <span class="title">Image::initWithImageData</span><span class="params">(<span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> * data, <span class="type">ssize_t</span> dataLen)</span></span>
+<span class="function"></span>&#123;
+    <span class="comment">//省略其他代码</span>
+    <span class="keyword">if</span> (ZipUtils::<span class="built_in">isCCZBuffer</span>(data, dataLen))
+    &#123;
+        unpackedLen = ZipUtils::<span class="built_in">inflateCCZBuffer</span>(data, dataLen, &amp;unpackedData);
+    &#125;
+    <span class="keyword">else</span> <span class="keyword">if</span> (ZipUtils::<span class="built_in">isGZipBuffer</span>(data, dataLen))
+    &#123;
+        unpackedLen = ZipUtils::<span class="built_in">inflateMemory</span>(<span class="built_in">const_cast</span>&lt;<span class="type">unsigned</span> <span class="type">char</span>*&gt;(data), dataLen, &amp;unpackedData);
+    &#125;
+    <span class="keyword">else</span>
+    &#123;
+        unpackedData = <span class="built_in">const_cast</span>&lt;<span class="type">unsigned</span> <span class="type">char</span>*&gt;(data);
+        unpackedLen = dataLen;
+        <span class="comment">//添加这一行</span>
+        <span class="keyword">for</span> (<span class="type">ssize_t</span> i = <span class="number">0</span>; i &lt; unpackedLen; ++i) &#123; unpackedData[i] ^= <span class="number">0xFF</span>; &#125;
+    &#125;
+    <span class="comment">//省略其他代码</span>
+&#125;</code></pre>
+
+<p>修改的目的就是为了在生成图片前做一次异或操作。</p>
+<h1 id="拷贝加密图片的可执行程序"><a href="#拷贝加密图片的可执行程序" class="headerlink" title="拷贝加密图片的可执行程序"></a>拷贝加密图片的可执行程序</h1><p>拷贝加密图片的exe到跟 Resources 目录同级的地方。</p>
+<p>附上生成这个exe的代码：</p>
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span>
+
+<span class="meta">#<span class="keyword">define</span> BUFFERSIZE 1024</span>
+
+<span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* file_old, <span class="type">const</span> <span class="type">char</span>* file_new)</span></span>
+<span class="function"></span>&#123;
+    FILE* fp = <span class="built_in">fopen</span>(file_old, <span class="string">&quot;rb&quot;</span>);
+    FILE* fp2 = <span class="built_in">fopen</span>(file_new, <span class="string">&quot;wb&quot;</span>);
+    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>)
+    &#123;
+        <span class="built_in">printf</span>(<span class="string">&quot;error:fp == NULL %s %s\n&quot;</span>, file_old, file_new);
+        <span class="keyword">return</span>;
+    &#125;
+    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>)
+    &#123;
+        <span class="built_in">printf</span>(<span class="string">&quot;error:fp2 == NULL %s %s\n&quot;</span>, file_old, file_new);
+        <span class="keyword">return</span>;
+    &#125;
+    <span class="type">char</span> buf[BUFFERSIZE];
+    <span class="type">char</span> buf2[BUFFERSIZE];
+    <span class="type">unsigned</span> <span class="type">char</span> MASK = <span class="number">2</span>;
+    <span class="type">int</span> len = <span class="number">0</span>;
+    <span class="keyword">while</span> (!<span class="built_in">feof</span>(fp))
+    &#123;
+        len = <span class="built_in">fread</span>(buf, <span class="number">1</span>, BUFFERSIZE, fp);
+        <span class="keyword">if</span> (len &gt; <span class="number">0</span>)
+        &#123;
+            <span class="built_in">memset</span>(buf2, <span class="number">0</span>, BUFFERSIZE);
+            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; ++i)
+            &#123;
+                buf2[i] = buf[i];
+                buf2[i] ^= <span class="number">0xFF</span>;
+            &#125;
+            <span class="type">int</span> write_result = <span class="built_in">fwrite</span>(buf2, <span class="number">1</span>, len, fp2);
+        &#125;
+    &#125;
+    <span class="built_in">fclose</span>(fp);
+    <span class="built_in">fclose</span>(fp2);
+&#125;
+<span class="function"><span class="type">void</span> <span class="title">func2</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* file_old, <span class="type">const</span> <span class="type">char</span>* file_new)</span></span>
+<span class="function"></span>&#123;
+    <span class="built_in">remove</span>(file_old);
+    <span class="built_in">rename</span>(file_new, file_old);
+&#125;
+
+<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    std::vector&lt;std::string&gt; vec1;
+    FILE* fp = <span class="built_in">fopen</span>(<span class="string">&quot;zzz_output_encode_png.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);
+    <span class="type">char</span> buf[BUFFERSIZE] = &#123; <span class="number">0</span> &#125;;
+    <span class="keyword">while</span> (<span class="built_in">fgets</span>(buf, BUFFERSIZE, fp))
+    &#123;
+        
+        <span class="keyword">if</span> (buf[<span class="number">0</span>] == <span class="string">&#x27;&#123;&#x27;</span> || buf[<span class="number">0</span>] == <span class="string">&#x27;&#125;&#x27;</span>)
+        &#123;
+            <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, buf);
+        &#125;
+        <span class="keyword">else</span>
+        &#123;
+            <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, buf);
+            vec<span class="number">1.</span><span class="built_in">push_back</span>(std::<span class="built_in">string</span>(buf));
+        &#125;
+    &#125;
+    <span class="built_in">fclose</span>(fp);
+    <span class="keyword">for</span> (<span class="keyword">auto</span> s : vec1)
+    &#123;
+        std::string str;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> ch : s)
+        &#123;
+            <span class="keyword">if</span> (ch != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; ch != <span class="string">&#x27;\r&#x27;</span> &amp;&amp; ch != <span class="string">&#x27;\&quot;&#x27;</span> &amp;&amp; ch != <span class="string">&#x27;,&#x27;</span>)
+            &#123;
+                str += ch;
+            &#125;
+        &#125;
+        <span class="built_in">func</span>(str.<span class="built_in">c_str</span>(), std::<span class="built_in">string</span>(str + <span class="string">&quot;xx&quot;</span>).<span class="built_in">c_str</span>());
+        <span class="built_in">func2</span>(str.<span class="built_in">c_str</span>(), std::<span class="built_in">string</span>(str + <span class="string">&quot;xx&quot;</span>).<span class="built_in">c_str</span>());
+    &#125;
+    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+&#125;</code></pre>
+
+<h1 id="给-Resources-目录下所有文件重命名，并调整路径"><a href="#给-Resources-目录下所有文件重命名，并调整路径" class="headerlink" title="给 Resources 目录下所有文件重命名，并调整路径"></a>给 Resources 目录下所有文件重命名，并调整路径</h1><pre><code class="highlight python"><span class="comment"># -*- coding: utf-8 -*-</span>
+<span class="keyword">import</span> os
+<span class="keyword">import</span> string
+<span class="keyword">import</span> random
+<span class="keyword">import</span> shutil
+
+g_str_png = <span class="string">&quot;&quot;</span>
+g_str_jpg = <span class="string">&quot;&quot;</span>
+g_str_webp = <span class="string">&quot;&quot;</span>
+g_str_ttf = <span class="string">&quot;&quot;</span>
+g_str_others = <span class="string">&quot;&quot;</span>
+g_file_cnt = <span class="number">0</span>
+g_exclude_file_list = [<span class="string">&#x27;8429kznywme9rgdem7ffp443.json&#x27;</span>, <span class="string">&#x27;supplierconfig.json&#x27;</span>]
+
+<span class="comment"># 读取Resources目录下的所有文件，将每种类型的文件路径存入全局变量</span>
+<span class="keyword">def</span> <span class="title function_">func_get_filename</span>(<span class="params">current_folder_path</span>):
+    <span class="keyword">global</span> g_str_png
+    <span class="keyword">global</span> g_str_jpg
+    <span class="keyword">global</span> g_str_webp
+    <span class="keyword">global</span> g_str_ttf
+    <span class="keyword">global</span> g_str_others
+    <span class="built_in">list</span> = os.listdir(current_folder_path)
+    <span class="keyword">for</span> file_or_dir_name <span class="keyword">in</span> <span class="built_in">list</span>:
+        full_path = os.path.join(current_folder_path, file_or_dir_name)
+        <span class="keyword">if</span> os.path.isfile(full_path):
+            <span class="keyword">if</span> full_path[-<span class="number">4</span>:] == <span class="string">&quot;.png&quot;</span>:
+                g_str_png += full_path + <span class="string">&#x27;\n&#x27;</span>
+            <span class="keyword">elif</span> full_path[-<span class="number">4</span>:] == <span class="string">&quot;.jpg&quot;</span>:
+                g_str_jpg += full_path + <span class="string">&#x27;\n&#x27;</span>
+            <span class="keyword">elif</span> full_path[-<span class="number">5</span>:] == <span class="string">&quot;.webp&quot;</span>:
+                g_str_webp += full_path + <span class="string">&#x27;\n&#x27;</span>
+            <span class="keyword">elif</span> full_path[-<span class="number">4</span>:] == <span class="string">&quot;.ttf&quot;</span>:
+                g_str_ttf += full_path + <span class="string">&#x27;\n&#x27;</span>
+            <span class="keyword">else</span>:
+                g_str_others += full_path + <span class="string">&#x27;\n&#x27;</span>
+        <span class="keyword">elif</span> os.path.isdir(full_path):
+            func_get_filename(full_path)
+
+<span class="comment"># 将全局变量里存的文件名，写入文件1</span>
+<span class="keyword">def</span> <span class="title function_">func_save_all_filename</span>():
+    <span class="keyword">global</span> g_str_png
+    <span class="keyword">global</span> g_str_jpg
+    <span class="keyword">global</span> g_str_webp
+    <span class="keyword">global</span> g_str_ttf
+    <span class="keyword">global</span> g_str_others
+    str_write = <span class="string">&quot;&quot;</span>
+    str_write += g_str_png
+    str_write += <span class="string">&#x27;we_should_create_new_floder\n&#x27;</span>
+    str_write += g_str_jpg
+    str_write += <span class="string">&#x27;we_should_create_new_floder\n&#x27;</span>
+    str_write += g_str_webp
+    str_write += <span class="string">&#x27;we_should_create_new_floder\n&#x27;</span>
+    str_write += g_str_ttf
+    str_write += <span class="string">&#x27;we_should_create_new_floder\n&#x27;</span>
+    str_write += g_str_others
+    str_write += <span class="string">&#x27;we_should_create_new_floder\n&#x27;</span>
+    f = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_1.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f.write(str_write)
+    f.close()
+
+<span class="comment"># 随机生成长度为num的字符串</span>
+<span class="keyword">def</span> <span class="title function_">ranstr</span>(<span class="params">num</span>):
+    salt = <span class="string">&#x27;&#x27;</span>.join(random.sample(string.ascii_letters, num))
+    <span class="keyword">return</span> salt
+
+<span class="comment"># 生成映射表，写入文件2</span>
+<span class="keyword">def</span> <span class="title function_">func_generate_hash_map</span>():
+    <span class="keyword">global</span> g_file_cnt
+    max_file_cnt_in_one_dir = <span class="number">300</span><span class="comment">#一个目录下最多有多少个文件</span>
+    current_dir_file_cnt = <span class="number">0</span><span class="comment">#当前目录已经有多少个文件了</span>
+    new_dir_name_len = <span class="number">9</span><span class="comment">#新目录的文件夹名字有多少个随机字符</span>
+    new_dir_name = ranstr(new_dir_name_len)<span class="comment">#新目录的名字前缀</span>
+    current_generated_dir_cnt = <span class="number">0</span><span class="comment">#当前已经生成了多少个新目录了</span>
+    str_write_for_cpp = <span class="string">&quot;&quot;</span><span class="comment">#给cpp代码做初始化用的文件</span>
+    str_write_2 = <span class="string">&quot;&quot;</span><span class="comment">#给第三步用的文件</span>
+    
+    <span class="comment">#读文件1，生成字符串str_write_for_cpp</span>
+    f = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_1.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)
+    <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():
+        line = line.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)<span class="comment">#按行读取文件路径，去掉每一行末尾的换行符</span>
+        str_dir_prefix = <span class="string">&#x27;.\\Resources\\&#x27;</span><span class="comment">#路径前面的这个字符串要删掉，因为映射表里的路径应该是相对于Resources的路径</span>
+        var_index = string.find(line, str_dir_prefix)
+        <span class="keyword">assert</span> var_index == <span class="number">0</span>, <span class="string">&#x27;文件1里存的路径不是以.\\Resources\\开头的&#x27;</span>
+        str_dir_prefix_len = <span class="built_in">len</span>(str_dir_prefix)
+        line = line[str_dir_prefix_len:]<span class="comment">#把.\Resources\这个串删掉</span>
+
+        <span class="comment"># 这里有个分支，有些文件是不改路径，不改文件名的</span>
+        find_flag = <span class="literal">False</span>
+        <span class="keyword">for</span> unchangeable_file <span class="keyword">in</span> g_exclude_file_list:
+            pos = line.find(unchangeable_file)
+            <span class="keyword">if</span> pos != -<span class="number">1</span> :
+                find_flag = <span class="literal">True</span>
+                <span class="keyword">break</span>
+        <span class="keyword">if</span> find_flag:
+            str_write_2 += line + <span class="string">&quot;,&quot;</span> + line + <span class="string">&#x27;\n&#x27;</span>
+            <span class="keyword">continue</span>
+
+        <span class="comment">#每个新文件夹能存多少个文件</span>
+        <span class="keyword">if</span> current_dir_file_cnt == max_file_cnt_in_one_dir:
+            current_dir_file_cnt = <span class="number">0</span>
+            current_generated_dir_cnt += <span class="number">1</span>
+            new_dir_name = ranstr(new_dir_name_len)
+
+        <span class="comment">#拼接新文件夹的名字</span>
+        new_dir_name_with_index = new_dir_name + <span class="built_in">str</span>(current_generated_dir_cnt) + <span class="string">&#x27;\\&#x27;</span>
+        
+        <span class="comment">#保持文件的后缀名不变</span>
+        last_dot_pos = line.rfind(<span class="string">&#x27;.&#x27;</span>)
+        new_file_name = line[last_dot_pos:]
+        g_file_cnt += <span class="number">1</span>
+        new_file_name = <span class="string">&quot;%05d&quot;</span>%(g_file_cnt) + ranstr(<span class="number">5</span>) + new_file_name
+        
+        <span class="comment">#更新需要写入文件的字符串</span>
+        str_write_for_cpp += <span class="string">&quot;&#123;\&quot;&quot;</span> + line + <span class="string">&quot;\&quot;, \&quot;&quot;</span> + new_dir_name_with_index + new_file_name + <span class="string">&quot;\&quot;&#125;,\n&quot;</span>
+        str_write_2 += line + <span class="string">&quot;,&quot;</span> + new_dir_name_with_index + new_file_name + <span class="string">&#x27;\n&#x27;</span>
+        
+        <span class="comment">#当前目录下的文件数加1</span>
+        current_dir_file_cnt += <span class="number">1</span>
+    f.close()
+    
+    <span class="comment">#把得到的字符串写入文件2</span>
+    last_comma_pos = str_write_for_cpp.rfind(<span class="string">&#x27;,&#x27;</span>)
+    <span class="keyword">assert</span> last_comma_pos != -<span class="number">1</span>, <span class="string">&quot;ERROR&quot;</span>
+    str_write_for_cpp = str_write_for_cpp[<span class="number">0</span>:last_comma_pos]
+    str_write_for_cpp = <span class="string">&quot;&#123;\n&quot;</span> + str_write_for_cpp + <span class="string">&quot;\n&#125;;&quot;</span>
+    str_write_for_cpp = str_write_for_cpp.replace(<span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)
+    f2 = <span class="built_in">open</span>(<span class="string">&quot;zzz_output_2.cpp&quot;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f2.write(str_write_for_cpp)
+    f2.close()
+    
+    f3 = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_2.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f3.write(str_write_2)
+    f3.close()
+    
+    <span class="keyword">return</span> str_write_for_cpp
+
+
+<span class="comment"># 生成映射表，写入文件2，按后缀名来分文件夹</span>
+<span class="keyword">def</span> <span class="title function_">func_generate_hash_map_2</span>():
+    <span class="keyword">global</span> g_file_cnt
+    current_dir_file_cnt = <span class="number">0</span><span class="comment">#当前目录已经有多少个文件了</span>
+    new_dir_name_len = <span class="number">9</span><span class="comment">#新目录的文件夹名字有多少个随机字符</span>
+    new_dir_name = ranstr(new_dir_name_len)<span class="comment">#新目录的名字前缀</span>
+    current_generated_dir_cnt = <span class="number">0</span><span class="comment">#当前已经生成了多少个新目录了</span>
+    str_write_for_cpp = <span class="string">&quot;&quot;</span><span class="comment">#给cpp代码做初始化用的文件</span>
+    str_write_2 = <span class="string">&quot;&quot;</span><span class="comment">#给第三步用的文件</span>
+    
+    <span class="comment">#读文件1，生成字符串str_write_for_cpp</span>
+    f = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_1.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)
+    <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():
+        line = line.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)<span class="comment">#按行读取文件路径，去掉每一行末尾的换行符</span>
+        <span class="keyword">if</span> line.find(<span class="string">&#x27;we_should_create_new_floder&#x27;</span>) != -<span class="number">1</span>:
+            current_dir_file_cnt = <span class="number">0</span>
+            current_generated_dir_cnt += <span class="number">1</span>
+            new_dir_name = ranstr(new_dir_name_len)
+            <span class="keyword">continue</span>
+
+        str_dir_prefix = <span class="string">&#x27;.\\Resources\\&#x27;</span><span class="comment">#路径前面的这个字符串要删掉，因为映射表里的路径应该是相对于Resources的路径</span>
+        var_index = string.find(line, str_dir_prefix)
+        <span class="keyword">assert</span> var_index == <span class="number">0</span>, <span class="string">&#x27;文件1里存的路径不是以.\\Resources\\开头的&#x27;</span>
+        str_dir_prefix_len = <span class="built_in">len</span>(str_dir_prefix)
+        line = line[str_dir_prefix_len:]<span class="comment">#把.\Resources\这个串删掉</span>
+
+        <span class="comment"># 这里有个分支，有些文件是不改路径，不改文件名的</span>
+        find_flag = <span class="literal">False</span>
+        <span class="keyword">for</span> unchangeable_file <span class="keyword">in</span> g_exclude_file_list:
+            pos = line.find(unchangeable_file)
+            <span class="keyword">if</span> pos != -<span class="number">1</span> :
+                find_flag = <span class="literal">True</span>
+                <span class="keyword">break</span>
+        <span class="keyword">if</span> find_flag:
+            str_write_2 += line + <span class="string">&quot;,&quot;</span> + line + <span class="string">&#x27;\n&#x27;</span>
+            <span class="keyword">continue</span>
+
+        <span class="comment">#拼接新文件夹的名字</span>
+        new_dir_name_with_index = new_dir_name + <span class="built_in">str</span>(current_generated_dir_cnt) + <span class="string">&#x27;\\&#x27;</span>
+        
+        <span class="comment">#保持文件的后缀名不变</span>
+        last_dot_pos = line.rfind(<span class="string">&#x27;.&#x27;</span>)
+        new_file_name = line[last_dot_pos:]
+        g_file_cnt += <span class="number">1</span>
+        new_file_name = <span class="string">&quot;%05d&quot;</span>%(g_file_cnt) + ranstr(<span class="number">5</span>) + new_file_name
+        
+        <span class="comment">#更新需要写入文件的字符串</span>
+        str_write_for_cpp += <span class="string">&quot;&#123;\&quot;&quot;</span> + line + <span class="string">&quot;\&quot;, \&quot;&quot;</span> + new_dir_name_with_index + new_file_name + <span class="string">&quot;\&quot;&#125;,\n&quot;</span>
+        str_write_2 += line + <span class="string">&quot;,&quot;</span> + new_dir_name_with_index + new_file_name + <span class="string">&#x27;\n&#x27;</span>
+        
+        <span class="comment">#当前目录下的文件数加1</span>
+        current_dir_file_cnt += <span class="number">1</span>
+    f.close()
+    
+    <span class="comment">#把得到的字符串写入文件2</span>
+    last_comma_pos = str_write_for_cpp.rfind(<span class="string">&#x27;,&#x27;</span>)
+    <span class="keyword">assert</span> last_comma_pos != -<span class="number">1</span>, <span class="string">&quot;ERROR&quot;</span>
+    str_write_for_cpp = str_write_for_cpp[<span class="number">0</span>:last_comma_pos]
+    str_write_for_cpp = <span class="string">&quot;&#123;\n&quot;</span> + str_write_for_cpp + <span class="string">&quot;\n&#125;;&quot;</span>
+    str_write_for_cpp = str_write_for_cpp.replace(<span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)
+    f2 = <span class="built_in">open</span>(<span class="string">&quot;zzz_output_2.cpp&quot;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f2.write(str_write_for_cpp)
+    f2.close()
+    
+    f3 = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_2.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f3.write(str_write_2)
+    f3.close()
+    
+    <span class="keyword">return</span> str_write_for_cpp
+
+<span class="comment"># 修改对应的cpp文件</span>
+<span class="keyword">def</span> <span class="title function_">func_modify_cpp_file</span>(<span class="params">str_replace</span>):
+    str_mark = <span class="string">&#x27;//replace_flag_tai_shang_lao_jun&#x27;</span> <span class="comment"># 标记字符串</span>
+    str_mark_len = <span class="built_in">len</span>(str_mark)
+
+    f1 = <span class="built_in">open</span>(<span class="string">&#x27;.\\cocos2d\\cocos\\platform\\CCFileUtils.cpp&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)
+    str_content = f1.read()
+    f1.close()
+
+    pos1 = str_content.find(str_mark)
+    <span class="keyword">assert</span> pos1 &gt; <span class="number">0</span>, <span class="string">&quot;ERROR&quot;</span>
+    pos2 = str_content.rfind(str_mark)
+    <span class="keyword">assert</span> pos2 &gt; <span class="number">0</span>, <span class="string">&quot;ERROR&quot;</span>
+    str_front = str_content[<span class="number">0</span> : pos1 + str_mark_len]
+    str_back = str_content[pos2 : ]
+
+    f2 = <span class="built_in">open</span>(<span class="string">&#x27;.\\cocos2d\\cocos\\platform\\CCFileUtils.cpp&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f2.write(str_front + <span class="string">&#x27;\n\tm_my_hash_map_xxxxx=&#x27;</span> + str_replace + <span class="string">&#x27;\n&#x27;</span> + str_back)
+    f2.close()
+
+<span class="comment"># 根据生成的映射表，重命名并移动文件</span>
+<span class="keyword">def</span> <span class="title function_">func_rename_and_move_file</span>():
+    <span class="comment"># 判断Resources2这个文件夹是否存在，如果不存在就创建</span>
+    py_file_directory = os.path.abspath(<span class="string">&#x27;.&#x27;</span>)
+    resources2_dir = os.path.join(py_file_directory, <span class="string">&quot;Resources2&quot;</span>)
+    resources2_dir_exist = os.path.exists(resources2_dir)
+    <span class="keyword">if</span> <span class="keyword">not</span> resources2_dir_exist:
+        os.mkdir(resources2_dir)
+
+    f3 = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_2.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)
+    <span class="keyword">for</span> line <span class="keyword">in</span> f3.readlines():
+        line = line.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)
+        path_list = line.split(<span class="string">&#x27;,&#x27;</span>)
+        <span class="keyword">assert</span> <span class="built_in">len</span>(path_list) == <span class="number">2</span>, <span class="string">&quot;ERROR&quot;</span>
+        
+        <span class="comment"># 原文件必须存在</span>
+        path_old = path_list[<span class="number">0</span>]
+        full_path_old = os.path.join(<span class="string">&#x27;.\\Resources\\&#x27;</span>, path_old)
+        <span class="keyword">assert</span> os.path.exists(full_path_old), <span class="string">&quot;ERROR&quot;</span>
+
+        <span class="comment"># 新路径必须由两部分组成，一个文件夹，一个文件名。也可以不是，比方说不变的文件</span>
+        path_new = path_list[<span class="number">1</span>]
+        first_slash_pos = path_new.find(<span class="string">&#x27;\\&#x27;</span>)
+        <span class="keyword">if</span> first_slash_pos == -<span class="number">1</span>:
+            dir_under_res2 = os.path.join(resources2_dir, path_new)
+            full_path_old = os.path.abspath(full_path_old)
+            shutil.copy(full_path_old, dir_under_res2)
+            <span class="keyword">continue</span>
+
+        <span class="comment"># 获取新路径的文件夹</span>
+        directory_new = path_new[<span class="number">0</span>:first_slash_pos]
+
+        <span class="comment"># 获取新路径的文件名</span>
+        filename_new = path_new[first_slash_pos + <span class="number">1</span>:]
+        
+        <span class="comment"># 在Resources2目录下创建新的文件夹</span>
+        dir_under_res2 = os.path.join(resources2_dir, directory_new)
+        dir_under_res2_exist = os.path.exists(dir_under_res2)
+        <span class="keyword">if</span> <span class="keyword">not</span> dir_under_res2_exist:
+            os.mkdir(dir_under_res2)
+            
+        <span class="comment"># 在Resources2目录下的新文件夹里创建新文件</span>
+        file_under_res2 = os.path.join(dir_under_res2, filename_new)
+        
+        <span class="comment"># 拷贝文件</span>
+        <span class="keyword">try</span>:
+            shutil.copy(full_path_old, file_under_res2)
+        <span class="keyword">except</span> IOError <span class="keyword">as</span> e:
+            <span class="built_in">print</span>(<span class="string">&quot;Unable to copy file. %s&quot;</span> % e)
+        <span class="keyword">except</span>:
+            <span class="built_in">print</span>(<span class="string">&quot;Unexpected error:&quot;</span>, sys.exc_info())
+    f3.close()
+ 
+<span class="keyword">def</span> <span class="title function_">func_encode_pic</span>(<span class="params">str_pic_type</span>):
+    list_all_pic = []
+    f = <span class="built_in">open</span>(<span class="string">&#x27;zzz_output_2.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)
+    <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():
+        line = line.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)
+        list_tmp = line.split(<span class="string">&#x27;,&#x27;</span>)
+        <span class="keyword">if</span> <span class="built_in">len</span>(list_tmp) == <span class="number">2</span>:
+            str_back = list_tmp[<span class="number">1</span>]
+            <span class="keyword">if</span> str_back[-<span class="number">4</span>:] == str_pic_type:
+                list_all_pic.append(str_back)
+    f.close()
+    <span class="keyword">return</span> list_all_pic
+    
+
+<span class="keyword">def</span> <span class="title function_">func_write_jpg_list_to_file</span>(<span class="params">list_all_jpg</span>):
+    str_for_write = <span class="string">&#x27;&#123;&#x27;</span>
+    path_befor = os.path.abspath(<span class="string">&#x27;.\\Resources&#x27;</span>)
+    <span class="keyword">for</span> jpg_file <span class="keyword">in</span> list_all_jpg:
+        jpg_file = jpg_file.strip()
+        jpg_file = os.path.join(path_befor, jpg_file)
+        str_for_write += <span class="string">&#x27;\&quot;&#x27;</span> + jpg_file + <span class="string">&#x27;\&quot;\n&#x27;</span>
+    str_for_write = str_for_write.replace(<span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)
+    str_for_write += <span class="string">&#x27;&#125;&#x27;</span>
+    f = <span class="built_in">open</span>(<span class="string">&#x27;.\\zzz_output_encode_jpg.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f.write(str_for_write)
+    f.close()
+
+<span class="keyword">def</span> <span class="title function_">func_write_png_list_to_file</span>(<span class="params">list_all_png</span>):
+    str_for_write = <span class="string">&#x27;&#123;\n&#x27;</span>
+    path_befor = os.path.abspath(<span class="string">&#x27;.\\Resources&#x27;</span>)
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(list_all_png)):
+        png_file = list_all_png[i]
+        png_file = list_all_png[i].strip()
+        png_file = os.path.join(path_befor, png_file)
+        str_for_write += <span class="string">&#x27;\&quot;&#x27;</span> + png_file + <span class="string">&#x27;\&quot;&#x27;</span>
+        <span class="keyword">if</span> i &lt; <span class="built_in">len</span>(list_all_png) - <span class="number">1</span>:
+            str_for_write += <span class="string">&#x27;,&#x27;</span>
+        str_for_write += <span class="string">&#x27;\n&#x27;</span>
+    str_for_write = str_for_write.replace(<span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)
+    str_for_write += <span class="string">&#x27;&#125;&#x27;</span>
+    f = <span class="built_in">open</span>(<span class="string">&#x27;.\\zzz_output_encode_png.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)
+    f.write(str_for_write)
+    f.close()
+
+<span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:
+    <span class="comment"># step 1</span>
+    func_get_filename(<span class="string">&#x27;.\\Resources&#x27;</span>)
+    func_save_all_filename()
+    <span class="comment"># step 2</span>
+    str1 = func_generate_hash_map_2()
+    func_modify_cpp_file(str1)
+    <span class="comment"># step 3</span>
+    func_rename_and_move_file()
+    <span class="comment"># step 4</span>
+    <span class="comment">#func_write_jpg_list_to_file(func_encode_pic(&#x27;.jpg&#x27;))</span>
+    func_write_png_list_to_file(func_encode_pic(<span class="string">&#x27;.png&#x27;</span>))
+    os.rename(<span class="string">&quot;.\\Resources&quot;</span>, <span class="string">&quot;.\\ResourcesOld&quot;</span>)
+    os.rename(<span class="string">&quot;.\\Resources2&quot;</span>, <span class="string">&quot;.\\Resources&quot;</span>)
+    <span class="comment">#os.remove(&quot;.\\zzz_output_1.txt&quot;)</span>
+    <span class="comment">#os.remove(&quot;.\\zzz_output_2.txt&quot;)</span>
+    <span class="comment">#os.remove(&quot;.\\zzz_output_2.cpp&quot;)</span></code></pre>
+
+<p>拷贝上面的代码，保存成一个Python文件，比方说叫 <code>a.py</code> ，放到跟 <code>Resources</code> 同级的目录下。</p>
+<p>在此目录下打开命令行，输入 <code>python a.py</code> 。</p>
+<p>执行完后，会生成一个新的 Resources 目录。原来的目录会被改名为 <code>ResourcesOld</code> 。</p>
+<p><code>cocos2d/cocos/platform/CCFileUtils.cpp</code>这个文件会被修改。</p>
+<h1 id="加密图片"><a href="#加密图片" class="headerlink" title="加密图片"></a>加密图片</h1><ol>
+<li><p>目前只加密了png图片，即 <code>zzz_output_encode_png.txt</code> 这个文件里的图片。如果你想加密别的，可以修改脚本。</p>
+</li>
+<li><p>双击执行 ConsoleApplication2.exe，执行完后会发现 Resources 目录下的png图片被修改过了。</p>
+</li>
+</ol>
+<h1 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h1><p>删除 Debug.win32 目录下的 Resources 文件夹，保证用的是新的 Resources 目录。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/01/02Tool/Git/Git004/" rel="prev" title="Git合并分支到主分支时去掉冗余提交">
+                  <i class="fa fa-angle-left"></i> Git合并分支到主分支时去掉冗余提交
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/14/02Tool/Git/Git005/" rel="next" title="Git克隆仓库时提示认证失败">
+                  Git克隆仓库时提示认证失败 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

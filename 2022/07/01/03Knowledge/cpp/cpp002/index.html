@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="引入问题先看下面这段代码： #include &lt;cstdlib&gt; #include &lt;iostream&gt;  class A &#123; public:     void f() &#123;         if (this &#x3D;&#x3D; nullptr) &#123;             std::cout &lt;&lt; &quot;is null&quot; &lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中使用空对象指针调用成员函数">
+<meta property="og:url" content="https://615737749.github.io/2022/07/01/03Knowledge/cpp/cpp002/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="引入问题先看下面这段代码： #include &lt;cstdlib&gt; #include &lt;iostream&gt;  class A &#123; public:     void f() &#123;         if (this &#x3D;&#x3D; nullptr) &#123;             std::cout &lt;&lt; &quot;is null&quot; &lt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-01T07:22:23.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.588Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2022/07/01/03Knowledge/cpp/cpp002/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2022/07/01/03Knowledge/cpp/cpp002/","path":"2022/07/01/03Knowledge/cpp/cpp002/","title":"C++中使用空对象指针调用成员函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C++中使用空对象指针调用成员函数 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">引入问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%EF%BC%8C%E9%AA%8C%E8%AF%81%E7%8C%9C%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">修改代码，验证猜想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BD%95%E4%BC%9A%E6%9C%89%E8%BF%99%E7%AF%87%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">为何会有这篇文</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2022/07/01/03Knowledge/cpp/cpp002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C++中使用空对象指针调用成员函数 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++中使用空对象指针调用成员函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-01 15:22:23" itemprop="dateCreated datePublished" datetime="2022-07-01T15:22:23+08:00">2022-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="引入问题"><a href="#引入问题" class="headerlink" title="引入问题"></a>引入问题</h1><p>先看下面这段代码：</p>
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+
+<span class="keyword">class</span> <span class="title class_">A</span> &#123;
+<span class="keyword">public</span>:
+    <span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">nullptr</span>) &#123;
+            std::cout &lt;&lt; <span class="string">&quot;is null&quot;</span> &lt;&lt; std::endl;
+        &#125;
+        <span class="keyword">else</span> &#123;
+            std::cout &lt;&lt; <span class="string">&quot;not null&quot;</span> &lt;&lt; std::endl;
+        &#125;
+    &#125;
+&#125;;
+
+<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    A* p = <span class="keyword">new</span> <span class="built_in">A</span>();
+    p-&gt;<span class="built_in">f</span>();
+    <span class="keyword">delete</span> p;
+    p = <span class="literal">nullptr</span>;
+
+    <span class="comment">//我本以为程序执行到这一句会奔溃，结果没有</span>
+    p-&gt;<span class="built_in">f</span>();
+
+    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+&#125;</code></pre>
+
+<p>执行结果：</p>
+<pre><code class="highlight plaintext">not null
+is null
+请按任意键继续. . .</code></pre>
+
+<p>我第一个疑惑的点是，为啥空指针还能调用成员函数。</p>
+<h1 id="修改代码，验证猜想"><a href="#修改代码，验证猜想" class="headerlink" title="修改代码，验证猜想"></a>修改代码，验证猜想</h1><pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+
+<span class="keyword">class</span> <span class="title class_">A</span> &#123;
+<span class="keyword">public</span>:
+    A::<span class="built_in">A</span>() &#123;
+        m_num = <span class="number">666</span>;
+    &#125;
+
+    <span class="comment">//成员函数1，没有访问成员变量</span>
+    <span class="function"><span class="type">void</span> <span class="title">member_func_1</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">nullptr</span>) &#123;
+            std::cout &lt;&lt; <span class="string">&quot;is null&quot;</span> &lt;&lt; std::endl;
+        &#125;
+        <span class="keyword">else</span> &#123;
+            std::cout &lt;&lt; <span class="string">&quot;not null&quot;</span> &lt;&lt; std::endl;
+        &#125;
+    &#125;
+
+    <span class="comment">//成员函数2，有访问成员变量</span>
+    <span class="function"><span class="type">void</span> <span class="title">member_func_2</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">nullptr</span>) &#123;
+            std::cout &lt;&lt; <span class="string">&quot;is null &quot;</span>;
+            std::cout &lt;&lt; m_num &lt;&lt; std::endl;
+        &#125;
+        <span class="keyword">else</span> &#123;
+            std::cout &lt;&lt; <span class="string">&quot;not null &quot;</span>;
+            std::cout &lt;&lt; m_num &lt;&lt; std::endl;
+        &#125;
+    &#125;
+
+    <span class="comment">//静态成员函数，没有this</span>
+    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">s_memeber_func</span><span class="params">()</span> </span>&#123;
+        std::cout &lt;&lt; <span class="string">&quot;static member func called&quot;</span> &lt;&lt; std::endl;
+    &#125;
+
+    <span class="comment">//虚函数</span>
+    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">v_member_func</span><span class="params">()</span> </span>&#123;
+        std::cout &lt;&lt; <span class="string">&quot;virtual member func called&quot;</span> &lt;&lt; std::endl;
+    &#125;
+<span class="keyword">private</span>:
+    <span class="type">int</span> m_num;
+&#125;;
+
+<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+    A* p = <span class="keyword">new</span> <span class="built_in">A</span>();
+    p-&gt;<span class="built_in">member_func_1</span>();
+    p-&gt;<span class="built_in">member_func_2</span>();
+    p-&gt;<span class="built_in">s_memeber_func</span>();
+    p-&gt;<span class="built_in">v_member_func</span>();
+    <span class="keyword">delete</span> p;
+    p = <span class="literal">nullptr</span>;
+
+    p-&gt;<span class="built_in">member_func_1</span>();<span class="comment">//ok</span>
+    p-&gt;<span class="built_in">member_func_2</span>();<span class="comment">//error</span>
+    p-&gt;<span class="built_in">s_memeber_func</span>();<span class="comment">//ok</span>
+    p-&gt;<span class="built_in">v_member_func</span>();<span class="comment">//error</span>
+
+    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+&#125;</code></pre>
+
+<p>类的成员函数并不与具体对象绑定，所有的对象共用同一份成员函数体，当程序被编译后，成员函数的地址即已确定，这份共有的成员函数体之所以能够把不同对象的数据区分开来，靠的是隐式传递给成员函数的this指针，成员函数中对成员变量的访问都是转化成”this-&gt;数据成员”的方式。</p>
+<h1 id="为何会有这篇文"><a href="#为何会有这篇文" class="headerlink" title="为何会有这篇文"></a>为何会有这篇文</h1><p>因为我看到了这样一句代码 <code>if (this == nullptr)return;</code>。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/01/03Knowledge/cpp/cpp004/" rel="prev" title="C++派生类指针赋值给基类指针后，指针变量的值发生改变">
+                  <i class="fa fa-angle-left"></i> C++派生类指针赋值给基类指针后，指针变量的值发生改变
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/04/03Knowledge/cocos2dx/cocos2dx004/" rel="next" title="cocos2dx jni">
+                  cocos2dx jni <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

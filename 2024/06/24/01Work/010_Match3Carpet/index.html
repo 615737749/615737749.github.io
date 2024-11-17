@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="问题描述地毯元素，怎么实现类似液体一样的连接效果？ 实现效果图 图片素材备注：一个格子是140*140  左上角：footcloth_angle，其他几个角可以通过旋转得到。    底部：footcloth_bar_down    左边：footcloth_bar_left    右边：footcloth_bar_right    顶部：footcloth_bar_top    中心：footcl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三消游戏之地毯元素制作">
+<meta property="og:url" content="https://615737749.github.io/2024/06/24/01Work/010_Match3Carpet/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="问题描述地毯元素，怎么实现类似液体一样的连接效果？ 实现效果图 图片素材备注：一个格子是140*140  左上角：footcloth_angle，其他几个角可以通过旋转得到。    底部：footcloth_bar_down    左边：footcloth_bar_left    右边：footcloth_bar_right    顶部：footcloth_bar_top    中心：footcl">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.567Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2024/06/24/01Work/010_Match3Carpet/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2024/06/24/01Work/010_Match3Carpet/","path":"2024/06/24/01Work/010_Match3Carpet/","title":"三消游戏之地毯元素制作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>三消游戏之地毯元素制作 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">实现效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90"><span class="nav-number">3.</span> <span class="nav-text">图片素材</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2024/06/24/01Work/010_Match3Carpet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="三消游戏之地毯元素制作 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          三消游戏之地毯元素制作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-24 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-24T00:00:00+08:00">2024-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/01%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">01工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>地毯元素，怎么实现类似液体一样的连接效果？</p>
+<h1 id="实现效果图"><a href="#实现效果图" class="headerlink" title="实现效果图"></a>实现效果图</h1><p><img src="data:image/webp;base64,UklGRtjYAABXRUJQVlA4TMvYAAAvTQO2AI1IjGy7bhvd82AQmMv0XzAePkQaiOj/BNi/388/36ywLck6o+meXlB6JLLC7kfQJZXGAX+DxiNGwITtcyA8wRMbcEbqvTTZX1n+rpQSl0VHaWsH7JVc0wgJSaUqfz/p2TNIKkU1qe0L6AlkkoiBqWQ4wIRvMBnTSSxwothZcSwQMMt30qQkev6H/iJJV70RymuhnLMnoTxi0uCC/i/rE/HoHGRASDxmAa5AkgyXYFYY7I9eULqRQn0veewlscSZ9khy1Nay3ru8pN7fmZ25VI21lCxC2xEnNKmZIiaekB9RQ0h271eBLEl/cFnKV5gMs2UyzFY6pCAWUiu/gPGi6F1jfVr5QhNNIhLVUre8EtliDyelKS8coMcS4IhEIKTSOAJLkoGFLklXMECWDsAF9p59QbqW7vlQG/qRVrUZfdaK0jihfduZlduzXPKEmmvrbSPpdu7J/jnLmP2v5k6u0OEDQQgfOrfFT6S8AjmKJMu2ExwOj+bSPOpPlz//RrZs2dr/GrSIZ2oyJDeS5EiSPw9Yzld/iY4J4Mu6q4fmLVhWVh/QfwduJDmKhyNcog9mb/8AMOMbA0Bw2+LGF2CmFgkhhPjBpmJRsaXZrFLy7J2PLl+fU9yYA2eKK01vhpRShurdX5/LQqRPfzlhU11nhBBChm6kee71jS84QSrKFyAWIj0FALGvv9cojtM4TuNgNASRsggO0Y5dCMCbuo51/aauR1EnUaf8OiliXV8FBBwIE9dosa/f1DW4UcnxRUpGcMsiSikhZJQKJm6Ja9us0Q3ALCWE3f9UC9jMewmvNN1QyICkzEVTJYgip9IgqoWU4SN+d3oCJ+oyU9O7VBCFlHfiTtQkUPEdaUTJSdPxeAKJ0BkBABLCw7+COER5Z/xxXlbJOYUcjoWcHqEdkkMJqjTvvRTHKQAAlNaRIyCPwOqw4iDqpPTSm7reO4dnR3JlmIozu9Ah7jh0xwIpwfpqmAvCHeR+yhXEo9Uzl2/zZVpfxdDwxk4KKbdAnAqEPPDFa20udnalkFIyfPg+Qt+qc2zpHS0dCmJamhJw+gDz+nWmppNSQCIdNCAn6zVv6h+7JK08u7r7G1YFAgAJmEgkC0YJITy7WiEJAADoTZ5VHFzRVIiSqA7161hnLBcNZR38ypDzA1c6ZgClPIhEp3LyCqAMVFwsKELKvZWICXoLSzb6H4FInCwhf3/+WXGZix/P1gAUkEhkYOgytTKeNwVEEoJgMACkVJCAkmca+PlYsV8L1iv9tunhIGX4YMgZW7MpjuWDhQRj8Od3NtXVtgfPqEkhiSEDch/8ya64vIDVgpeZU+vqja+OOx9Shl0O/X00Iy2XmetN5XzBBAB3hJCEgiElCXDDItuQUkIoIcMHW3BS1EnUySj2Tazr2ksQQimHW/xBtPkSdRp1cnjHYKwYr76321G0c0U+FHdMXhEVEtyyaGguIF4XIqC5pQ/cDAbwRhKJCsDQJdd2QprSkkrurRMISEYlY2g03ehyy/phkd6lJB+54MfYkl1+WNvuXfJsaJv2+pxYrwva/+pdqp0Mua+XnYRPRpep5f9tAgAAU2uG/IA7TUoZqu2+Mm03RWCECCBhAARlSCjBHT4sSv+BD6sDsDxtAykmKSDPpv3BYA87uZtP22s349JLR921Nm1L4po3dX2McZjZJ4JTodUEwUItuPChWaUEdZcQEEhll1U3UjIAACAhrGla0FXoisMTSUVTm1Z90NruTZdSymbk9B9f2wKuQU9hHZtKSMaQjLLhw9q+PtvBD/T88e2aiGdlW+vT3oA5YBSHAdC2DUEg2fr/Y48mvSAiJgB4/plkREOngWOcXSlJOc4EADICX1ZpU29+keKqfHF8oTN/X+LtHwLX9Q3XTfxAfBjcmX8955xa/ypr7rP+0VWyrEoAJKkqS85R+LDKWnuuJKmWbPUnaZKS5sR5UuRUfmFuNa+5GveKS5Lazxflu/gEt+bdrz1FkoftTl90UaT8ii6eX6tGZtue2U3cX8W5yvbsGmNIsqpI3mE+v1eJ9qQKx9HzuNPEOY7ZXNV5oPBr6OJsrJLmWeKPusnMWOUFMEnGKmEf6/NoAuDqeTRIUvJlU9xuIhQIbhNHaqecx9Rhb2kecR4l0k1VHqvVPtNS4Zznqra7c9RIq6tG5Ym2NcZzjAheO6uUbXdmjRE/Mj4sbq3iP7e0qPPjWAEgVufec42I6O6O53kYL9qOACDsRdJx9LKPCLzYbZJS80V8mN1clX9d7LYp1xeucthur6oaY7TdVVmj2z0GXqzy/lm6VfA2q/f1xpCejRZSA8dBbPoNc2sDJOVOH7u98QsyfjUAxOrYP0vcwXPG9hQkfwCAOESEVxL3nufA1p5nn1OLANgmpTyPJsn2wIuVviSpujZtZ+WLqN4utjVwrhp2eFwijqKFbbMhSYqTVV2V2R6ubdu2bdvGvW2bl7ZxN7Zt1dNGzQ5K53k6S72VEScia3FKrrZth+087zdYijbaOJXtU3ByAM5WFZ9BOttOOqM36602tjkza/7/l2Nb27E957qf97P5q4qdlCrtjChdJpIhpLMqo7Jt/Pb/3ndIYCRJbps+2kcd9ZOxSP2r1oYApNq26zbXXGISKoIYQCF42j+DAhCFklAQBIU9KpG7JD35m8Fbb/QCx7b2tNELbYKZ0zL1Oqm4TiVVgX3gTGkYZubRCsb1dLyRqcZpbe2R8tgbyaGIdPCfWVU0KmMpAAcNYKPQ+5rzV0AkahyRKJog2ECSlGgPqOKMTXiPNPAtSZIlSZJtEZv1/fYz/VX9/8/lDJBh7uEqKu7qoX0TkdBIkiRJ5glr+WP67yoghG0kyJHn+YMrn94mINC2lsO60qekxTAoX/r5pvfWomPbbiTJQbU20DYManBlVnjK5ZcsVW+CBraR55AAyNNBIKn5k23bRpKoS6//Ri98baZtG6f84e5fQEAkSYrUuozvXEOVvxxC0T3gW5YkS5Ik2VqkUQXQvzL//2916U5XAnATVTPPDPPImCcWh23bBhKV+/03/pph27ZhqGz/n1yHK0iyouYl8UDFh4ogPM6NP74lSbIkSbItYu+u9778/9/cf6Cf+xPu93BjgAgzEVF1c82sehJl2LZtGKrY/x8vdti2bSBRud9/469DAttGjiT1fY7e6Q2zsf9bpdkBbkmSHEmSJGoekVmoexosxvAD9v9/4t4xxg0LJAp3JaqKqq7amQqqyydzX5Ikq7Zt25Za1L6YObW8sru+1uY9RqvuW5AkS5IkyQJk9ay+/f/XdppQQIAkyWkz4smgHP9BYTi7Stdt266eyNKca+9zzvfpkz4ZEIQhIm2kz/Leuydf9Vh/8z6X91XpIuuGuXHh4sKABHKfPW6v2RoIIeK2pIGe9vF227Zqu822tdbH3PscHcmyFTRczEx/5v7KfN9hBulIsp0onJvx1zGDA6K9Ztcj27Zq27ZTa2tzn/PEzLIZLab0MFmy5SppClmcAWZ67/17z5q9hQNItprmCWIb04jptpO8Ge+2bb1NtG3bXOs4JNlIBhcYKC4q31fOOe7CvV/3JtyblXP+deWrAnXiIB1rzXaDwOKq0Hz71yHfkiRZkiTZFpGY1+WpP6R/rD+23/sD7t0zdctrRLibCvmWJMmSJMm2iFjN6vpF3f//T3ULUwoIbCMpkmppFnQP3cd8UV1LtCVJEtw21SP9/wc7hKkI4EAKEm51pF9mIbZtI0iis99/w39jQ2zbRpBEe+77b/g3DleQZEXNesBDJFTE+/HgickHbkmSHEmSJGJRNQsOP+H7/19cUGFKVBUZmRWT1VN90Ny3IEmWJEmSBchq+f+/m3VxIYuBJAmS0ET2vv/2AtJNBQRItto2372TgK0uOVweb2Z3kgaNA1SPChc0WIC5xOAgHC77edsv5hIlyy39P3+pAKy1uLDtpjBrq0mwXdOg8CoS+zI9fcdg46fM593lszffaBSw8/7J1oVLVRqmsnk96z9nTsDn2jv1K878+LhjrK4kjwWbOlWbDZ9KPv2N5OUeb8YAx576eYfR1M/IU4NNlCHYALSTF3YDBIZdrE+ykbzc3dzdwqOOQ879WAzbw7WTmHyHzJWxqCiTVLoCHNjpyhCcKCQAYKd702Qy4+Ybjr3zXUwKjmZNQXmbD2p5JGtyC9zC7WU7v3cOdYAv4VxYspgPDpN9X3p6frcsiIaW4y9ZATw1JAeV4qIgpPa1ZArjFI2iZjoEIL9s/9K9GGjnHbs5f6dt3vXU8oh7yjuW7FM54oqzouWBDV4ebuHxZswd5r2QkY4QnbA/XLSBW5Yyfu5Y2ZdpRCHtdGUmf0TdU0PImnQiUyTKTAc1G2C/MtANpmzys7nJ8MnWaHYURQCbrCcv94c6P6xt+GzFJfApAFj71z89fYnvNH82tQKAS6rz/E+LLpx+YjM8IdlS8uQVobvX5jnqluA+jkM0itS+jpetyERwd7G16fGyEHHAU1Nmesrvhss5HJIUGN3gagGxXry9RcG8UwYmHhzHXxpOkht1MN+IDcaguoq1DZ+ZThsKAKxN1s0tSCdxOtEBb0IX/CidEugPsfZfALxmc7/PGyk8VsCdx3ed0xf4efZFQJ64dU3oOQ51ki2EWNxLxPpeoqnxsmjjkrgCTw1RSH7nKx5wS14HU0da/jMT+8YNmjpbgdDIubPASQ7QCU8drBcHwAYD4AjPYI7Vrt+LdS2LkBZ9vCK8LCVED7xf9XOatk+IXsWfsY/r5/ip1m8OUAhw4JPLT2ACp/0s5c3KmpuQfavnhqZMy7zOa+NIDqOU7iVT/Nt6I8mVGaT92eoBF4Yo9vO3aTsLnOQAYbS4/YmFQTwKH6VUow17hKfsXoZ5LSvNPxux4VN5e7T559rt0leV/Mf/dpvjbdFl8UZhIBa8j2/vKgsRUfSYNRgnocQWhA/HX+ogqX0N705k2oAwYnoxGRvUC5wkgO19HxO7Ti/7Zo02BjUwXgXcyqioONDsFX7AwEQXkSgVLRnxOV02Mn+t1ObvUiLNI7EAlootUVxRGmn0HJa9iqbaiqnplG3ISFG2HoXrNrSc5ACYu0smA9zt1ziIDmhCZUYXSwDW5sRfWIx4+gIHT7Jmp7HT4p3N3pgwq0UNfY10YQAxyknJhWJ0ajPlX5cZQLN+mnWDKwDcPcn/1WBm2zeWcACerwECwEzsG4XI5O7ecADaKYEJoGbq1HoNwLx2vu8pF3D3nz2SKjkBBLc7eyQxXnzjt9/vh3dMTXO2SbTc0xL5B5CSdvmxfvdVH25YH4+t9mzQobM5qPRdRyvxvHbJp71J4aJ8gBP6xMeBdj9BnjSS0Et5S7p1VhA4EFrBHE8bBwcFP3lHO3vxZM6gurTxd6ngCIyk+dX16iGL5uOpEl/Qwklt0sPi5T8OJEVc5oGLAML08k9ybUSbF+Tko8V6lnfyg2WPxhZEP5qlZIgIdnhz3fxoZivfaCFzkQd/C2KD0T1JuRq6m5WxC2QA+Lz24uVdY7cqqKc0glaG1WPLrTm5Qg3QRKGZLKUsKVz0SON2EE4PEBp4gblXa4GZrqw0wDYTlgCqTOX/mXh7+x5SePsnSOHrJRX7y8mfdNCcd3Dfrz/O4YMtz9ZXmlAoBApiMAoYjBjmgQW5OwGl2yWiU2F26AY1DASDpDIYs1dKAlobQytJyiACbKiDCykSpU6zfp19+17YS+9UQYKfs3j86+OPFHYFAKEVibQPDz7lnU/f2T2bazylDAQqnSJHQEgdmM7WESDYw+7MGAwrqxy3mrE00K2Etd1+MLZMBMLITGKgGwZmVBJgHBdIDjAOLxCMsua6z4cvw21jj91Jkt59mzvv7Pita0+PQWAwSAKDJSSlDnMxxAIMSGYmLdMjBswwo1ZOba1ADAYzMsSqzIUdI7TnwWIytnawpwLowbjMnQypjHBhbFZCRiBn7MvTSyoBKLC/1uzG//17Pv0Y/VkChciUamI6DK7OUkpKKxZBbAoB6W6QKexTHbZiPkcMl0UFMXqo1iFcloE+x3sUgpRzvNfLVpXOeZBh+VJcVlPrugOxWWwGY8sgNC46Hue34RwA++mFBiC48x6//+21K36GSMMYMGi2GCoTY+Xp5PNOcsJISQoi0VKBJH1kAtU6DGRO7+Ho4bG6SYoNVRCYEoMKXbJyZG0cThgoiVgLRutiJ/OB31U7uInDu0mVibYO91XqUlze/M6DKwQJwKGSl/iNLGQfvdCg+sxv/qBfvYNnQIhhUEsKF00Ug8gqb2O/Z3Sl9k0cuqY0QMTdVEYjTK0zNkK38rCnjDATSiiY2kSYUM3GPNixNAoJmEISYbHSQZGI1BVEAh22NgdtXzfazbRrp8nuY0dbcAYSoEN7vH6P75AB9s69FOzJA5Y3F0q0Q8xTpHGecjrKM06r6eZ0Ot0nN3SU/Fv/y3/zh04QIGchlJbBsA4KM9ibNQYGMoSCSTrDTEEQerAwAWzhaWco2RAKSAgjIVUgYMClRI2samVjDZu3a76eLWOf0aRIAuXElBNTwuLO2y4AV84R8OgT/d0foxVLhpgnzleZjtLRdJRMJzcnt1bem5ST2qzI/1nSOtmZz02aim20bCjdPhcUc5eQPJSHhWUEw0AbjB76hStTmNmBwk4N1GPTLhGBulI6uVblOt1e5RVsX7SXbg0bSWWKSTBMSICI4LoIlq+Y49MHfPxHt7w5EqamOZpyMtFd/QD+uvurvJMwq6vSM8BpZ3X2+SsPmg6qFiswpWMDq2yQghmDhBgxgxllNAsz2xIbZvaDnQ7kMWGgYoSdBEGKggK6JJVO7EriGjK4IUOdrZ+cn777KF6XSTqOo5NRLWECBajIxC3wannu2rN7/OpPs7x3REBmjFLGMN2e/UJ+WCZ2TubYgEPHGvmwD0zpSmvZ2pmGUanAqIaZbtMJSWcJe9eyxKAgQFs2sxYexLRZzGxM0ikJUjMTMUKSYiQR2W1VpCcx1LpbXSc13J2537kP4190vwz7rAolFokJFUgEi5fbevGVSd50dMKRw8eeOLjFwIScbt7qlr///SxvjkgREKkGJbd37CO3ryfxMWkwhQ67MgwfspUmZcO0DGqKmI1Qj8Z7bWSQ1iHYFCSjbAUzoQmYKZmFh21rzIMplnRBWJY7NnFgD7bTARGg6r0XqcoZ3VAn3UlOnkuh9LlFvl92IBCLQQOlAuR4OHn+i+pSkivkMXz+23v8KcyRUZMDMBIrtr8J7EjriJ72OukldQmcVbs59jZkDKYVg/W5sIQOhl0WhBLQLPHFa6TylYUMSiiXJYRJSkAgDVW4O1CMotKlvrCgUKo8t3Ljta5H5QiVXCOFmDICJAB1XlK88dE3I1fH3Q4+7r33BgeBmiZQgQbjSUrWae9cs5hDCkkdvTvvy8YupX+1gkFrYbEzYkPAEGpfNEr0YLdAGSSXoBAps4OrpArprpjuCnGNGu5aaLs5eTL2ErRAFFXB4OCl58KLe+fnv1l6Vfw1pvbkJ7+z5iQLKrXkvDh0khQYERWiMrgO2nNIUT1UoTHXrCDVErJhuj3lWVZJJ/Opvgls2fzZJyXmyrZqdkgl0CXUxSl9Q4146XCGJ9rWZAImJnHt0aHv9ZxebvqL35SaK+IAvPeex28NE6mSKJMsSYcJApswqgBChBN4FOYBpaDZi7VktMxhazbrMd925/LNzKgxrCCQwLbwUbtS1mNWU1YMdOGdZKYiQQRQqNwNSZBQQOlxqWBWGtvatvSs32/fS31R7xKZq+F0fbU7v4IzANCgKhu9Uz2SiGWI4ihVQiJlJwBIPbpiqkWOtgmwtMdG3czVlkZ7sCcUZcBSV3dQZroRxBYKItSifbXlkioBD9Zd0t2BQwK6IqmCcueAikbGRNBLKE/G42Xaazdtr+t8z5s70MPVcHrn1za/O4sQDIWOszF3N2W3v9kFIZntZQKABQUdCkCAsZXVMbO1IoFhHUx5JXP98oSP11hLSGBqgZofCRXFAFGRMDlHVA8+Eqlw45LMbXK2u4S61+9LndfjdQ+IyJVw+uBtIHCoActQedcvP30l12RLpkKFs2pFCEEnzYAsMZ+0o0I2tJbkUR2xlUvBr2TDpq+FpxiolUFM2CaBLLJOFKZymE4gJe4ECIjAowwLao70Gj7BT/AE6r12r+t51/rc2TTuKrj3vXddXAkFMgkaYdJ9/+UvW+5aLJNCg0AGqgQIeCYiOoxplliuIF1MCN0WCcE//5MQJjXMUA7jAiLmDzs5krqOaEgoUjkJo+Go7tY74Uutu7pvv88PLJzFg13Uq1/14/139ACAMQyh9HYvP230E+o4lGpJUFMTFLGMDgAFGwAFBp+0iK1PS9AtWab+iolOakyQDYnulVHXlUTiQgMYKoCIhtEQ5h235H5FZpt1rz3WlzBrhq+xlTeZ5IGeK/d0XN9s5m8RcfrGVtcHyVBGY6O+2/ung6vfXJGJFpViCY0BAxgBTEwIUIR6a8GwFmaSqf76EpNSF+5nLzkKrg4aLnVQwKCohGpIw0klW+439mDTbJrj2j0Yt4ehAcAbjF44cuyVE2ebBxHRkHvv0KwgQIFU204vP6CH85uLySgJSmeRhgQCYGVBlwEZWjBFYEIFMc1PYMBoM6C4CDAqyE66htIdgJghVKuMpgWGZkuW9auDxd56X7MPkWHZnPR5k9EDPW/v6XgaG2sSol3/+hu+UlGJoZ23y76b64/tP/bxds6Hd6aYVq3ptb2ZAl5Fq2ssBy1NtKVgtEVbIzvGlmC19Kq6TbD3VZvrNUMVF3floWtb/03jBcMLRza/cmLjzIG2hNh97fNPZ+NQ3Vpfurv0TfyHP/jgo87FmuK9xmARqoAyNDAFtixjG5rBbjDCAo02YBJjWnmrmTLVgY9951k/6fl0R58qnv7TJr1oLiLb2rSE+PCLb/9gk5BSbmdMd5v7m/S/8398VLcaKtN4YKbUqi8XBonuPNu4d4YayroISWW8OcYj2Lw1qk2xrjXdnRHRnUp3ui7Z5yXTcU/H+75JNQnx8eevHoeIdldycg6qa2r/5WOd9dG1ThnMdLwVtEMpJeA6lWliMhszimBw12Wg3WdVVWt2YKMzynMuQUdtuu28aDp6eksS4vJH+clKF4zvG9n3hU36g3J23ToYWYLjK9slgQeGUrF7sMciNw1DkNXbamnrbJVWyp7BTt6nohS0O9cdHHl32x9iMEmVceLay61N6yP1GJqWzSyWF4Pq4lMqrAYx1BsmIIthS8sRmGMYj2tXyslhqZOD1vfl6djL1Y9gwjHKIOrQVarrUzrTVKxMA1OkV+v6hNd4vPKVziE8VK3gmMQsB2LPMZ7GpNqdRMGIQn3RsZerrx8bJBZW4tWw2u0jZWDW4HO2EZaBaYV0K6meq2FoJBa0WJi96M+ApfJqXymNiZFSLkBql5937GXzw3wxwl1koJXFeJWpNsYgeiibGUCgiO6CzuU4PLTJskABJGAgrWRT00sDh65UCSMYd9d17GX/5ba3TBnvmgRmmiKLnqX1+UMV7tn7OpkzwUyGMLNdZla8vacLMNFUqkAkjPnqXipc/o0nfz3xRkoPBMEo4k4MagUup4Mle1gas2TB10JVKbcTEY3srAwCg+72D4Nkc1zQJCIWobANL5gLyLSeBzM6HndN/CMhpjsLMvtoHsJ42rXMYs1sYKgmAKuUo1Bgg0ygHQM2cCCTcbnzMMR0BJmWeanwpz8XUaEfkpBCEkLvbEximlKuVg6YwRQWGJYntIZlLQlbLKzyhumFBExg5rZKcFqBxIYxaXux0HKcCUrpWccAI0DTcy6weoNpgWBrCWb/xBXL26tOWtrnAjZA4IJ0rA6EpiTBwCePvjvCBr6KMQJzsVorYKwWukw1zU/8HSwjsrzAxYIULhvmwkRKpLN16Mde6telIRhEMGNhpGIGTIvADJqf37x7Z2EgdQwYGYUwy4CSSQy4jr0cixnCoeOyFXSr0SIGK4k071GXULMTASkMddsoDBEgBtu+dmczmJKLiikozGpsmDEktff4ksGMrVisg2vFDZjti2OdeyBbKgdjM7AxDGvexyaFtTTsYTYYG0Z2IbixfWEwo0usZV/UYCawUnuP8Uy3Dlty0aRlV32AdjCph7EHJRorHcLMtGpFkLwHxSCdbtXMDHUK0+RxAAqDDTzEMqBON1tbew1E+9QabxN3+6n3FpR6NVu3DmHdZgNDlLuw+O0oLE9OzdtYJ1aWp8RAi6FDAbKH82Dr4Pha8i0ClalZaN5n3JkCq1tnE1gZEANrE092UrXNpoL33tXY3sNmU9uwahcPprOn2Gq9QYa9UwjEasY9bd1s5WFy2MFQ0zFS2KrMbO8XNP6IXFuVWWlmA092JsBgbBtSzEOl7b2o9lCYjqBje6wq27+u2BJETtNBCZiA3t7N2G0Ii+4dGtvlY9jCldUuS0L2JO1dDb6TJel+wcq1gR9yTbdi5vR2U1DmQRHojUr6XYu37uwpTbfTM+UyHw2aoQliIKIu1wwrq/A4NYRpg+19yPZQpkKYWUTnoXQ+FpQUmUI/psGKiEX8wqwbroO3+kQ3Ir/MLIIYHwtadCR24xrVg4iIw6gRy2DM4kbNOwkW7VUT28PMloCqkvtY0HALIMhpwAyjjUlEBczU3kt5z0xQkizV6YPawxyCYdWOBm/6RFBAs+ondvBUOswYNhimSXg/q7QYdGsPU4+BKnU7mCpsQxMoK4OZ6M1WKI8VM1kUaMyG3sEkUTOzZwoT1WDezCqFjZlmCyuL0auVDVxYqutTk1nyWBnzbsK2e8Zm5vqkiHYwE4ZluxYl/aaJMUzBam421g5ezKa0FpK7Krixt5P1vRg4bLijUWxb2K+AMsnVOUq91YplXx3mpAzEZ+sVBwTn8ge+G4hrBaIWUYDnBpoXLwMP6jZTbKHDlr3RfrtEkrTsjHWCraDqmrw/+nIjnnLih+ljYDjGjWuUE2F/aL8H1pQLrX8heLAl6ta8r5MUYJYIa2z6/jAoDHjKBxhCxBCf7UDBogEREUzgsgDCL/sxMjAehNRSeNTUTKwCg7YbATPvttkw7EbbYKhiUJSZvD/0ZjvgKR9qQmrgRscIB5y401ALvhu9L6e4eIiwGh6GAsxYFPCGWVMygwlkmUEgZvpxqlAY85QR9cgNCdROLq61oQkLi4fZyS2DR1ikXGtl1Y/eTkSw0Kpd2YvUr5hOCcmYp0ahBQXnBHARh4U0uiKipiiHndwyeLxgbTMTDcFARGVFZjYMKESZecG7W9MdMGMPTALQGjHuX3BgsbHYwC0NA0AU1cQ///bw4BKIbTiPYuEQHJH1YHOZaRgGbvtcYEhlGKhBCvdZpUQ+Hrtg3nHwJQ2XHcos1Kjov1twEw7rUneAixBA4BIhtL3ciWkVopQ7Fx8hHkJN86ASlakcEecagrm8lMjBo1ed9muJFyXKZC3MTD5O+02hy0PUalAeGJ4yoQgEGwQuFiERCJaBCd2VyFZRpicSiGuiyzMaA7h4sJDrzPIkju0mQPNnuE4BdeKtlziapyahmwb8p7Izle06BAOY9C4ubG8M2tTBkUDcYkTf20t6UFbmqSP1DV/kR9VpIFE1GqfuogX/qOwfuePh43gghDU46ybwN0ScJfEwLzhRM1OeF0FGITn0wx3aW1dJSY5TKZenRgH40v5yosLzDDMOgEDcfmhqOGw/A0y+r/dmwsQmE824opnJRFnHOmbCgIq62dzjdAYY01zJ2v47syIqGaQOZn4oJFCZ98qhqbEVthiU2NJiXaoNnHn1zJmJECbr2KKsKBNdnKmsMNFkgZIWTbU/KaZCqbVWwQ+JTZhmE579C5sCTQWCMFqcSFZsbfjJU99GsYvjt5Re3bTXZquVpfRq47Z/0clmT8LERlXXmhUENZ9UpjKn9I0tOjUYm0Fm9VlmGuiq/YumAjOgXa41K7iGLgZVWrRu47usWhkCawb0OcbEFi5ZwbQyawmhmduaFQRgqV9CYea+9OoWm7aBgR08ZEtXgRFauNasYG6sk5U8gWKXXEqv7q1ma0wZA7WJLapphqHdfc0KzGDykmxlLjkG7vvSq5tm7eDxOc6XFXhzuytZQfth0vMHEqbzQunVLBC0/asmvqyg79786q1FfpZbJh29egu7dr6swMPUfbJbTxXKHHoyU3u19GqzgRcbflmBG1ycmVd4S/N0k2T0apbxbOAnXW9Mf1mBjUnshdzsJh+9egODyvmyAk9XVUkELiT3Inu/Vno1C0psYLhfVmDQo2th9gsUe6n06v58croR3Tsr6NSjudwpTD56de1fkGa/rADLPYW93j3ET9CjV2P8ZQXmetnK7nK/Wnq1akOXrEAwl1XpeoGMBah09Goi9nXJCjqzQ3NnoHT0aqK2o0tW0C+SbfVMs1VGr97QJSt4FKxiMo+L87uz0asZdkDb0SUrYLtctJJPv1h6tUOP8NrRJSvoqhKdnQcjrKS6BhHn0avd9i8oEjITSPZbNStgTsBta+5Kr26CrUFlNrC1ESCAsgMBn+ymArHhf5kOcWYUJuyPalbAnIDbdpaZRUeGmcZGoVEBK6Xg3zKDmfKsRFDThIEDjtYG5mZKzAQSZZDDmoU9P86I8N70fhaQGR4rFGjYMdz2LzLCokAmbJaneLjNHIl57365ZZgb3+ae2dP0irV/wWFBsoGyj7smNua4m3q4EPP+VjWyaCj7Kke1ga1ZFIwECBbMcMECmGBzFDNrxkYc8z1h7zntxrm1YSZjMxRWFnZwdVCYYADGQmQw7kwMiSkyowIWHh9LTIiAgj0xZcw77rVsazRxT2+sYSM2YJz9OyoNM4DgGCXCHt3OpjCTXQC2PZi47cHEcQsIASRzYN+Tw4Enwvz9O8q3jDcF0xiLMDQCVbb9y7meaQEWBgzMTTNrxM6dhmA4kjGYTNjpTLBkCXDc9hbAiCMbEpkbpg1gbgQI85e5j0x7zJoORhokYwLYwKBmYAPTmV5CNjJCBRdXFsbOLQaO1jBuM8Z2Yp1QGtBQBkliAyYzGjaOmxmLCaRjw7ojOZQDYJj5C7J0GRrsx2eGhay2ZhebKdjThh289OzkRlGDQrnhm+6x2d3GnmWPngEGWXrePFQFQWENjkoP6SXDFrBsGYRhM7LZdK56SCtXhBPHuKCaFsnXbe7cl1owU7MxsPKYZVOhJ4pBU7IZWGYzNKC3feGwRBJk7SV3W23t+9UXI0BTkjEdVld6SENV09a9TB3goAWKq1yHCaL1MqMz6YhxTRQNXW7aroaGXFqXmWC+mtiD5oaRNWVxpAhWMJChEtWa0KCVKFaskotoUHLbtwpdGTaj+8LPu6SU00XvtrndHP3c59vN7Iy6a6Z0t9swtFOuD7Troi2XpnvVFpwZKlWtQrnrqoOk2bG2Od+do5cNTF4ODdljHtMWK6wYCw20HRFKNzNsm9rYMiXUS2KnarZ63fp4K+e9VrdDKkwHym3zzo+4Vxsuexx/s1f33+/dXkpD9vlC2xcGprVOFXDqOnVmUCjH3d4w7Uo5fQ7FSt3n2zBd7WBaS90dHDOOQSXDDKopqx/SDIzNbOz9mNYmUBANDB07i9mKSUnNStlCW9AgqVaJsW77g/Pe+V7/Ly5b6/g6ejhhU25sXRj+tb/xBUbjznjX+xZusmC+FGMWnK4b95c7qF1p3YpBOfNbkcShd2rPfSiaArgDlAb6Qse1oEPJECOrSYZgIVNiCGA7wAxDpgRGiCAskJyKZYzgQoZkX69J4tNLzhVM0oMJJA4XyaE1qZEgXKlCeRedozY8t5naOFEnlfz8H2B4latQfvn3voDY+lZdfdhsru0rO1BLLWKefGO4Iwb9MxHGHWK326+Ku/Yr514CWms6patAjWwEYwJMAma0wHRS+0hwFIeC6fwqt1Gg19cCWmhyF4COi2QIutz1fmx150tO70WB77hj0fTGQz88PQZbv7/9Xn0Azgt6rB98oaPDq1yNXvvdf9J0AkHMYaEtueYVYsAU1vzQbs1D9ebPxhtHXwNcq5pS4E5VqutT2lUHZ2tUBr1A5Siu7ao6JYWhB1yHHSm9gjvavt7jUDSHvSmvfMewhr6ClkalZzoRVfTiFnex5MPFvvH5pm7Fo876ekCJD937JVe52vml1cMABeqwbw6928xKFpipgZA93wj+0w7TcKUrhekLO4ga5ZRIG00duiFqbcf1OWb09uNUr/ggptwB7XAXlIjucU9PusMnX++6P6QWz4rxvDO/VVaj9rTTp8L5s/zg/3CVq+/9r/ZPRhV45+ysVAfjEpQJNTAWh2Qrf8cyd4dS7rrlSq+UO9rHyls17Ur70IO6m0Fxz5FDP71uTzLJKBwdBanojjvCnTo6abXWb+tj7jCQBZD+8u9BvbrV8NE/fLoIHcSczWDsqmDChJGJpv5FdlccfQ8Ph73dDHddXKvuUZgXjlWDwcwdmUJRUcBEC0AVeEd9V0uf3kJds/b2v9RQr25VHk6+pQd0AJGWrHC3K8A0A6kRIFxm/qJl2sFwnbmbj2m4gXkNBHIH5RAX6lxAhfTku7i+ozaO2Ifj0OXiodeec3Wb3Pz/OfzhBFCPcF3s02teUBOqIZNOmEkCf7OfmaP5FO5LEJgZxCQbqKNUIhl3QgepzqsofXF0EBOsP+CD/++VrSD2uH0GoKgKlzjRncIYlAkiihi9HKoQ8XcnofsD24sjYEgwSBWlyvTlO5USqLSjVDu8S+NMPQEgLUbfJsBVbf/t555+X6nQVDIs7f7+VB01MAKVhkU5U9bIpyz0HSUoGqFCdBRh3eDT7ogkcAJ0PXk2Jle0iWH/Ps3pBAAQYTcJ050ohQ5MTAkNGKeTCCFUQFJS3LkcNYro2vSkKSYQgAlW18/iOy0Pr2RVsrri8EcqKlEKEazSnf2O1A1RCkCkBups9rsO7LZ/63NBqpNSFWDHV7WrXoVUhrNn604aXMXqu/rmp0sBjEAD6bRNdniDQKmDKQHQQpwPVKIOJhUEvoiPOsiNeS3UMYGYgOp6+AO6BeTqVZHV1Z5GJaCKEdt5xjCWngAJ6CCI0ENLbyEn6Ql47jFIok5AKghkRrLbT12ToNBAGJvFlz9ldeWVa6gqGzAhEqhMi/VsTq6zlLgigsAAiTTnfMxzszd+w1zuAEndtNN9bxyrISAjUKpkeeWdf5XZtVer4aDP7CVRjJyAUThO5TvHh6RR7IFBjBEAf7C70gxZGFKn4g6ByCl2+h6fyUqYMmGkMaCuT/uTf8lXb5nGq1NJDh/w8W/v9ntvtzSVWuawt/+8Lxb8vHfSxXOqCKWrq2IQv6Zik0IScnLFWA4T/YtQ1C/I0UG3VQGoygHzztf++f4vfufGa4hXol0A7fKLX93vfudz9NZDZg2E1MXsv7+v2+f8cruoUnFJqgwlFYP1GZMZZrIYbAeHC6bQAq/hz/VsdhvOLkkMBRVObnBv8d1/+hf/M3/5P87w6rOpOfHgU7n/9j385K3vkBKIIdSIqa7h8rbvJleIlKUrihKqTu6mQfqOQzA7V5QcTkWMGoYA29mPZTXehwZUJFI4CQqQ3fiSv/Ef/dF/d+MVxCtLFdfFnT154J+9s7vv0i68QKBUGiItwUhp1s935ureLoxAAUQoglH9ea/MP4MdSURTC8FF2cGf4jo7lCWkxhkTqFWIOgEgXpi+4tZH/uB/uPuc8StDMSBexTzzyy792J5Wry2vObu3szubn97l9WbXrM8TZAVIg7u2dZafwoIR5biD4klAqSGBhtSUxDTGa/j6On+3o8YiLgEpBRDv7pqIBweKBTHkOFgwLWQafgqmh2FGuo1EQEJNzIs6KTpXd+EQHFCiSEUBSMVr71lDCtsMOdIe8cryAuTnBpPK4/Rlc97m6eTl7Mnxt3Py7VZnGoL//2yhtieaEyd3OLj/PnrrM7/e+srmPE+hdDIoYEIxQB5mTu+eN72EHAF1oCDCdpr8kUxZ6Yyt0yAbqiYtqN0IzuG4tQgs47JYF7rNaHEQk3LjE9hii0nY0hjQBBNJFbe2P3r96vqQOkZRuSCFO4VL9ZybSyGhDiU0pgw0poGEbDNMswKfhuPSiapAXiouOM7BO0DGAURADwYiYqDYFOE4X8uS57IsWWObBgbJtBDlUjeSG6nWglQSxWAe8F4z9oxvyQO5CIJMdQqCSsABobKEVq7zN59+8uXvzt+MC2D4KhE56fyLakw6l6fVZywyXsyks2bumigd0OwCk87VPclsZKteBK6z8wSwzlysRJiCgcdWLLGt2cgKO4btw+u9D15+NvAf9fUCdyAcSBkCR8yaiKsJkYIYgZgaBjGxYDoiZaatsI9JiB3ruVS950Ugpo0yHPMpiwQgtY6yBJGyZTmpgCZ5cL5bsLVuMoWGDakWGzSbCeKZCqtPKIAOKCIId8Pq8+C1F7/18remr4Fe2oCPvqTnpJNxoDK5HJPOtY4prKky6ZyJHsxVrwHXeQdYpyVgIDAWrLGWS+MpsayF7FzYLdePq+Bknm/W1za1vDGABErAFuF9bsUwGFIYTQcG5KgmyiJsuZ0mhAbPNi1rts4lVEmKHlkiIOYJCEoAlAZhBI1A+CxPXVoW7fMTmAFWn1Q6gCAVgKBiAQggNJvb57/z5f9rpGDEt0smnUFhqZdk0lm+gEnnzExqSBimeok5sCrbDWCdKWOYxkPzCWvVZYXdgGuX7e5Vm2Wek3nmk3WacJpKjdFmc1yQ6br/foKYm0JhRkOhMppSSQDWeGjbVvpQhWn3NF+P29O9Ja6x1158kwRVOSkqGSoEmsmWpe0OhM8hw27b0CZDrBXEK7P6pKfH6pOuz+oThZi9733ve1A4IOEtkkmnRUuYDFIqKiVokAAXM+lsGEwDW/MCJp0XOggUTOs14DqrCZdlFjYdsVDtFBBwQ6oLYyG25izPinYxoWMC17Y1a1UvlyMDlrMUt2YkDDQQ6gAEMFAVhElWuKx1nUrhm2qNLS5i3dSuDh0P9vrE+kpRoBiCbqsG4RMUdmHVyd1tod2FPbYxVp8O7kbqHVaf6IKQ3O9uetb8CG9y0re7jpKLmXTaJBBOTcJktG8URlJA0HwBk86OTKC2wkDm7FWYdM6M+aRqkKFm5+A6q7kBrLNTMjl9yfSJH5fmy/Z1pk560mMyDgJVFzUqvYWNSYuNKMtxR0BlpBhCDKlwQDQoA6qkC0HKUnKlKzfFUOz12J7AAdcjToRABsARlnCiZQnM3IHw2aDsT5KLB6AVgwoeAmyneBVWn1V+V7eDJuv2JjVI4nHL6pOOxc253AtFeHfc3ZYN89MS5W2uo+QlTDpNo1bjBuTIKMlcgklnW4GNUMuZdDaYyfocZC3uY1Pl4DqrwQ1gncO66rjpoor3qz8dDlMfjwJsJa7YuDg4erWuxXFhDuOCxYCojAqEI2GEI0rBpBIAkQmFxlgAczLoZGJ/MA9i6GUAC8UiybI0GoXUDQifFZrPQXN5gp3QCiaMV2X1OaK8OlzXEjaV0AcH26xrXJzAOKnJvRMnr/Mz3ilI39qCFOzJg/zuD5ndVUsgYig2iVKxQi1UXYlTmEifrLGFRi9g0llr1vCMhhmUYT05k87W2pDVHzo2ilVovQJcZ6gecxPAYAnszrD1QueEe26x8Simxom6nKKKwEVZbO54uZZlmX4aNpAMgCORUhgFVFUmFBNotk6oBF7oOQ+VgYYCFA5KluUzED4rdtYH64PnrFh9VkOsPl0QMEAnolpIqSUVYyzWNV7pGtstcdvzdft5RaEDe4R3+P7jfq6DlPDWxqTzd3+c5c2ZAi0JEKV0lStg5LtzfCZ9N8s6HtsldnAhk86CxoamZpq1l4abnEnnRaODYyDlc0HrK5xJwoEs7FndkK6tA4EvfBecGkdUB4GjiyALXTs4gImF+UxxkKxAhMChQuBIlFEFTKxAzAEZqQZ0oJaZMgOlozFIEy7LHMKnwZmTi0Z/HlafUJHghLkLs1tWn+/aG3fd3Wyr83WH3RFtwJAsvM/63Nq+6yslvp3Fpw/81Z92cZeASIIEKGWU29zvpHf9+OknL//PeH++uv5td31m2IHwJUw6azBNsYG1bJDmRUw6Z2aSLKk+mWv3EnCdY66AdXbJeLyqphVeKs9TgdARHcBVMKBzA8jjy7VEH9GPBAAHkRAHFAnBIoBqTAo1jugkCNLYFxFCQo87tWRZlmcgfJrmkgvhn4jVp4zagujsltXnAZ4N591l/jf8EVbdtNO8SnfUCzo0c3c7uXWwL3JvYwGb3fN//tW35b0RqUGijLmN3JjdvPzqL//if3/35S9PT7/49b3fd/f822pAr9deXsKks1bAqA0ze0pISolJ5/p0snaMcimB66wmQKzGjllb9X8+2AaHCAIJqsABIHAjABOKGR9mfuX5AcBeLmSJMioASHEFQKjWSWkgVPICaT2ETsYUwsqjDVnBsnRjd4bwWZobED7L7Tm10PpzsPqUaz1Wn3HOgXuh3+in2vufc/5x7/zVN5j2kuYSrwLTWd8/tT89HOnb2Bg6PPk+3YyGcQimTKpkIh/u/QP5KD6a/tbncdOE43zMB0+rMOlsj8Z7vZFBWiGYBZNOU62YdF5IZS7MvQJc59wC1pn0rRfWvUnXDuswXRms1VuCwoqqrcIuCrHEuPB+ZUPjCvGyvNqskIzjZKqbY2kaawXhs7oD4dPFROsbGlcQj9mAqXlXYvUZpaY7dnFJ1B2uxts/vf/9x3/+/c9//6ntloyT0WSUFqlFKGM7PP0eYUt9pv/43X8hrH34PCxuZKRAIcWkWh2Zd7m/CRP5/8ltW3ep18Jz62cOciadDZpQMIuHsVrDBxss+shcKBNhmkx5DbjOO8A6O1rVvcArr7Re0G9hmhCRs7fN6cBe1MRMAEMxK1vwlsX99ssVKEtaAbfHsgrNLQifTcCYcHWZFcXbdVafUZgkXQAm5GS3H/Vi//j////z//79K3hTRkm1WkwsDgDFs7s0T9+3L4EdmHsigQCgwRRJlb6jP572q7+fr6+gLX3sJbEPnvK2EyadlwCPcoNJZ3k1QPsZc7WXs1OxMbH+pItiSZQK6LDYx4mrUxQ2QbzaKMQGerEsQpcUKSpWl029AsJns4Dw+bR1RZV4VoXVZwRrtUthuUgu4YSaLX/j/4w/1XdZhUUSlQoVJO/w2U/FjuQtS5JWP5GGoEMBUIqYd90PE6W38zypCXLuNT/nyFFsNSadz63lmp6QWXTxIEZfYg4zqzFipVtOrhSGogkEJoGFBQyZk4Iu+DtN0bKLuIdzsxIkMdqXY2m9BsJn9HLT2L7EG2T1GSaFIsLEEbpSmdbdX+6P6099lP5Er7EyxgkTqotD6p58941byNuVgPfMcYZB6goN0xh35CMT5CtziD0kEXpwSNFzhBEFJp2tCyadvT3HpNNaxG8zeFDrZeA6r4B1dpJaFM6lsCxywJ2IRYAhhlrcIcONjUT2mP7OzbuIi1gS6LrZTHkFhE8Dwf1ciFzjDbH6TM3AjAYRO9EEmeIhfjKP4s90aixlhKDnzIfV1fAYJtS3KUnWcKfxAkARYGMa9Uaski+nj7UtSVPiJqE6gWNhnpRJZxMuyUHaMFGJUBAqZYEl9/d7V6b2MnCdd4B1ZjUlFu2rCmOlSDjMbMqW+iH2hR+663i8r4OVwEuxtQvLAZ8OQUyoEKEtarsD4bPhZKsEJohnJFNg9VlWrD5ZUSpBoBnZVsmT2OPyacr4zjKMBQI8EaKkcf3+TV+V+DYl4B2ZO1sHpygDbdNiugNzs8C6iOGYel5UUAAGTIVJZ8Hzag+FmxbgZq4alcuVa7D4tF6JCS4B3RLKxl8sklLUYfHZpz+wR5dk98wMDNYGXsJdLVQ9qUfmGoRhcHX9kjuNXFH/DLP6FAKzUI6G1DbevBwSPJF7SWVL49QTV4AwN6dPuK01b1GSrOFBAwcPVeiJ6wIj65LjxAuYAEUbR6lA+vlrC0w6i9iuWfyTucWk8wmVcFcOwHJZP/SRlYcxD22EdUXdsxpEcUMLUgvW+rFmU9dSXhZJh3gKixzTWOpyfPc1fiygJEmL7/Mqs/qUBN5jCZcAy4i3KpVU8qE9SUpdaGsAri5gXaifvJNL3qZq9+hiFwLk4NiTPm1NG8+SFbpSpElcJUJpZmvwljPprM2w8gXp1AvZ1IO5r9ZDnnUC0fWXQ0M/5spiqL2sKvDuEwOYYpA8oveCZqaw+lzEmccFrFniWqiYMk/Kkrim7hGlsbCKMhKUDHDZ+NbzXz/8l3Kix/uNOwDUQgqtrGA4onN1kAEKAYI8AHKzt9kSJp2NoJYUzJcpqy38Gf1Nwqig3NVe3ykC8wO+Ai+bw6UIir1+wHIWqxs5QZvF6tM5poQs4VDGcS0VJ66C2sxU7Ni26kYoQ5dmdpvfPv1XcuKUrTg4AISzrltLLSdxgQbYCGREUOAgFDAxBhwmY9JZ+5MkgMI1Lus6EV6gLTMZkxVReDg02I93z9NXiajlqGrkXvlqMY08Y6SxKaw+l3OEqCWcWS6OWjLLE4GKG8W5NsnTtEahg6NY0vSEP3v47+U05F7TtMhBgAz1pul6WVSPUImLVAiUAogs6MAvpmMmnX9OxaHohsxTxyA8aWz0nm1T1KqXhw4wYMgPNyCeW+7eT1jWc/s6F/mKG8JmsvosZCFzYPXpi7JGHANAkQKsOK6QuKxdSeIgEXg5vPwHOX1oJF82CnQDhbBgqWul1QBCFgIchAhQzBDF5oYMWBgB5nSSnPG8dnO9JrfBXbwOWwM9NkJZUoTcBIPky1UtjhsLhqwf757pHoelcoJRl3RV1kMD7CXUY1baZoLzsD3j08LdmkECglFKA5klgcigAAIkDbEtHXhxIAPr3HL/H4WkRAOnTIAcZBCZq6DGpFQmRCiQAgGgG4gApsHm7vO3C8YCMfU1IpboL8ySLngJYtuXQMV1bhkswdEpFo0dWQtmfrjReyofXybZD5u7zs18fpcNIzC13L2SMZOfX1wgJOUCSlOwiCgQQ4RSAVBGYW8CNKHDXhzVoTgfZZmUODItoBCBdGF9mo5SpyJURaoJwBSYISjPZDAL2q/PbwvXpFUluaxyidnqtqwuYzCXyblMz+wSzFB+R2Nx3uOYlrVUMk0Md5DMou9lemZfjl5qHt8EzrWxJq2aB2qhj4cIEuIAR8aAQgBkRtNkTFpsup6pEwOor0OSEse+CSRwBNcw5xC6rkIEQCawUACVBgJAQecCFxtsS0y83pF1ZaAtjl1psbov2XdmdfMOLF58D6mx5od7JV5vadV1OVzBeuEeZq5E9W79gw5M+kSNtgRmCTgga4YKQcoEhBLAkUJYSct0vA4C1AhFKXH55IcFLhi9H+p/9bAPPswcFTHpRFDVoekzMpeUH2vKkpvk4mP2E4W95hHDwKvBdzAyMzDEWp3Q0u1kvGT7xqZZDxwWUMDlFIQCw3SbRmDroOAOq88WZW8DJy8VpaDh67/rQEpsn7EwqWfcHq//mduxxUw6lXokk86EqSsYGckWaPfrmXepKty58w4zIU7fDyku6Qg2A5u3TrPGKdpm33f1uYtycnfn6jPuP9EEKXH1DBOOURtC/V9Peypm0gk0N5JYJp02ZRJAt+wFxR3UKQmMMDmLSmEa6WZQ67aZ5UBsjvE0m6jdSTdz9RkDKXHlx0BiYeXmdZh1vBcz6aQpauShTDqzoYQOJMeleTXDE13N09otDbyjdPKCoQ4ChOEOq8/2RWk22ahSLkBBnUdKbB4+LOEu2tCO5Ew6WRIklUnn5WnExXWWXZ2O1qpygCTJKqwdM4OCJ1h9Hmru6jNikhL7221vmdr45SBl0lmFcsmk8xXN45Nm1aia1j7OW3orYAgbn9/pdovVZ2Pu6jMqAxCVk84hR3ImnRJpVJX4NQ/Z6dkue9QOygUMWAkNNhoUmIB5gtVnQ0RZhMJUnKTE5CzI7OO9nEknUgRglXaqbgLhxq1Zt0eusbcsgHjVMKAzDDbUvu3q03FICb1srMQ05biO5Ew6abl57DZL5cpg0aAtnR6YYfKZkcwMq2GSucfqs+Weq08FAKJy0qlHzqSTpqTfXvOA66rt01ooJG/qfCOsW17B6lNQoVB2BnxKy5l0Ai03bEqwZdNdtDHcBEipFqqZzvRBeQGrT0VIifqYOemMljPp7OxbWyVYqrcXbSltFyGRt5bgWRvzGlaf2pKUiDeMhSAmGpsLTAdMOt/hlcAkGVfuALdkcErbCTJM7l1yg9WnSXD9f8vVZzssSJcOcjGfP42xXBcmnSZ/Ur8gQDuzZDSwM2/ObN9NlnsEm4uFWeBi7p1PAGL61QDEKLpFTDpd73GMsUEG16zaY58Z7N3Xqpew+mxNTLAgk06NHQPtwtBpSBbMMv0Ws7OHLnrA0YMxCWCkRrcLVp8uhLkgGa/blAlBUsK9lEmn5c3zEjLpZID0ykYtGShX4C4bTEgNtSZenjJcfQrMSafNnrmTSafnFbRYbaRcFr2Q6KKY65vvorwKrD6F56TTYC+QGxMD15lFE3QlWudhLO++WKwfdaw+MQOP14VJp6e9scCA5wVgDhLxVk1EqkeQEZCcWBmrz5qweo3K7eVk0smAjNuqR1V9ibRfFhfAXkpWnzpgpVUY802Lbb4GIrRcAF3yqKly4a6TZN8XbfVJtWGI845MOoUbLJoHg2uTfFXlFJZXk9WnoHoN5DO2+TLP11BY9ZzTLVcqQ+Q/Gkq5+lQgJ1efWGHGNl8DNogwbItmXZ+6K7oFkgvQVp8NdDnzGPp23pBJp0J0Ugt0u2KyZOjz1B2Xd16nyrOsCmCpAdixb2OOLTdytc1h+ug9bLFNQC+iavqsOahD7pVuXN7dGYEo4epTQ40eDkKQTrHGSacTz9jmS8ik00iI7dLNZcGed8meaXJJEOnvv03JT1lVmchhk0paTwjDSafCuqnOVUN/KKxWajMKw12asnCGxECeq8+23D26wnDSmWVHuLG0PUarlTTLXV+6BfYw5d/fVp8TAQqE4aQTg+n9Skr7rFkoJjdFzUB6a0Oeq0/g2ei/DWE46URghgMr9oz2BVAinGClWuAsqwL/heGkc89U1tWnDu16PVLVI3o9xV2nWM7qM+xw0smIA9yAdr0kboaIDdsJjsGrlNXnTx9MOmNELyUws1pjt19fOVUxOQEdewGrz7DDSedGIKPRW7C45urRA2KHEwiH+AZ7WfWGrAIJ4nDSmS13sVKYQdeKhjuuFBkDxAVoq09gy0ibEoaTTsEItJW7gVkrsaf9ynFDiPPwQJ//PgVcK2L12UZsSUEYTjqDwnRlaIEed4uluZZ/euo5jhuqZHmsPtuCe6EbAPGPVqzE7kF0TTodtTW7Op1Za9IZM6mja0e7WAI31XMPjRGnbKtPb00OiRRwVNpJZwFamk5AexBak05Pek2jTmfOmnSyZNotuKybZpKRnbatPslhVYUum6x0/YD4KGiNR3u1pxBbk06Oo3WeVqczZU06NTJcFSm9dqULAjvSl+gCEOykbfVpo+ceTfN8vcI/nhfWh9YH1ijxSLQpdTqT1qQzwvT0parOYg3c0INWg4U5ZVt9LukjIDgzuoWVz1IrPOrMIKRS1qRTTLgGoKXH3VKn7KbgrnYZIM7aVp8hR8lMTQzalaKwUnDqDErstx7CbBhQsmPznCVvRqPWRz0o5GGipurtCntfEwXCvNPdlwGzDtp2pdzBJevMNL+ZhC2jS7Kwgr01VjDyNmHAZFkK4PpSyOy+sHg8mtVC4YG649GmOx6EM3ujw5/CXP4oV3pmPIQNU8VAsCZjQG9TrTYEg3b0vupm18C3glJdr8RSngcxNem0Omty0x5A4Ha6uI1st29SmAAmb5VIcUioJAUt7uuOUhV8jPWiexD3NxZaUzCuzG8h6JKQbe0h6HdR9pJ93PX1JAXuGsMjq6GKu+lW4pmrtOZimnRWsyfMTab13d5jZYILCs31ME36uJiHGVevD4GHAAFradKpjF0GXYuYNN7n/stgFNRdt/Mt3VnQ1MjMngn7bXTeLOW6LaiV3wrE5pFVVZofFBhmFlXZauY9kuCRaczU6es+BU21R1bRnXFklahbkxNdZn0oCGRsGczYyhsMItJ31dsXRqqiw2Zh2r6VIyuboKrKwAibwtoazNTeYE2MRIaBxYcSeI+sbZlv5MjKnjZvcmLPjNBgyDKP9ctbhD1XMH2FdSP88MhazaLEBuFdci1hcECtfXrwPbK6fsxxZLWWJwOD6ZhFj+jnT2NqxAINtN8lget6rlrhyKpNTuwZA0t7aKomeot4yoCQgzq0aw811PDIWs3IbMLsmXmT0qul8dCungwzPLL2tTbfak1ayh4z6me/St3slcI0i+fAQOeRlTE/KZIE2YdLZQKSvQx+emUiUZeZGeqiOKPLbVHO5WbTEDCXkhVoflKOA03YIEyn612ks+m6Utw1XTAzc1kCY8C30lx8Nz8tObKiw6owMVx4pJkxIM0p2APrbv1uIYZHVtukgCYRmmHk2LxNWd7/ToDBoas7aF13KkDpkbVMU5JqzpVuS9RZf7y5M8wMGbO+uRmimZlLihC5eVRwiTuf5luH1j7ulSyexuiR9QeFlJZsVj+xdtCm8M5x08axOgTHpPAIH66L7YMKKlNhKE25UEEJND0kjoFLDX3J+lyVsGS//G+E+jEZEtByl6Res/szS7Hd7r//knHYEWbkcHRCNtiErpStiikjqIIwmC9txB0l08ZBYnr4MJlZ+aSq/a5LvpxXa1aA5PTew+LY57ttv6YflgyFpDLELkI6IMvCcrioZYtQooYyTBUoBCcwoNQQocR0a1aWvgp0LX0UYnhkTUKKlnuxdm87UiTJtbwESYgCQloaTbI3ps+UaG2CsFUQMZZADiJ6SHWCGUjtom0rH4UbHllz4THscDbZzs/9SMJkBWMcMD49nFlqGDtcoPGlR0gEGk3HnuQQjUvrZfF5WRB+ZiUrSKBhX4SnWZQplWE0YBvsd2UfdJMJF3DJXEAx0nQoMyb03YmrU4/OH1rJCkKDp1g2o8oKMIkAG4hhZrD93gmCVIKRsShNifmGDCjZYFZP4PPI2oqM6tTsFyLm/ZiKgIaBCWPGvCDexUaqNb6KVM+/j0JgqhZNhB8eWVM7LANoxRVRECNimIHxAq+tVFU04BLzF2SBMbgPrssgATP7d+3fCMWkvZ0FSKpSg2mdEzYMYRvjxWwHWr+mp4PAJpS0UVfF/nrNCngT0ubkr2VgKBslAqIR87i5ZbwmfgRoyN2xzefvDYysnaMJp0dWR0aPAYHoz4WBvaEQYG12NxvMHPZqpiobIu6QDKYvqKKb+3DXhtvW3NWswNyVrEBIQzp/OgjGWONppDOcW28O28uvLS4iJWYbGGBiLeWjj4Jv6E7KKl3fAQwgzGDEUP6873fegRpxkLvRb6g6YKkSpPFxSyC4td/mQuKR1bAlv1IK+3cKR1YJYH0aEEDMNGFjO7/3DrEfaEXkzUwrTGamx5a5kaSHtrsqMFOelVZtVWGwZ2dE1MIKdDm7l2cRmgsC9wf/p6dQwEKixqPV0XzmbMQxqAKuCm5uonQj11R1TTY748joV9gAju4vE80EtLRijr+vMwrBmorIVoMNicmjEoDCoX3WTuDzyKq0sYQ0oF3O70Kkmg3zRBzvQX+397uRRB0rpnLPmJk/h6bhlMPBXBmrGhnrtwxH1uU19WlE2mACibUEsTOHqQGiKoiHYi60iJPsX5EmMXhkvdQRCDOmS0g8eXDJEA1DGpOyji94e5rQgqA4d9p09t4gmEbVob04qcG2tn2/aWPVjJjfJ1BmJfc+jUYC0yE0hS1ck5zGoYAUFUPF0yzp87Tvf5zq3P9gJtTOXBd+pusZevwqy+4GR9ZuAoJNzuszh28dd0BCCRh11Cs288mJYEQVCYBkup7F7b0hYtdSCkhhcIIt6Tqp6N5FmU32mGXdXdat2az++cdYQHE/oeYHb1OfIRKYhmI4PdaZDk8TpRXFXMEMRypnUMXwoPKcabmRxKi20ssyee91r9ESZ2x1YSxGmPkdaveTRDGNn/46JKaGVm1SwNZeY1p7BCquzJYigOlwHl82BG61+TxzC46nmnYXRuTvzY0ygpKZrVlL/mMSivuJ9fgNDj72MWOE81CtHdeqLFY7UFFRJYm1Kc7wpTLc9jWdU5hrOjYSybh5oy7LyAyeFDckM7SxZyoJxf2U4se/c56Hk5CEaKnpRsdakw4QlAlSSM2MntFjN5baKf1HlswQjDHSa0qpa5OtSnZ0KXZodljbQi2euJ8kAunJPe68B9XU0mJbktFx071GVqEvsgqaUteY19Ct0dxQM8SU1kgZI7AZDBnSUNeG23bMMkjbEzLJIdkhMfKJ+0mxW/vt760/XUCSACEpoEquvfoskrZ2OvgGpLDkLKcqpYoNyYZDcZlm4cwz8JCmg4G7Kj6jeza665ohSKAJlXDifgoSVNZ7b3PnvdesxYgRKp+S7L8+k5N51olXUZqhOx+1JL5q1Ap4r8Qogk2BVSNzm8pG4gZdddd6ZXKOzoxMFqqZHZDGRmF+f9r9xBF58eWX+dvrSKCadOrudXrnic2gGAFOwzzxkwbNjKRgYukYs2AGsZVm3XbOvNuyqYBjDGvcxeslQgbDLt+sxYVMDLaakWkZ4bybAgJg+jznXx9sBC6OHh218js4h0dDNYQZwHicp+QUA4bADEMGYnGYl47c+wQ31zZnTogZCVhDr8OOiQ39sH7yYUPQikZdb3x7FLF1w2B28nvzg8sKoZ19/bW8YYCLMLNo4b3H8dlaewpVARjmKRAtSDMHYgoZSXT1ST2mZJt58xUt2SGaPeZmEO/R0Ox+E71AZpEYwhAMslIqSLIFM78zXyJAikKodn69RAcCDo7c2nrtuXx4PJRjcKKCrR++Jx3QnP+wzgpWm0/uSobJ534leTOYAz1pLr0xYTTHSuYbz5X36YYPEmXOJkUviBzj+1TX7iZGE82iIpi4n4gEaa6acHBw58nIneughYDPlwaCqIiKz5Oa0qzyGqEmLQvSWWXU3RmZEGAMgp4zz+sMpjDuwJ7iPvbpjRs+ce/AonwpkLn1tmupZDNQmMV3T+3kEveTBGAOYJnlMgJA5WSDUbutZA6HnoKJgwDyYxOlgSQoNi45jbwfWZOhMRYde5bAILB1v2IO8tlMYord3EajH+8XPRlOUkdAeugl+88PlK2RVItOGYySaa3KrQCDkUrcT5Ln3ee13UFFMAhc5S6xtfN2qEdYjSqiACrgwVwqlvPg9ZFKEUuKyIFYMGR6tNzneGmPgC8g3dP4GIxkEzc7uLnY5IvjPkmdlhTLyvsH+juwubFadT2D2zIIcZFKJQzyOYoIivtJCxFZ6ngk7SAVBVCQ6XHS5QZaToMXU61Rt54fkMG9Srqbf0+VFCsiJxAYNivWRed7LG5VEdiiitVXKbsJtzK7CYOusWMj3MqLfbrJFxFInXZUV+lNAuqaM3TrQ1YYg6lsO0RrJcQSU7erPbp2uQiK+0kNZyUTnAgKPDAJgIKy6HQlosdQa6XKgA/YwxMtqccKqWKpCvOPap6VM1NXI9GYqE4VpFvCkFtZTC+BgJnQmTHdi922ssOiqT9JuyxDEe2oGF9kZs/uezBm8ZOyVKDWtRNqGBI2GEVQ3E9auDnRB/qoQY4NHJAVSQWmy7WlmO4mGEUHEdGhZ8UJ0qikkLoeFEm4ggChmIDcPOksN7JSnyDe0q1oEVOSpux5Nocbq46h+1X0065YFH2xyqiT1LHktG6bclDM8TV+0x9U0JSpdlNmvM3MtEpz5qym2ii2A4LiftIBzurH3HpGQEYk0HEmDuAegGul1RhUZXALhAShHhVdVKzYRVAMRyhjZbPh9Pw+0KMOm7au0djpRtAPPVYTG+PUhF4DhAEDi7hzwWfTPfmGFn3qC0kqFDuOFOJocbQTQxHq27EiKxu6Tj44memg9VuS+QRgJZ/UrxEAJEAoVCJFxtDcY5egIkfVgWesNSJVUqygdEWDK05djCTm68qMsTCi4XKEgWhhuXJSSMH9XD9zj0EyA06JFZI8KCwjmOPOcgvPB99tM0O3M1AHnaCKRxmqxgj81+muk7v1C6+tcAxUyyEiYy6si+tHgZGJmFKgwkQH3TdRyAJRrLheNFBcH1yZ0sVerGGTxMzez05mr5rcSQ4DbAhCTrHKDS4Pa3tIC2RlEfJAgjCbzQC62+zV+1P/rF4jqykKQllUhnJJDN1281QZDDjhN3/U1MzM0ydXmd8S1bn+Cv9PWTSYo1KYMYQ5C2EIjrQ4/ahEWRDCwE8AVmQQvfCG98q99b61O3mNevWxWtEQm8TUU8sDLnmDvVQ/qGz73TY56KNPsVuRsFg3Aw99nVw1VUn/SDJCMDhQJFnyzj47v73/1vt3F3b6uXXGVaSSKO1SC1c3Sgmp2MAVfQu+9sedF561Fs8G+02wuuc19Hjm7sEfld/gAjCjmBssY2SwdRgYwsIkrh+qGzV0HXQuQCakYiXjNvr/E7v4dLq9+b4zV9YhO9182bG523Hw6mUAYxOMbX+/frf33OjqIkwK2FKP03/rz4YE41QFMgyHC2RsRGj9efl4ru7t3vZuauvvdzpvv/f+3ZvPrV+u1lGIU9+rm6GWikPYf1miHAVIUaUJe2hdjUv3uBywmTfq162QKuYoVASb2RDWMsfowulG8/NArI/nenaNhEwcsjTI0Ua/td/Z3uv331ff36tvVtp/fZ+fvp7tddjbZ7Le3me8IRub1Xv9FibW8qCJgPYomb6MTZ+nyKZPsm0YhkwhC9v3Ntv2vatzmS98zU1Nd+e7H3/bG52oMLlWL82oOnUD0WDCgw/YNDLpbNfqteUVz5h0Lq82u2Z9nm37LWHS6cFmsteU3RMw0vdYjjpWWzeMDJWBxqKNMcYspMUsahU3w3X8oB3DU11K23UggPI2iYiqRCnGiZvNe345zq4n/fT89vF+8bHl6+32pM12aUk3abP7WiAIAAIA0WJ90vSxI04dxsKw1mLnoWbsNNAz7sd2g5uik8VjFj0CRLJVyfk+7TNfdV6wz7vcXtLV5assXz/h1J3rz87NZ3wmkclYpGFikWrKhDrQkDBCARm4faZQ2rVm7eSagzfeR29+LmDSaezNYNIpwBTZa97jpfmiBXU2CGazTG0MEsYYowmxyMU40l1yU8co9g39BpM4EcetI6CoStRJdzZc7r3Y5tHiH9rv97z2sYP3k27Taoud7JhZvhCyGIAss46Q3U7AlpSorfIMrEs1NxqFjVj1IvCXHSTFqoI5FRA1Oj7O/FBMne+JicAJh46sLk+7Mz5x/d77IztNy6QgEQ1MmdBAGZm8JZEg+EouWn2e3vCy6vSOzWkHN/f1/ffwjXe59kpMOuu+crKByhTYa1oYWTubz4HBph5EMpWqLWEcQowSZ5GGYUSmcg33ahuO9ZHMdlcy7EI70SDVuNgtvKrv57xpV6dNXzo33deWtHWb3Rnzkwfrvs+kvKkCaTfF3OQ87iipSSMxS8B7uDHIKdPVIAYm4016g82oOcmcKz3LhkqDLYIgQwGuqhKhoNu2fTZvfJf9BbmuRWKGycBoQjVGQIQCcmEbx4XHbvjyjW93Hvx0dkNz5asw6az5yjnCXnMIu6C1HBvQkENAQNbG9nlRHKLGGKSAiZnKEJvknelTsygr2rIeCds3G0fViNU8Z3Y4K9wXt0tos1tsabnd3nSWTn6uLyTnEDLo7onUM5PJricZyFDF/trg4ipAOhkgGDANmQpFN1AsgkAGYnH13NcR/o1uBwoNSTABmVCgQAKRcKXTyeH+/e+33/o6uv+0q6ZB/3yYdJJGmCmw18TYWChn8zMyJY0ozEidF1ZJijDCqexARVqczzsnM7LCprbYoUPevtnN2nJs+lk8qq9rtp5jaxJrrVh0lcoWbgwHEhKqVmGJzTLfPYZm10Bd/9Q/g5/L41f+5m3+2q2/fJLv3lo9tb9dV10EAGFWSiPG9Jv9+UQOkx/UKQmaLRpk6gADBQz7hhBX59y7//3k7rd0+haVkYbzMHk1Jp11XzmtCnvNwaR/y8W2UVaLoGQhkO155Xd+f3i/3/lt7KfKFZhkradhtb+Weevakk5TTSh2mbGLiI7TWU2TpBh3PceWNHCvLda8cC7DgehSwdHZGS3yIuZLIQEAghTAz/cMRTUNMoId+F796DaTJxze0jOpQAkBlVpffjy9fD4tx9MPdTOaWGJKVUKEEJggQqEdoyTZ5fG9Z3YvEMssWMJJsCHNr8Skc8BXzhJ7TaXo6d6vfazalTmkJnHAtm3bixYI5n1amUtHam1qK2m3zyX01kFwqYEEFYu9FTr40cWKgXN9YbAYBFcb4nocl/lkXXRriCkCyB/1hRHUUm8We9LTJ2mYIhgh9/utj8/pqx939525WzjBABQodQBAISi75udY1Zx6eP83pTvfef2E1CYhFtGmOeaJycVMOm0Zk84hXzlNgb3mMOCmbbLVdpgRKQpvXbfu9rVXDwlyTxImyAkFDsJLNY1j5mPGXFaPZ9Pj6hxfuRqHgYVgF/X7c7l8JY7brApVAOT8kSvnDNmG/gmHj5OASnTxLvXWvcPKbqqeMAGAQWAYaZgQKPRR1OXzItnA5tfP8sbQRR1iUoQ4KYcqKVIbKy11CpPQJ2tsywtMOg8LmXRO95XTsBJsLs7t+/P9TCez00PC1Di6E6jJWXKZ2VSCCBSUsABEP3WYmiUbFuxlkhjF+vTz79/4/z9P8AAiCgxe8hP6NVf6zRNbx0Tg6NKzNTuelOIoRSEQMwyQqiWgsE+iLp8XCX3ar29asTjEJE7LMMpGs8KMhh2YxE1Yx2O6rBcw6XQzMZPOyb5yZm6llXVXXpQKK23xroP1rnvdevV445ABAuHlZjtBHQFONpgBw4ILG5kECgGVfVR28u05eX8PzjN9nQLu2+1PodHpg6dZM6lEkLveoncGm0mLMp4AIWSALJAktotd0SMDkjAxyVHK2cR3Nz9fdz/xHbOv5ttdnguZdHoD40RMOmf7yqmQ42lLt+1FNCaBaHd4YVeryYxAjQQMjeTSa5posKmWqwhQyiQuRCoFi8rJ22+Hz1/q51M00U+plXOGLOP927EYgAEc13JaSkixVQcgBEA1JkcASRpY+4UhQwKJ4ofMzDXS5ZMAVh4HwigFZIbolbkwbs9Pv8j//G7vNP31fLtLL2bS+flVzKRztq+cvUtDsLN3XG3y7rK6ZTXdWEEODSALLtlE9EiwtvVFcTlhcQUJQjiCkBy0Lb4/8/dT7gD91ifVn2mxKwQIIEAlXC0nSxBCqDIAGMFAUf1QrbounzW1HXX57FBQGb++zRcvNgAwAZFiUPLZ27/xUf7Xfn7j/61v/9PvJ7XPfNNDLxcw6XQYsBcy6ZzsKyeLmU0y39kCiQBbsd51C1lprLMDCRzgJWMGuW3gGl6bxwFW3GIuBjF4xcGhFfdiq+6jiAAIowgCPrX+2le/eVDITGmykQKXTacAYgZAkJxUDEZpPoG6fCrXSJdPYLG3/eJnGTAUQRIAA7His99fB+7I3/Sx39bHddLqS5l0OgGTzum+crqJOZd6UyyYkECsd6FbBDeDey8EYZZcdEI50TX8ZlkOpbdycY0niCBATDT9QLmnaKFRARRhn2AYdp8/xcOmiQDAOGCUBl1FqSKYBCqdo3mcX0H3cuvyaXpIm/tZl09HPTrAzY8+5eufHSSDY0JVaBBPUrr2Ww/NQSe5L728hEmnEzHpnO8r520XU9xU+PgMmBivLowFk6Be+tITHDb1jq5KbLJF4w+TS1GZQSE2aI6E3jus+QQV6s7L+uOXwARIZaq6LWfoSgRm6jFFQOv+E2BqzXX5NDEz2EQ5XOXahnqa3eefzRfTcdqoeOmKV4fOJAOMgAbS7nXSaepewqTTFjLpnO4rZ2MX41KvhEkgaybMJ/86OASpo6u+t1TPKa8TXOAIrzgIFNA9uPrp85Hi8sl+foWT19n6+tMuAAwmFvtxMs5jiigUMInERV0CMFCFGNIt4n5KKCaK5dPkCmWiD40/SX2Fkpcw6fz4nLuzo1Y0BQ21ZqonZNLpBJdjAZNOK2SvaXzc9prdcDM9HnAua1ZmZITAZQnQYzObhJkuxdFFmTmRHAsnEkA3lkMAWgLQgPUCSPBr//9MP2SwHBN2+aYdeQNhkEEUDhM2iiAMqEEYuaYC7HBPb7nLHejy73N1Zp73VnSMO/dkmrxi/h3UewmTzjPnPpDMPqVaXAIL4/ZYJp2PljAgsygmZNJJrog2Te60ETEewcj0oZEdWIBBf/kzABLIABAmwt0AK2hjEs8pyTEp4Sj6lKdAI9TPF1cuzz49KCLLuy3+yZUWRVScqsrKFS14P1hrIXg/yfIScOiGp0fARw+mdLhD167L59+y3ooGpvfXnGACuZhJ54eiSpXFATPVBZNO52mZdMpKOPT2J5sIGgkKYTVYhaERMyRTgUJ3bW48W0MPLqgCwJSZNutw2gA5UFIO1WqIx8WL3w7CwUYf21gGIZrGCBGBySJIraFg0MDnAjdD3/SFXp2juacdV3p1XbyU2T7ySm9Fb+bUa7b+EAEY9i5m0vnhUk2vXCjNitzDEBs438ikszgqZ1fZa7J2ZAGlNK7LMeGCAQxUVWEikNI0rVQoBqckJUtLKwBAQ82iXvR//gc6E8C5vjlf112tEwpzMaqIJu1goqEOkIUeeeM+4xFut8O1qimBu3l8eYXu6zNn2VfEuu1rWz7/bvVW9D1sRQiQXsykMzfqtVg6WdCZa6FEex7IpDP+HEERUeXytUZkCEQUqrCXGke5HjqGgo0KiiOciHkuTxlRA/utStVZuRp0o9/xZnNtc1kQLpQrg3bjIJMCSoCGsZa2WAx3QPvxc+TlOnRcn6NBV9IZS8Gli1uJFmvN6IC0at4aOL+bvQyEi+O5x/vFmQCo8hImnTrBsOriH6R7TDqnHA0YHFjCgAZIWQNUIgAkSdjDprTBXRKJCyqYkmiJI4fypiPU1atfp4U+8ONm95aLzxPvwzlgwknhxXLRFsYLx+qLzheix41XvqOFpmT2ANepjjvahisbKdAN1xm2mr6U0HF6P6gMesnkDu2q066qL+EEAi2k8d3sPeVWnJg6iePFTDp1kGJxDVktRWglqC4zsT7SDVJEtVJ0wlVgKBYkUlQockKI0nRIAwHfb9K/+O1AdeuYi/cZhP3R+dT0io/yV7e8LyeVZcdQ/VVeJlfd2NExRoSOC4gttwKa6rgCDu21djAcmkGZTmsjlMix2T2zbcYkg+vhWnyxdfmU3CtN6yDwkvBiJp1plrGkZ2ZjGkcQzFUmnZOgGExFDOuM0LXDNZ2YOGj04A6ADNAnFggKZmJOv8CBM3R9TRcd6uORGZsew6kvNOwlZl9+S8p1x1isFIzXDCRzjdNzq8w8jCUhWQwk5gpkEWGJEEqMlYAZObwpXTEWMsYkfLF1+XT5siioQ29I7GImnS3T9Cj/VEE1cqlRstvEkwTzR/ZuA2OWc2hklU1jkQZD4qgdVGVLnG8AAAJonhMmQEAX59tYrCJ0JirjX+mnjcnBAVIE1ZF8jSIBSQIuRLbNApJkIh9vsybsDIYQDOyRAKNFJHyxdfls4JQTuIg5NuViJp2mx1Kzwdox9CRTqbm/QE2F8VIEjHkA85qgBtVNsRjWTNHJqc6ufjUH5SQKUCCIo4LrzFchzmjymI77y14uq0lnJAJKpVTKzslhASEJMBgCSmAw05g6B0mbDMnXX5fPI20BRd0g1rCLmXQ2Xm5kLZh09njRBDU5wSvT6Z84Y0GgATj23dIFqdRsMFwChD538MN/0C80EPHaFCwgyVVGIV1FMO5g6SDR2jF2KZWLInNLeBVTshBsn6+3LMQXX5fPYz8JJGLY18EKXsKk0yqfW7TDCAXCX/2bFngdkvMgSNLhwps4C3G0iSkjsMsOf/BPshIF9E9UI0AMEZgIcH+LsDUpxkoZoBiyUjEEY0wiMEr4MMEj3wS6fM4bzUScqevK8jhjFKIZMFMmRAB1YDIWWqjY59g8dKW5MKGb172oDBkkSVrscRIsMcMJoglyy6tf8vE/o+JiBQlAQDNHIACI2N9icUkr8UVoOESR07GcGPINoctn7VDB0LFrcNaLLjmGiBYBlplQIVAiZH3CvQgq/8WkMMbrCBAaAGrCJRFuYpAwBKXJ0q9/+A/L/ZByBYAgAAEQedtSh5kbU4AAHdKDAfJtocvnAsAIztRrYLGvDB1KjIRKHQYIYMhlg5rdc8lfvMWQ4ojcgANCPEs4R+QdrWOkoUIA/Xzu//hvUyl5vBlENEMy8O0tpJLQgAJqLOpYvr8vdPlcHKAAxNSru+W+ESRgtOFZNCUOTGgEMw4SmsG0VNhzbysETF52DjEqAJhMwnmNshFt5EAFg1te//qbH//d19Be/X7bS5hUIIdB11mHwzeGLp+bb1yzeOW8y6TTuQ/8ipp+h+6JCNI5QEXUlY5tc99k9fNrex7D9vN/0aKjFmzryf+h1+ixfBprVoG0vzub7T+bxSvn633nTDptTgEDRuR4FSSRDcPMaMmFYsWU/YKda++rtM2A3n7870/SQARpi+t326vfxRZlIGDgWD6tCmMtIUJ2ENZg5vHK2XlEr5wOoMpwKFDj2+3NpgoFsZOLxTqYYTMJwav/pqECunqRrVLfh16D9g8edy2qIQ0tTXlYw/Q5r5yJXrnPpNPAL1oZiGTTDGuoJKkKkbBha6feebtN2Orbt/rWgnz8RTuzuAPP/w+9Jo/ls9p/f9ryqc0bM5izdY8w6XTDclxxHYk2vGplJlaXUEq1MwgEoIv/feW1GHiJXvPq/6HX3LF8VsFsms5wK185HZIoukyAYY2GiizivYgKFyPCPGAzkNjZ/wSLQVt4HLUJ2v9v+T/0djbItXGHSaeHMYxbmhOrGNUQIB0q1nUFCDA2sEt08X85i7I99BYTCpOS34fecCOWzyrwPKZXTjdIQ9hY3ou+xBZHNBCMJEC42KyENO//Xazn+A3Pd1JdPgOMQVBTucek00mVBttWXyEbTcjCECVuB2uymQsD7O2/lY/leOidzAQpr/wfehkQyydr4n5qxcCkvO4z6bRl4ohRWPtr8wJKYzQCbK1kBoP09fp/LMcoWQUFYcor/4de88fyyZq4n4I2s3jlfF4mnUaAE77W96JLLW2AJDBsTPM8JpnT/wu0qMDt9V5WBWH4WD6/p3Y/5RSvnCkMpZ5Pr5yiPAiM9rISIuKxLaDSaIPmWudYSAJm/LQcZ4gFPRltZt/4KiGQV9cYEMsna+J+st130pmKDp/66cIiucqu7thkvcu8/p0EEFkgdZEN4z3LnctH6G1JsixmFlWt8FNWBSmvnwOxfLIn7ifNOah5I0lLPaFeOY1MYYUV392pPSi6z8JMZ8+u7rFVPK3XSLZareQEJvHCxSzYr6xa9G7dwojl8w/o9jrjldMQj5dLMmntYNBktT6Hy4NPGgxh1hTgjh4NjcLy6rYGnzeAUyiQxUtrQUpOGhjtvpdVIQQbYvlkTtxP2II6CFKDAYpWYEEqFRWMSqZNoiaP7DDY+yp1thgNmBVVr28VdhjLQvH+tLlqx13ZhJZLcifBYtBtZrT7XlYtemEhjFg+LfDfoPnKuT0auiXUSYqFEQt7IozZjKaKsmDl7LS4HsZbf49jJJddTDGyLaYC+uVZL6sWwZRlvtddl89Ffp8x6PZ2HQiuk85qZgyjUJZcLYgps8Z9HWmC7HFFaXAOcqulJqlJJF//2wxSYGAl8sKf97JqWJ2KX+fUTXxe87Qtnw1roNpgylfO6tLYvrAFSQQn7ajscuCQkpQk+TGVXy63/ZtlYyMhYCmz2WBe6GVV+hvQlk+bQJx0runyA5XUccOxmMklIcl+cDO2RAaYlbi93MuqZpZbl8/FDUz2hEzq2MkOKRtBcT+R5qQT32MBDzCBQKQ0ab9PY4ylnAzYnvey6o3ezJLr8lmVm7Z8NsyJ+8khI185DWwMmJUg9bSXVRfL+4sthOySFCQLDaYJSNgozN+cdj+RtpXM5g1MiyR0aebWgOHROseMoa3l0PvlXlaNpFfplmGS5UJ81pbPxvAm7ie9cps3MM1BmVwFQ9UczwqMFbW9pmKTLBI9BVm/2gyLW6n9fbblM5ECDhHlK6cpkBmVjNmyr4do8QuXDNa5SM5rbfkkKO4nBjjpnBsDlu8Le81ETFi3ZKQgFwdiVEqxVl+XT4LifqIzXzmN7l4zmRlJtgSVyoIBYcjkyC9Wt5lJXmnL59rwJyY56URZqoWVopJMNDSxe/TFZM8UgpXW5TNglEyzKjcB5vfmfeV0vrFSVCpKQAxhCGzvlHb7pCJbfV0+GZevnIZ3r2kQyqpcsNVMWNzCzq9SqClK9tqWzyR1bctntcsYXSuXYPKV07mUomKsqBSVaC8VDk5SKooLMNbVhZiOt5WyCEYqeaUtn9xy0omqWNeeyTSevoSVIFelM53dtWfNBjKWSjq2jTHJFsuty2dt793sttNO2spg2w7xBu1vy/vKqWbYJGAwtHxbtFWEX/bTv7CB1d3tXXd7240ANZxywsCyPI6Quq+cpnevechWQ5m2M2eb0iqX5tY21S7TAGgAkEP5OXudvnKa371mg26nzXx4p3Vga/2qY2tm5jvMwnCi0vh+4ZhIAFTWPQAXbv6v+SvxldNbzd0fShBJE6aGCpkWYIN7KDWRPMVCtMMx01pwYCDze06MpFEUR8UHo/agje1BvHJKaYU+RT4ewjr/BPyZgyHIwhDCJeIzxCUTi4VC80Agzq2PB2UpvnLaZsvqs029POPh8ZlL5/4jQlvztLG1+L38DIXfc9RC49qDeOUUTeDRi13plPIdd+rARmxF2vHKad3KV06zk/PxaMVfLd2BsBs7uWXwSD2n1pRhkDFaWDMGKGewh5VpzQsnxDDMlItp0vluTXa5KBYSM/+KPFHezuPXz8evOJT+07RhtB+WRMhZk87gNroNbTAaaTBYJ+nHnYvh0Szno4WRb6YE9OjcMAldgE43jju5ro1gXeK6+QAQmYxJ55v1094IGA2rAIHMgmKTcvTjTotHf9B1btbqs3V3Pr6bIuCDc8MkdBF8/TjulN5emyyiSef7PrKzL68YR1n6ceeKeHwzqVzjc+OfY/hx3NkdaBv1Wpp0vltjw86VutWGElipKk0/7hRWWIGlZoJqErK1lvPxvVB4bpilkiKwmCadBUzGpBPVtj3BcAaivj6A99KPO5vPYZgbef4Sft14Vv1G2jBMt1ocd4phaQNPOErzOz6p68I436CNxUZl2x83v7los7KhNDfn45tZMWNurDNlZ8ikE98SfmHUfmZVrD7fjA8JcINXTjqx7ayZbNT+pfXHe5mXIzfWnZzTWghR3EnnS21zajYPm2clLbq/9Wpn1divXBvMCfwJQgBAiOJOOpHdvL/Po/abk9k8bIu5Zp06svpMYb75XIsituwhNuTG7iQ4iJxJJ7abT7pNaDaP91bSYqf54UCVs25UM9wgqGlVpTRjfZAi1sBcFsBivjq+GFbvJlliAtxgzs7yUZoxLd5iIJ3+CGafhriGbmY9rD5ZMBHD5lz3x6ojx8KIG7uzmnvZKM14RlN11H57K2lp91h9vp/DNzQ3mLPNfJRmZAtF6aj9Zik/djc/3BYeABlzgzd4y0dpBqBeB7vzUft9W0nLeiQ/Vl3yhjDBDd4UqaSTTlzNOxq1/+HIFipgVsPqs5Y5yQ+3dVuXITd2p9AUc9KJ9tLHE4zav5jbz27zw1jv5eBMkhsL56XMR2nGhq7+OrTRqP1oPaw+bSCXFizQWjne1vfkxg48wXBKvkpzgN+qS1m78nDa9NePNzQjNps3ogSj9htQ1sPqU1jrbn+s/MgEznG5wZxeUepVmgN3xW4lGMOiGqoJJbbEHPkwnH0M5mHz5rF3/PYhOuvYDEODRoJFFMAWw+pzI+rqr5zMY1l9dpuimVFBnuXhbi0so8MXalYA3ql5QYEfFGtZTpVRmnOxrGqwdt8iWaRiUoxsGA3zZtsylgx58/hm7zBv7PnG9SgXG9nYXhCrz22rn1gDrbiHsvrUCAbrqdKrjh5EhYpm/TvsY6Csi7n9ec0KsukCAdbS9SrNP6OJdiBYClaT0WKwW8qI6moymKambBDKyluq9KK1Zdzn0kqW2i2sxXH16WiY2s5fme5s0ujxPJVWbQ3UlZgqpixBFcQyTQaz7IChrSmK5IWaFZTvqGYF6/+zISNTQstfve9zaQ65Ak0dJdY2aMynyoxml4ZZq4+MYyaUWCtfxyN5z8+BDLRc9WoLUw+5lsbVZ0sbdoK3mavPw4s9sPq0w9i1xkQoUdsFq0/WXcDYgFjLosmE+5oVnINN3wttDbtABCi600porcqtaynNmYY6kkh9Tu9UN6R2Tur+9hE3+1iJ1Y4NvPM7PG31ExvGG2C+lsXVZ+smR6Kno6eoNBWLQLqDKHl88uwLVp9pdgURSkJWYbyAHazKHJ70VrT3bAbfCy2B2ZAFekbV81KaqVSElI1MzE5LvZLTb1hEN7NLHYRp+c597trV+nznXZNhZxbH1edQlFrPDq3pDq3Lc2xyOSnd7FAwykSNlpAI0JZF1ZOaFfRqh/nbE8+lmzEWhZtSmhnwZELaFtTFXq5VgQS0MCrdMDxWMay4aIiFaS3G8JZ7rj4jVmcVmHkdq8+ZrnFoxmP5xVoTOmNualYQyDI26GbQK4ML/xtyZCbQ5W/LqKg6E4xKNcZOe4kiZFA1Sx/wKXZIJ57F81OxR3P5thjDW+65+oweuFNgULWa1uuFAPUlYweSRsLWhNROqCxZoFPAiFbZwwxxaYxjFYOZxVeuCEM/WcZAVWhUWqbkvGhTolbAY0C5iC5aiSjPKRam5stZGlefChgM7azGGsgXpJVpGgfIup4q70AYUsuTfFdRDIcauDrGzOyAhLSgHixgTB6SjMmtq6S9WjoKo7X+blYyRqXQUYqeWNLyuPpUgeUKrQZf+zs4q5rGOIviIkyZJfZRBY0SBBnWeWxeem0mEIYGFJDabMmd13hKpAr5qOhlZy6DqQLrTJn9wnRoaBkPpAtCBy3Eq6tu0+O+q0/TYhlGZlrW12yppFkWf47pzJJbNUttBHVyHjCh5sro/aSBS9u4TyohZmsnIKsB1CAlOkd0IvOVgJcqmtZgCQ5groxLIMhDnIVx9WlBN1KhHb74JkyoilZ2K2KbiyCEmkWQdjZGSWpOQGbjR6wGwI59G5OUwAKWMtO0hgKlCy2MFkCHKOSqTIaoyv16KXiyH0rTgpW9JxKUGgWZ19fiuPps8lvdfTjWxsC+nNJzSXaRJJKDoGFaIR0FaslHZaC+oXwEDiKHdJIS9CpkUFkGyY6WPHGgBAN1t6+EmY/qK66rDWqm1Havu+TNwgBRoF5iV5GWYUg728c9V5/NWa3wus5dd+ZPeBpjiV7TuyhMUGsGL1GyEfpmwRCQ1WCTCuuBlDlyiWxSDQ4iyJ5JUYvAgKdKQlDV8ycjfCEkpZqJmix4O1d7zwuvyeo6oFIy0dUzZxGScG1+MAysxJTSDJbmzJ6z+3IoQbFTrOUYKFovOyqUWjww0UH4sF4kO13LatCW49EhBRnMMJMayRVb9hWBKgTK1/6rwkDMd0LaV4R9iinR2f2YRt5dV0pTZlec/2pLkWu8CQKl6yoWa3LNtV1dXeUMK38GVp9r0WhmSeRGa54hIyGWS0yu/1OCme2+1WAiGRRGCX/+gZjZJ60jCJFaH69YNZTpy5sQMxSSz2q+KuxT2BnjVVd7z5r2FYrpUjqgz89qOXJ+2UACtXz5QbeJUsYHrcXWWtNJV2WFrxK71SSEXXMClYLZbLCHMLmigIM/rBUzNnKWUzvf0X+7lPCPz0dQYz7qgyMtQlif0kglCkgpv0gCa0v2RurL6Ri92rTVzDTI+EWhbqurpwMw50cWyw8/fKnEVU48t/76NVV/rVoatQbz9YFh0CIM0XQrlAQyYVK0XBw72tQ68n/vVe0akv53ZfR+qlEIYlOmIV+7rWGrjP2yQ0+EAIEUAmgwo2SrmZm/fJS4ZT4/x1+QQTIwhqSYbLo1acT3qRMCDD744lesoHruBUxzLna+99kHASAROtToOHWRRaShSs1FrD5/I24omNAarFfeXjzbWyoACKQJPJg0ccIzImayTSEF37UXAGPK7IIckCWBMs82LWyT0OggQRIwgTQDwLDsqYUY5q9fwmqxMDUeDU7MBGrECFtZwro4OEqAHra/3smrAHn2UEeH3/lM3WWpOi8rhE69EE0YvkVWn78Nh9BhKhMwLEYt0GCGQZqFAqkqmoBNsmVHhHnMWgIp1m/V5JzhSBBkZjPzNSHj0kZTQa+OngqBACARmeXfye4izE/QuzIauyvmPxsAmRI0JNs56IqoqJMC8+Sbvf68KujPnumrXP9qHNEJsuu6KeuUBaESvzVWn+x+O56NLdM7k4VETVYYAgCFEjcpECMmndISmCf4BCst57drB2c42illizQ2rchG4xQg6YKjEMUNIEPULL1Qnkk+J2j+aopTDNQ4gWQi1WQqZbNqJM4JUNDhkfvPW2oBuPnz6rEe0UuasIdFvkZhQ4Ig/nmz+rykMZcALgy0uQbq5X1fmsYFSHOJK6Wrf+dbjECYCemFE1Wou3KNIo0CzVIk6KLLyLYAQicyqD1ASWGmbVUxobVEWp1+dypyarghEyRQQg1VAzE1wnnCPBNK2ynA1Y3EEwjgXCbLqLCX7QiEyVp24YrIKAAmQScyDnMfRwc37IH1i72vf63quSMAxO98tu1MVRvt16GXtZkyi0Gp6IaLWH1G1qNXi5zVp7kON1o4e7uk2eeTLrJVr+k6UqUi7O9WPfVDYUnqGxBgYarnvUVykD6NOLEhZRpoMHCj9Xsz0SI1AFtG2j9KmMg0EKZmQ56ircgY3ZK4EYChB0aUAsQEV1j6mjy0NrKpycp2TV0DQDM1aEimcUl6lpj2YR9IH6tv58KTnvsAlPJw5+vtZwDvEqR9NYpsYaFBqAPx2Vh9mrE6428Grq0tEZ7s8vTe6ulvUdn7UHvPTAwpJ7EELQI6MIDEalnTdExGTSBmaI1QR+c/mAJqaENbkiihZDNgo9KaiTYkWwemAoAQCFUiRSQipWRCxHQYVyy0MLc1z9BVk1UoNJaUZjsk0xHvJCgkRH/Mmyp3z7xBFPeep/4gVEbtS10KS6xkIiG1CMjonpDVp6k7MBD7ImC1AFNMr1xMGpiT3oAy+2E0UUFsJOtzOgri7B12AxBRgk5oUBbD6U40ILRmmFg6ufNHs07U0BbwQoeUJxW8YL5jYmomVsNiZ7O6IQBRZAAQKBETI7HRBELAhMzUbF4wFs3xxFxPoBYtGbNK1sUdtqpAsHrt3d+toiLPutkNbn4pq+uXJrvpe11ZkkkooimTb43VZzCpaley+rRiVp8WiH2+PCu4jFBqMyxPuIMRCWEeC8G2kuCiEUIGgZuiRjPCnYOAwZAYssZ8n1z9YSWoIZEaOFGC6rlMggZmsMQMdO8QmAx0gLCSEM89wcjmQsDa0OLY3FYQtF00ig0KZGJKzRvdCnqKLVBKSAv/zbpCz7qh5OhI/zQyGC1CktSw1u1eqdRvldVnJJex+tylC9KdrEV2kyANVk5vSunNXWx9WLtPSe28skJW6AEqjBJFkGCKdruOiRFLYWiJVX5bnN8MQA2rKtZlU6ScCY/mq6/S0pA0kGiCGeHNQzeIisSMCCC2FMSoRc9MNsKe2kKP13XbqMMgiWTctetp8qCAAQgk2786T5SKOM8WB1Q7zz17JgDCNOwjtMcgE18LBMrw7bH6zM5cxurTGlgjDRIVHLDoQnrPQHrzepMsrEwWJiM7Us4IYkM0klWtlGSnTrdhGqIpjSHh+vxh9UMOwLN5vkMKlZ5he54BraEZaFl/8st3shUJGxMaA+tswxRCBpnHYGb2TG09TlYW7aqTPBDhYlac0lSARwmEursOf29KFEjPtVUh1Pi85gM8MxQwAZOsku3eiAWQoaG+4kswgwZRxmQBG3oYkamSsvr0mvhAkLa0ol+SpvfJ0t/Nco6DEMskyIRYKlJkUUIwQEyB8cYlt15RNsGaYaXJKXy/f8b3y5vXYCvZ5bT8znkCIFJiI71x4bsvTUmohlYsMKGSoRA99jOz91Z/bc+mIlrWZSlkRAYX4jhNImfICAOJ+vJ3hwMUcfJ5tncxNNfps2NigWoarNBxmkEHAHUgvIoyyjzOh4UWBtkseTQKrD7nrEowIBJ3RjpJ70nT387Akb13mEGEUcnBjgKRICDZ3f7w5U2P0FpDAiEwaU78s//2F99wjgAoyPnjmz9727NURBhDYIfvvWT/gFNDq3EnEsNKbErcZXNkL7GH0dRWt/WWxUMDVBGRcFAIlD4wG6GSxCSaUBgls/3r9neQmc9xZj195erZp7/+x6eMnCIqtWkim1IJASKADsOrs/rMRDAZ7x5n9SkLmiUD17CrKs3Avq6XasASpbZlYAbTz7RDhanboSJ7q+0gzGQOwo/5sYBurES89dL3X14TKKYAlAFh/oP793/trwAsb6qKxUdtr2aExCrUVFiWHz1ne2MhGFMzETIV0loZlRWlPlUoRFNahNi6ud7VO4KMTGhkNfRdYIQCcgZmGbki7jEQGkMLppSubXf4+xEfF0jPMDGKCL785duIkQRKA2GU7HpJPUIHwCulEdgi8G8Gsjk3rD69O82PtGGnIOcTGRPMSOKQczAClRpmTbAx5vXmwkQT1k8mZB2W2z5EbdNgdi588GKF6ROrKIpQkvakv59/99f/KoA5RWzredYfzKcEAJQIODkx2fvJL293JxJD07g9kGDCJGpGl+yJQmxrRafG1jQVem50IFDJRp4dx154FAEDJJ+NUkwYOWJCpT+6dn36p2pNcbV6frXeuy9l4/vy59MxsYhIZcJ0m1U1WSAgQ6n5FVl9BhAMNbhKcFffIhgV1Hl+xOuBvLSZcwznGk+c4qng3F1sUXdpnQ+W5OJ2bln6cVNw5lh1wyazQFxm471g1U1Ibd0nJepzmHNUrhxDJBO8+RrrlgJQGbgFgq2+w85H+Rd/+68AuFNI7FHaExSoFWCKq+mjcfM1P3m+9y4pKNEcDoLOyGEbIY1Csie+Jb05HuAGi9sCF1TqZvmFlAM1SWkhGy6L+QDiUEAJxV4B1gUtJ06kzX/8/a7SCqrIM9tTJV0g++rvn//yf/X5KKaGZiIMhV6fdSuuwEyQB32l2mA52nZ1kR4fv6+wK+UAx2tgRf3BYNapaTv1kbu826RLPLbs2pSui4Q92k5RXF8tTj9ssc9043s0FeN7kjCHHbN/TFY4yJmj/Xh+bP+wSN557YcvrtgeLOpRUQolMu3PxkcpL/mXf+uvvvFI4uXeayFhNZ4Sz42L8nzl+lTr4wY4ufrEdUIwClBGCvf8VKkQInUYIJzV8nq4upbXo4ZUg+ywhJUwMAHCQ0s9PvBAUkCxwFks7oq2vpYZvsEeehKF4jXljpUs/QMTkSDN1WvDcQ5uvLDyDavPAM+3hm5ZfT5kfp4PmEpqKEkvA6lfj9XnJI+IsvTeXpZ+6hY8kSoCgCoohjHMCiiwvFbNrp+/WCdcFY8bhvJx46NwoYOK4//0bDqUv/7L/wH6kRXM1vE6cRlPsRDXmRDDkJqQK8/v7t2fvbjKCFwIUBNYognVlGagnLdcjNG1NZCfgiiwR+wSJkoDJoUxhwrIf+QM9Y6ERZicFh/ncGdmXCunqgIpCmp/0opHgBVXwR/StAxgADA1AaA7x+qz3buSOR26AsVBADk/jNUnR9LkzNVntlNWn2mfmr2hTdRtQ90VOa5UTe+Zk96J04/EM0G8CZBqMY1IzkDOtCuzMUjEOBaYq4ffMlCYiisd9KL4Ab2UUS7lsXfsDzyA/JnRL/zKDyzSDB5v0tVXXNpogYHCAO120jYO+3d/Os6zIg7YSFiIVCaDZdSBxuJwq5yoFKQkuoaOQUpSN/MApDJZxCQMsNIQpJdd6BaB2wJCe/TL+AoRKzy7qbkUF9dUJEIwGGoKs+u5CqkDQPAH05SzZH6+VlDQqRNoI/dNbO08D+UItrH6JEopqNKL3/tMWSwRTQKNgCTTm5a7G1afyf38mOKUVFWsKFfkX1SW3iU8eXpWTC+OGiCYgEmq9S2OqluOIgIg4nMERUbVgGGWSyhw+jjf79+/fP2lZAtChnClk4yCOrTz/LoDoP6fdp/njcrZ4dAnOBuZAIgAVS/d0aNffGfXpWd55sYAKmSiCDQFUIdhMD1T9VUaGt7LuYDcRK4bchNxQJIsGQrer02waA7gJlxpEah6f+yNiUKAimdRkzM/a/r0VaA9RRo6SHfy+K7t4CJg+QMZigjIUteje7TnSkUAEpTnrD4buJhby3ZWn0N+IVDnrj4VESuaJEMgY6x4nQOrzwC28Airzym+Yw1If+ViK1wYI3ArEP9khnsYFltsGNaMrfJkhhIERaFBgosYVS9jezT8in9/ev57S5v7pTABYRSBAkGve1uWAT3px6fR5ZyWJABBKmnr21RPn3+/+79/e2RtcsS3BfUYGHUQgFkMhWpiweCsNbJMYCZcQBUk54YqSJQyw9/r3zkedwFGGNoBKkgMoqGpyGMzsQQEc8zm/uqDw3p9daoiBoEHgOZ8dvOpTwBiBfyhrG0BIYWTm6GDA5MAJOg9Z/V5TLVUojjk2rmLouixAiWWUrx5hlQmt5m62iSICRew+rS1Kbv45cYOY21oNS9XwVuvJL1TIP7Jgly930sJkMkgCgkaXMQIcBN55f3x/jff73/d38xpz+tIoIgAARivOMsGyLuSgHPt85WlYAKv3YX2aPO6T37+mxe0tSs8SRdta5IRgZiJaMSGaKLGeNtSZqYOQie7iHjLcfOzEmWL23uoOo0lWBKFI/AWJgyo5BhiHluYTrHEKatWFz8uRQCBLjOBWjT25IaHH7v2hOsfSPB4cJ9HbwyBFQJkQXnO6jPVdJ3AA1h9EiFAjSICVYYVE7jiyUBDsWLIzZOy3MhKPsvqsw4Mpplrd3mVnSqL01sV4p8sSNYzywC81IOMo4I6kUIP5ZXfk/1v5f6V80d2Xe1rt587owCDtmYA6q6knMF6QsYIQFHxTX9YP+/6ZV37dIW19tJqTeo8XUNkkDAGDC7Ek1acM3UQ4doFNHZSJ4M1TE7DxuN3WpQKq1uUdwcYO72Ll3eEUQECktKjRhBQECzuEhFiMA4MAUKFmKMo6ZZ/8skfdx9cN1QD8hPoz6738Xs/1tcSEIkECifnWH1W8gBWn0QAhZqDjERFYsUuGorhJtOSCc8pq8/kAlafTtpt03xf69iENpMR/7SAla3XsHEkqgqMhdbDsXcaX+h1vIX10tFmSwePzKKBoF0D5Lw7CZiLDAQbMIlK2nSvbS7xpCetrrUpqQgooUdJ0pGETgRC0ty0MKAfD72YFJL0FzjiRaJDkWstrF2sk9kZbqoOJBVVJ5KKPGagplYDC3uAuCm8eBxHGoumTGgszK/5/a+8P5CvRIkKH/UGUsDqik/evq/fHABIgFJpiANjKG7TBFRESFWAiMCgFnVgpBoxKSk2UFDFCBmalSyxscOIhstNHlXXnKmw+jQVVp/WubtYmWRydqGLch1bOmfSzrcqT4+Wq3DEgApQjVJBOU4l1nVeaQsb8KXrbipVet1058uop2J/4gDYqZRzLt0myHjRJg+pCB1T7Eq9XeDcNMXBWHRlNmKV5CJkUsNgbKkjxaokupJiFR6u05awqr2sojxR2Pu58Fbd9r599topKVUSRxdS1KkIdPeTj3wLoIAkgAg0GGHFGzc6lTxMqCCDASKm2n22PJ29ihkGEewd5Qh+jEO3uPux++LTnzZAmNCYIEVkCDGGAiJSkqFABYex+qRSTKlBguYgUQp9oGwlsRdr2BOy2eO5Wtl2q8kluTGH5XCT+/kRs/osQ8CC8kaD1C7yJO+a/kGZ+GeS3pY3hMogdRyVgqIGIia31LxZEjikSn1d+F7rprt0Go017cgPANq1BDaGbd+yHx1zFMhhT6rimEiCpjawwuWxWVlslnv1vh7UvZ7tzu+21FnIwyIgKImuIyxWi2DRiu2+3iMbUtsNYLF6R69FYr3vLHHGKndRKskFhoBEAdm6TRaiS9JCETZKpdEFYhEjlBPqAEIg6VIOp5yvxyVNJYDgPUdU0g+obX7jH//mPvs1Fmcx0lAZmQQxE0zoSItQOcPgLsvqkzqYWjAX2zBWtoojKOTV57faoocYwaqndl7g0kwXm6vfUNn2z7cpN3RQJeCnWX0WAZVlG7TThwI5/6zQ4b8O7QYUBeKfLDVrdk8ArGByBtNVrGIqg9zpGtaxvmabI/ea+WbdbFxu7Nq5fN74/Pdy/pkaIO9cIwKgkJu4SSg6DgUMAJR4Ueco1mFXG9JgXWpclcUmcmi5oPCyDOVwVx+LSc2k/zZb1e9eXbc3HOKixZ3Af/vF+8P/ndxe65XvXONZubgVERoBpHrMEh9CSYpNqSdeS9/RvqAFMwmYCTIYPXjwhcIWvWWngfl0sZzOZlBiEAAlqlDyfQ+SvnD5+snZvd17xz99j+P7JIOBajCYMmViE0yZhNQwBtNGE7kcq08KlSZISAosfEfJZjt2O72NGPDQ7fzdfLXzbe5v5ztw5+qT0WBM3fq1+/8Hq8+jYg6TC1h9OoVuq/tlaIV+GcbmHZqCeYfTe6nhWsiyQYHpUux8mRoaEGEEAdbo5TFyPxKDIOujeHKlKph3L+UMBOzKLd3YFREIs7qMnpg67BvYqTckTF1XAYPB3u9CBxoF0aVk+oaWbiO17delKTkF0/cyv2xXT5vYrXOe79a5dwKR2g0luFlDbn3tkLDWY7ua0JWTQjkN0ZIAloTUN7vx8pVAEURSEJI6lZzGe5DN+J632+vbKWO0IoHq++kRIELxmJJ+bE/UZ5d3ePzAxw84vr9mtTuNW8yIBCSWWBqSzHliDZNRL0yIdVymS3I5Vp9U01xo4aqwYaayVba2pbTrObUzsr3vsPbdRG8v40E2xmrWlsl4jQdNuIrVpxn2ubHqPuMo8c8UPahxCGx1dQkbAREAklBUAvoMsBddA4fqvqefnq/9/NUTBZDzLqZMAJTyoffhvOsPbdWZmIM6F3ViztA5G9BjB3ZOTTG6iJpi6pAsBJMrGV8xnJt2Ck1x08ttYmpbrnNdm0b7br2+rVNTu5ZGcyAw4KQuwLHHJXnUrxmZxHKljKUUpgBOTbvFjjzXg4gaCTn3sSkazBeTCk7NnQSE+au6+oxML8GoNuZiVp+ZQjS1aZjGGJJCQogYxlEvkGV72K9V0hbHy7D6pAkStTQj2Uyue1MJtI8zsuhWpDM9V3cT09tk9aNy39Wn32T0YVWc6NNKo+yW6tAZx72crKT35OnZRax94bhhxraIsQgaEV0WgTGGvZMPH73tm7/88eVfnjAC8q6mnIlgY52+hLdZfyce+igVaM8hVe9y9r2c4G5LQBuNE7286UNbAqml5Y5d7g0eS06BXm6nqlFf9d5hbW3/dnOaLvSW9b7D12trqhoAUHCb0AkFXhtckjNzSpLZ492SEowxhKQ7+skXR27WRg8Wk5DvOWbz4QUqhaEeY/TSgYCyyL7t9bXmtGLRcYFzRNiCszJ2F0yyMoXGwGLgQiimRb6KtNAiKcOEm7pWT/WQrrFXh8uw+jSNUupG2Vq+t91jRTiar6P0rK01bZxPv+mhTn3V9+p4a2NSds/VJ2tZJxA+H8mPjjzYNKd4mrzbyhtQ2u0udEazx23azNXzNEcQEQBCMTwOPpi9zpc+Pc9/f7709Z3cigp+/vSZZXH1ucPXy6pdvkaXbL3sux/l/c9bfTP+OCmiAJgYDkQoDfVGiaBtF9ImjQ2Tljr21qS0OBoTuWhyBpu0qPG7Sp1pq01ys6pz+04/el7Z3Vy7RNQmAJDceoZK6NJDU2bwYJ6vj5rclL1sPBmZ9b6+OvmNNVu42Z0dfLuLmxSMytWp1AZsGte3bJOayzmKQVIeF/Xd1RqZyQuj9cvLzTvAuUmKCCGbmgkSwpAjV55STYp5xrotu2GTS/rU58g0JeHlPswuZBSn8F59z4NZrR6QU1Zj16SDVHqu89Kx2rVX4zGuPh/Pj+Bx5kf7mi01bWByR0Mzn0EtpvfXQmt3ic+g3R2aHiqDHadXQ0l6RehR17ciFCJEhhIqb6ub5rmzr+fk7Rx9WO6KM5gg4C1t6f7qL/8DqEuoQygbF9/9ud/7LO996bn+Nfa+2t2vZfwtw3EAOcqbfMNg/6rpU8OkHYLyYEBmXf0zMBNSeOxbiEWTk546Nr/Xxq9WtPKGlb540tHdWO8t3E3VS5UqggJbLwkXPBuqk4U9bh9OD6xl73m3Zlfvvyyf7+p1ujOPdLRIN7bZ69rSO1nH5sI8yB2mI7notCnM403IMtjpYcydT2pIHgn9iBdAgCxQAAFAGAILQ4SYRRYlcKO4w27khgpmekAe+SxqbXpwvByrzw3d9fnp8dmTtf2aPFldlKZLOy3nx/ra93yfF1vre9DVZ7ul3tzlZh1YfQYM1o94EF25/AWrQEZW5PxPmhcHr9XnzJ7O3py+rI7FMS4Duct9zrWIjIg8Po2sVdfUDm6327K5t3n7Uh/ssm2n7nNVBTDS2MiUiUWlECYxm1xvcv1uXfNubiJRTADAS2Sv1J7qbB/6D3+Qa71z7ery7uvTtjvs7TPlvqbf9kL7rWVwKy6VsIWrWX3SyXbzTspwgshhKimuQX21xjp5vX690drtuXx+l/rKDbvZc6CR5jGuPkvT/PDv4k8/9c+f1XqP3aSwY7vYqTulc+3gK9MbAQlRb6WlNDBnj68a1kw1FFgYQPDlxqRpYfcH0nKlm2PXmgsasNc1/9vTY1vWMyoNRoiAikgzxCyMG6fbvdkm7LERBDW9zDeIdtRCtf+oD/6Vs/dO7OL71jNuh7vDbvPVns3dTgebK2S2MUn27F7uttL+on2/nX4vdSWrz1T/8VrbXZ2quatPqbyNbm2nr372/Vt746rZ5PPt5r3r+223vQ5Vt8pjXX2O0/qHb3JFsb3rPXaXgPtlO/penA97SQhqJUeds+su9GKYQyFBeqw+93QEmYFxgUs4qDQX5E39zmN3nqS+zSonAzC1gVMooiVMikV1Tkup420VQyVSLrfXZ6hTfeSDoRuVq23k1cf6FU2OLWC1M9Ob3WHrCou/x517fue1Ycf0bcI92MdJsenKWr29Naa6OkJiOVqglCnv0QzB2r59Lh8HbbObferbdK/Sdo909UkwKI6r0MNvHOxcFs7nJxa7LIKjqcJZfJM90YW3logigCy41yMyPY9kPDG/sytxT28+pr/N2W3cMWEksdGUCVdibGAtfVdJUaDPBPby33Wr1N7D1BX1XlxRcb1M6St7sYaRwpCZWGi17da2Y09Vf7ZyEKay+gxmu8+rmjR39TnVnavPySo5Katl5QmuPrWa0GXVu3m9jt7xAxfbw8JGMKkPr+In+O142r2X1edeb8FDOxRFk5HuQPPY09t5ymiBKZGnxK4fO62dK5gEIBW+/CjVVxG2rTCk0oRUUWUV19XFyIUhEYA1M4Ytlpp020QLyzWP1WeuLMOmuLvH6nOyqrqaWoxXpuuxrj6JAYR+XLemox2Y2LAfg8Qq4Cl+A8/xiEqnsGXJPnBTIhVCBdAUQXryOGvHCAWxCU2/mrp+BKQxqcD1Ut9+UDu0RiMJCdTF6JIvMttkAXSZcsbSTFuWxrGzDIJU4Vkp5Wc8OLtLymtXtyjdw64+25q7+nxUISbpAHA4x+ozBQaBQkA3u6qebCdyME4xhsDtuv1iRx3OdYdGKOPZLWePlqZILGGCgh7QbaYESShwFF5uTiqTkkYiIGVS883pwDKCAmnLqr3+/dWUvMiVrD7T0eNPJ31bi8g3XH16ORjL9dhXbRwTNF3rDADGAUjciFQKNh1OOIeujkJFAVlwXwm3HUIEGK71wZMniUWqJEsBoUY0bHSJbecAALvsnIm6hmiBALnZpt7AUAHG6n4slFOLYsREc1h9RikDVpsvwvJA6huuPlmQ5pFtQq891lKPRRyRuAEjQDiCEBwUF9w5lQrYX7ZyzlSIIpE6iw8frY8WARmFhrGAypkuk1XSqyALLz/XLkpoObPNkAKZEY2CjCdivNEN2KI5rD7jgGCsnOxsLq9APejq86EkEfjGUQZzaWCpx9HrRq24wp1j9YksligVqKAAgpS9ppudAVRFwhLvPaVTEQkLJ9QYihBDHQ7bNSRwFFx67shIA8IdiFiSoh1gigDFHmLyXQ1XPY+sBW3gFbZCKre48uyYh1l9SsRK10N7lHtY6iOyGkuuMnETj4MQAGKi6bJ0hQalAiiCe05vzKMMAOkifv5oUjAghRgSUkPisjnEpvTgCPZqswcjKDYqtQXKvAem44KpuXANnRSzR0un2d1j9ck8ugi/wLHpzmQGz1h96tRzrD4NFPIdVp97zn6QZsA30J4DByHQMIQS8oRpoKdyJLX2KCa8Ss++ZB+NNHs7IyGDsMUyYF3L6rMro3EVKbbUX8nVZ+dm3KlMTJkGEyh5aCBQQDdegSvFobcbe88+UwfXo3uHjpVIRQyWyag3tPLULkoHDsKbXb7qXqElQBRkaMjLuFK0+yvVZzADApHai+v3G7d0xSWsPqVgAseEi/hgkbScFqYAi0wsmhsAr2fbWX3uMXdsgGTXk5tDQIQiNYNpmIbJVJI8Mmvs2fn7V5KiLySlJAgkxZ6rv7xUKbmgja9NWH3ymLoiwOAWN9ZT+koFibVwjF9v9rrScGqCkWpKMfZuvgGsPvebOy9N2aM3XkI2CWqTWCNO2CY7wFnXoONpC5nW1+qjTUFmbAx3Bp0PZHUbGMkxCU8QL8J8ntVnogM4dmzpHq6ZbGmJIQkECsJEyZObdy33svrci25FOLi/9TVAGiYD5wmxjLtxJo/JuiTuwx5KoaW+mnNGPBWB4ZIHt1ZaHQmT1c0FXjcr7WScpxW2T11TTvAg3KRlLawlJpxQabrFw4//DCCMeZ/69T8ByNPnNh+SoQIhOoKMm6J2SRLJgTao8TZYwQpu4wKL8eqOKUKkdUl1y+Mm97VBGDNoEkIGHVXYm5qOcj12gA771KFDIZt/eNdf8Ds0sFUHVgDrO59hda0EgA4gJLgZg6RL1IgKWl0qvt29WRTmdsRSTAusCYyx+kyasMdNr01dkkpdUSTNcvytFDtQZq8qImD8Sj4yAVAAIANRGmF0WUf75DShLQZsSnj0Xt9ABxYYaGcCq89VHsZihSiDAoMgVHr2zL0XEkGp2q1q/6PMvz8EFgAMiQFxuq85tdMTJUor0VYsGjExoccRuunImq+JxInm8cQFgAho18pbIwA27EAsLk6+ajtCpJnKmCc9QmtOhCyGsHm1RsSCJot5k2ECiUNjVuk0K9JgiI7aoCj67bZfCqBu2T/AC7s/9/AnIAGwUEloI5bdypx2jCAVQ2gmWGNXPgcRrwUNzEuCmqhsepaEFVP0JCqzK9oPa3glGzMxbLsPbAdAJtIGS7K53/n0d95hgECEECDBmlqHrJwTwbHvliZIJWaD4XoAQh8PfsjGBSIg71m18wsf/zMRCEjMGtJs7ev15MwvTyOUVBomWKtbRdyEzkhJ2pGFmfhajFObx5QJsEsOf9CiAq5qq/LCw3+JCivA0MyweZybk9MOFBLkODxLDm2uCNd7N0lb0pNJZqkZzoPUBGF5dXwcU+pVrYjNd7K8CXQgktCOHLLf0UeEhgCVb8tYKMK1RLASLnmEm1yQMAlKk2W+/mHKDRVwdZs8+ikAMCITS8Ylwrl3ctSB0MCYh4mbCXvB6nPOg2y0YEJDhQL64f6PucKNubjk9r9fGgGEbGlpRr0zqiNNOoLGdx07jFDjNBYeWH3O2ygbwaacUMEgy2u/+TGAK1yxPPyXtCcBYEyDKejWvmPfsR1z0Jqg34Z89JYFxJVQqynNx60zC74qr5zYlDIA8tEzliekV7n/yywnP/LsngBiMEWewuwcn2PEsQ47UGQkgEuXxQR71DJf4w+5aGZOdWVFtvIWaUg4BQNAH/7YtAKVXOGqO/n1PwdADGlMi3l2eH+3T3a00xRxDBLjbFCFgj1ijZuLtnfA6VqeJc+ObzEp1hMSKgDxi3+BZIBc4ao95Yv/INAgpkW+yjw7PYFKHNN17IEgNajRsGBNujXNsEZZmqR3thZrsrPe4vTEaZhSAQqf//O4Aq5yB/w9GEyIQVayD7hcx9mu1I4QJvnKINqJATZM3SjKVKFsKaSqziBQEl14BcgjLr/sEMQd1l6eOD8y6WZSGKb2FzSySVDRyptG1xg0RexVM0h63O65+jx7wVGXF80ME02KIdmzJ2CGYOYryuHwYIMaGqDckc2rHrc49119XpRz1GVjBkv1JkOIQBMGyZ5hX+HTRkPBYLyHaEPK4byftbmEgHLP1ef7iTrmoorD16bHWp+DgElRrkEy0nqZvGcrCQs2a7xnlBHYaEIRoEiZUiGRbXNhgL19V+aoW6NSMKzATEFKPbadTRj6CpsacxQJhg1jDcxAgmSIS5IaA7YmtZmrz9ftuDuKkFgGVpM6CzETbGvF+gJSL489MjfFdCwYmc06agAuQltq1ZYSA4aNaXsek8zpgHTUrUomV9a+r9d0kOxJSUpFyadaefXHklhyeFi0tTdiNM/PpoyjNCG2BMqy7ZpzLKQCZsxxdzLFsLJSs0/bh+e9Ux9dV6e2A04zmOTlplULgzHqonEzTFjPK7QShciSRStT2sxdfSrH3r/ZTSin7tWNLYtUzeHF03rOu3bn2VVn79NeWaNYDshYSIt0tEd4hBdhbApSF5A3U3dYb2IxdngIm2H1/VrAVtWkTsFUvHCRIy8pxU7Rsl6UUufdMaYuLeZtnBbacMaWVBgbRs1MRrN22WgyZBQs3C8Dfo9CmIZm2QJKeAwv7CBq1gjyxT2CVlkUN7Y2fN7wwOlQoBZIx12qUSi16vfqoIp8+sktu3bjdTypHkOMYlZyko0gnZiqRSVggioPYtgQa8JTY5abnD2tgoApNwUOKNAGOMhezgzGDhHfylzVcVeaIrlU7vqRtxaxvHmQVJOcH2Z3KCv8WLmOK+Ucy4VDHc1KsIDnJyZqYNSBZIlDRnfxkoE2d7L6TCsWRrOwH2RrAaeocSHHm01UPk7/Xn9Vz6We9mR2Lm3Kkbd95qASZ9SFTK9Y0VJybCwVaZN6ahUvPYRQF5+jjd/K6nNt2Nk2tYjGPZpYYwPjlOeaDXeSntvvz0UHDBx7K2qiIaP9CVh9iuty0y/Al269iG0hM4abVsslhGNyam1W9uI+XXVzZq4+j70dI8CCsW1IZQbvU1y0zGGSNY0MqhcktupZasWrbubq8zgDQ1x9OpUm7d/nxsj/TP/xtfIt/B9f+96sPnNfOb9pOuJcfbI9H9hgV3zl/JYJijGuPi8O/j7K8bUF/O9/jq/9P6na+FqT/6H+42u/yCjnEZVScAIsrxQRORAAgaZHZ1d8zFjXo/NmTTqRt28Tq09wdPJFjczTTs8RT/WAUqgpAoEi1HQreqhG+RI7jju1Blvag13I8bVcLFfDUHBd2yG6E4F5aujp81QRIGoO0dIAa5ECBSZHsKYQx50cxqjwZgpXn8Q2E6ymIZtS6FNt0mo9gThxedoNHyF8nqoB47ODGhhYMojjTkipdc/dhfUdYPXJ+lpuMiUk/nn2kd5oGBqYp0VEzZinKkEHx1gGcdzZdFO9v1igINEo+D++lnaROuRcaiTfNWqymSK2TfDUYCWXTHD75/zfUdBDqZiTTrweOFk5rsh9cjKZ4PZP+QTtO8Dqk/a13PyNyEW95potWdY51a5B0UMEavo1rXdLJHgcd47yam/NEK4+GWkKQjjAjoah3i2RsDxVmeB2zFNFgGg9UdNMXc9GNh04rnqj1bUbGYGN7+qziwM8yAm3khNT/93kho4aAkOe6qEUtZ2ct7IFJWwxSGW1uqz8NxsJv6tPNUOuv3SnyQTuVg1VRuapn3Nn8/plkuNrKwiv1ae76R4R0a4+71rSbrwSyIFT4MouJ9z+gyIAzxIAxT7l8ha/e648f487MT6oaxGcb9CwY0i6vwm3yfBUt7KaykaiwNUn7Qf118BQUq4+9y+6DGYMdleft2+PzQbOm8PAaBS4+qQxwJhtM7LBSefhB73DgXMDD6kfCqvP/QsWzBz+zvbwBZl0YqA+jtiYcMKBc9eAOCedX5oD5w62u/n+buvmXf3FPkLuc+DcwB79YFh97uAXoAtZtayvyaQTg7S7rD53zQwGOOl8+D/daQ9nJoAoDM98VSadvu7+pzuhXQOCnHQy4bmZdFYTsK+dcPhgIpk5svqM3WP1uYGtc9Jtidr63Oq4s9vDOu68u/3sSbL6DAV1Sx9aE7PDiIUGC2yxkF4/oYsu1Zacsvr8WDySVh539h70dtBx52TyNB9MOnOPO5vReHV7GpiaIavPPktIZWUljAxGs6swGktDsZAtvW4x9rLxKuU6Y/W5eZGAlitJvbL7S3PY9v7fX/IZHXeyebvBHmbZARstnNg2ZmdDk9Ew1z9PeYSJxUviAUHKTYvl0HqLpTNaxSgbhwmDHiedLOFBjpBVMW5AU4/ouJNwEIWxN0MmnZ0Rz+6E1poLknYDPqFZpeq2O82W5APEvQOrT/Ob3d4wNWR2Lw0pWu73waSz4uV31eehjB0guursvNbKPe7k8UsgqzAeYEE06uaxUjYNqW731Tu3GxhkN17lPKwUe5DJ++Fp++3vYw/jAczZvCrnhknnS3+UWbpP6bjTBYyZI5POrsoexTRrp14KdZmZYXReVTWuXOmsW25y+blt3li9eee3sM/C0yZRovgsk84gUzPMJJl0ytRoYEd7NrJ+ZOlu/yiN8VjlHVbeiw2xML0deYe34GmxZEIrtvIgnXyOSaeqjyNNkkkng+Qcht2z6amymQtWn6EOKdGin3Tn6vOo23RlfUJE9OzUXMGkkzZFJp2WcBrTwLOy+kRLrlh9pmhlNKUTFibzddwd4KphCUDCLkZdwKRT1VNk0ilAo55nQFafl/q7VWMrkqCjUhfryPt9Gxi36QsBpAn9kJ10OhSS+tlVyvbY9g6rz+EdiiAVxNvh6ajb7XQBScm65nmZdLKIB5gRRt9qzx1WnyENgjx8OeJ2asDafYWBvHtOOnf3pEw6WWCGZPWJO6w+NZSsQ+b1TzrqDmln+0MIUkigPDGTzjFZfQ6tWH1+uPHMXX3KA+zqx7SOuEnj2vxkGFiJibI9L5NOUYz09MRuDZoy3s41Hd5ZVldAEpDo6qdzjrq5xpsfQCBSVd7F21vXrne7npNJpwOINvZ624KzK2f2sDRlE7MblP/69Y64fTSo5cvPu01UjvyAnXQyLMcrQFafnQ+dy5r6yqu8U4kE9PkXq5dzvG0t7+DDL1+KqELcrf2a9v6elUknCwgWIKvPzsmps5kWMiKoTLj6aYdHHnEH7L+6/NmEEl15buD0/ZfaJ9M7Blxu16zgKNbgCEZLCli5Mye7Vesza7+4K0RB7r98/kXH3Amvf7ztDwh1pYqGWXm2vduJF6JkhSuCXbSsPu0CNsVmpts5nrqo0/ffgfKcOgXtfuA/f8vA8bbzf3/zaieCcjdcq+30+2v7diavcNE0LFo467oYpw/NT86tUjts7TcwqJQ60br/+9WmL8fbpvOPf8oPme56WWON/Xb37ezVFRImdc2piIUdFUBhmnLORG/7zr6/1TZc5QSC+Z9fdf1jx1moRADxO59pu/Yik85rP+6kjSPGSlnk0r3BszA4unGO3GaJi1l9ljsA6pVsQCkvXsSk8zRRWkRACBTn4kCORheMK4JdzOpz8xVEyFWsBsW9X+Y8k86lVjKBkB4NioEoeODSwCACLTBxMavPnZcN9Co2GQaDm1/MeSadSzORIpoqBHXQbxfSSldcu/lRhsbSFbF6Wgmrz72vpdxSIUdYLmTSWeI5Jp0kBnY0JJeGMBAC0i9h9VkdsQqQjq/lmWheYNLZ7kEmvBYIsoq6DHUknbk03DRBaHExq8/66SavY0gF58jaDoEW5WImndLYV1MDBlJgBRNBmx1GyRNeaHIxq8/mTPfUfjAE6ajaaiDEuJWefu8uZNIpSjMCtyOTzpnBdsBac+3DStIVL6tPw7Nn1y0Amc5RtVUxl9uT7/sCk85NeM6ks7uH8IiOO5lZs27rGN5o6hBgg9CQnNVn/fTak6s6qq4InRFEq2fPtj7vBSadu9w5Jp1DVD6r406rR3J4u4EHRwfFRgJ95UdDOavP+mT3NG8UcYHEOpbmcKWLuj579t1jvJhJ59gT4+Xc0XFnndTDrb8gqWwMBW/NDz1tdI5wxn68/2pdYPXp48n370esVcoBcxRFAotNzG548C+STn0Jk073DZllTnTc2c0nd7XOddxZZPVporuv3DylICg3JugQe1kRNWSsPgOaGDiEhoxlGpDKMRRh9TUPf/qmAQkIkckQdCLXeEPx4gCgwmg3ZpY513FnbdSdzms3AowVzfI6K/klt62PgAdzGIUwFBBeXHJ9wpZMGza8nRhTzBOUJhBTTnzGt1UXOK5jKAYiEFec/qSpGUt4ClcK2egmnuEq7Y0TiRTwLKXcDg19AJdye0THnWb4gheDcsDYvmT1yWbckmy6JNZOXpvYwYWjmO+lZlO3c2PPouVhaglTFrvpBK0gaDJHz7ZMc/nN/jvGlMqEJh5EUqW7sKUr02hSgFAKfXCBApnmcVTGGq1GqqkbHXc2Bx13Pt7aQLIq0Dkdbx6iFBsw4dBOyyIZFaOw5dU9CQUprtVgd2132Ag2MuGqWYxOqXy1JkvpYI6bU6TV1ofvt+/r3lnCiRlMeWopO3qt49BIMg4vWy9ymprmwUicNUZqqintqOPOvj6YdJYisEWlLeHk1uwEOqdiAXHziKKg2Fy5jqTSrEbMPmaJVJvqa5E5dObEp4zXYWevoEwtofpSqUcO52P2NIzmyDkWIWUnd+8FJp1WHa5A9NgGMOkkjtT7KDNIE4RoUxTVJhroPh93VrokuooqiC1K2YY//cvxpgswRBRIIqou51l9SlCll13RUkXVB13sd05j83wHedkc3FORCADlw3v3S98mr1s2gEy9wpTHgzf36P77IpPONK4pbdN8CJNOSQhQsu/jzgCCYIG2+rjzOuItUSZu76EqG8tg0gtZfWYAquDyrD6jVtfpc2u1tI96wPeJUyd0oZCts/HDXn/RYod4hRnOru/jX/2N9TXfFpPOe3zcqU07KkDN7T7uvI7GDiu3FsPLjy1KFwYXobauYN64c/FGnLauKuf4RGficKmOEdX4rjqLZ2H1njtnKq7gwNwkNv/wHX+rey8a8WoySACrKz5598fXb70XMOkMeePjzgIewKRTdRTUphA0QMSA4jSH+LjzQlJItgOrTw91yurTVSVBTupV1QECoKMMECIFcpmeIX9VKG8wO+ycLm8atIWgkwrJmsXZs5W32X5Zw6vIAbrF3Y9/vnj753b2ApPOkMRQSEQR0+FMOmXUcYwacAwQKeAYMURQLW13fdy5K7N39Xaj486LKFYZwMN1NQm76r1UpXqG5DyrT5fkk0oyCXLCBAkZgHRUyqVYfSqoSyCHQjM739fUdvRWkFXBUCRK23V+u/bDbFycZUBhvQMiYfvCpfNrfvXrP/+f3/yNxRXnmHQGNRNsKM+ZdAYZzqRTnY5hiiyOVatgshU0O7dMNSBCEGnjLZNOeSv2Ur1Q7W2/tu2o484+44TFWLesPnd/PWQ7poyyKmUFUEOxHThHqJi3TTKfdNhaE8orsfpkavaMwpLMSs166upBAEGHIgQozq7u4Ifv6Z6vHy6XKYYUdhd/4J5u5yQvfLbVj2f3du8d/uhPf/mbX/95cT1MLmDSGfIYxjDYx50io6hKcCVPNTXyiE278/vngEJ2bsNZPs6GrebJHdiMAAAhBGPb3+t9e3Ojqxx13Hkdq88t9fNK580JpYiIFAoEEMOmIBUb75UwvlC4YtOZxhS5Ei13ntUn5XKsPuvZzf6iKmuZX7ZMHJOgiKlzRUBEUfGRLVq5T5NzuzicslmULSCAoi5kwN6Fnf/VBg4ExWOK/dCeqM8u7+zxAx4/2PH9NSvdieQwUmmeMekMaeY8sYbpqBemxDoM9XEnUJxqdCVNvDPPCSz6Hr8ooX08b6/3ap71nC5bTTD6dodJZ0+YWHe3Ou68gkwfc8Pqc7PUtl93NsssohEClASMhmhpxFjLWthRb3psa2/ibZcJ7wggRM+9AqvPSiax0pYt6VLb1FWIfVIYgDYSIYEiDElBSNOh7GnoYG3cST5aDmWar3IVNdZPxxUSQBb02kmDa52Pc1wuVmcW59RnsJEoQKQvKTudK36KByixtfapAAb18JJy3GloYhqMTcM8MYa0kBAjhsmoF+iSHNKla8txoI87C52wme85y7N50k/77Y/nC1j6dJ5E1hKkJZGdew+TzrwZ+rCCE3esvJXUNNMoc5LxXQyn2QiQFQogAohDwDBPIDEJTVTDApZmLXDbZZpP5c6z+swvb8CgKRpTNBPZjDO7wh5l0CVBcXFED7CV1SfyclafrNM2vrZPTZ9tAMhr0QRLnEJzPQ1OcibHnZNu5RQEd8MWaudaOCNHeBgX0pg2ylz8v1rrAsg591xalJoCLUpeCS1KFqhNOnBZ1LmQF0a3z7VuCDAt3q7pDRPTonwoONlFTDrvEb0ksTXcQATEi5l0WhrWV5wW03NMOkuddFNpw2k41DUkdBjo487JNpPLm4vb+bHVP+jv2es5tjg/aU1oYZutPSadAgCyjGU7MOk80XHnoAWbIXROLRf7cj92eCwDAALIAEJiNmM2mJAyDRiKTbq2xnY/q+C4Cbtc1adbrze9SeLwcjHdkECHoGOZxABrbJoOXGQ8IZpyPdyMDWX1+UnSmQGrT19VipYSUCBElqClzvMpvsQxyu51/PqLffl6TC3fdA/0mzDvVomNjK/muZxzSIYWgIeqDFtCMtRS6ylNJR20XUoy9Aqbs0Qy1IHg8DOXeLdokyboYpoTCveogBdxk5qaCVrmKdf3cr7lcrWaFPOMzbbu6maX5Kk9Ck1JQAAM2rUglS7uZ1Gq76+9wava8KVTurNI1JmdzPn2Z2XSCSbhwJmWyjpl9anIC/cRYqbSGjINhanVvp5n9bkN1+fn0K5iI0m9lXvpckRdAIRkKlgz4WY8lKbHNiFqnmDDarDGLLjZyZZbVp8iQ1h9PoMvdlbDAWdQXexsBV69DnrH7sTP9udE60XyYRyoTL59z+U0hBzZ/NZiwCrwcZVTyq4Xts+19KCZAj7XjB/VKV5CQnakExpHFspFTDoDhEnEaj2j6Wh9VXlGcQduSK5gJgf6KFlArZdl0hmx8jmLQ1awL45La7ELW1pv100t1VYmnX3GcZdjXa3jTmQ7Y/UJIZ4//8ScCSAEQ1e4sAsWjM2YMRbuGq+RlWlcr70IFeoRGV5AOE8TtgE6yjalWInTIrXErEc6GqQbq/vsg8o8Z/X5E+CLnU4PfwqfuidrjY/FMMAgCcOly06np8krCfCalAAvC+STBHitanoNuaSnZQR4vYUjZaCveCUmnSyBl0rIhmRQIhiVYEmEYZxuJNv6jn7A3ehs7yw8Sh+bWbfGDnp0FBCHMOkstdlvMdVzzdazGx93tpNFR6kyN4YLCQnVqF4r7zXfmX/x8R8239e8W7/xul751XrBEgg5nbVfSfpFNzbL+sz6DuvTzu7l6P7md6lPS0Yjd4imVMsYGUwU4BgiTLyJny3hfGZ0rZ0+2tWnS8Ka9Mg4MdO4KZVePZ/1/XQ37ZoyLX7qXxTjRfDuGavPnwJf7Pzr9Z/Y42W3Qn1edjpttAmT4TKey3nhX2btOJ3kEsTkKldk53E6yfUDKS4/V6CTbC7TUTnGpJMSwJhVKFA6AAGEsFdAxTven4r3O/v9kHef19wsPD7lSXsk825dGuyZgxgYYJiPO+uY7CjGXc9sSdOtjztxYrgQfaheHn3x7BOLT1785vxLxTGsAGkUgPq1RzGlspxE6EEKcMntcnnNkwd379McvnX1GRIq5gMnoCBHpUQIslF34VqBe8qzCE9w9dmbBKt0zbNKVIIWV12nu59Vpz2uzrO51x3MEQAghKAYMsme3cu1RfuLb9/b1W8pJnWhL3b2c2zjazs3bXytp7ORAlDa9epipwPmT/PHXx19hYYpJ2ESVrKthMiphXBylHd03ui0iz2XU/VCz+WcRc76eC8nZ+1JyVmrubAURPIoOWtNDV82A0R40YDZX+k3PHYhOevPRs6NZWSXeE8x6fzDnpfjTqgVKQuAErqwgQigYEs91PvmK/K0nsgCm23nEvdsiOFSX2JSLE5VOviZixUDp76PO+0ivjz+wuWv58n/b/Hp1u/GW0FAlvYRsfpklQDDRgrIkvWZB2/z6a+zuv4/UoARy3EGQc6UofCqsCO7DO3hUJbcU1x9dqTRGpdSPJr9WHWhV+IQOqC5GGMCqIKOiO5C14HV52Z2TJ9fwRc7e2Zf3Gzpdmnp7tJqa1p87Ti22tluVxc7HfiXfuP359ezASGWhBVbLU7G1bi0GIfqio3zcsxRUvstei6n5vxQ1XGbk5sQnFIdV3N9hup4iNa8nJ5eRnXc7bDL4R9i0kkWkPJiOe7srYvbVJP5yh7jKVt0ddd1neuLF2eCS42NOGY+NOayepwNz10fd9pV/fbr5S9+5d8cf9nse8WZroCcb/TRsPpkBUhfXC9t1DTe/OLf6p/+27Nn/8LzYWBGapkRBq5PJKW3lXd3G92oJ7n6dOOQWN+FMQw5BwnXglddHER16rH6bNfsNLvsqeqzlSCkfi1f7FTRIcuA8qVb10+XLzcv0pmL585WFztlwB49yP/+3c/JXbkSfWKewsR5yukoHafVZHMyTfebG2YUuzwLnlM8JYcHAsjRInc6zQCJ+e5uERGHL4CJFwaEuTzodIA4fNX146npT4e/zKQzlZdhc3GdMuns+tBx58ecOlM6r2HSSaBQQxyJQhELjXKlp70ypQqddG4l7Sb9mht63GnilQFXybv6i/6YMm0ZvPTmm76/SYe37XdN78OujpKQUIeXj+IGQr6X1J1Vtc2mdcvqU52w+tyIFpbrSXyxczQt0vO+2Lm4s3YJeLOKX37M//VHzm7OUstj88T5KtNRMpqM4jS5mdyavJeUk9qs7NoILQ6KBnNCdzoDQP2zaPg7BYOcdwszRMO/ytR/fvrLsy9yaP7O/i6U133lRenCShavw+IXvXrmC5h0QgeqSTlOB0ARAiKyqNBJ57AQw4x6k4d+4K4cLa9ngkZA1Ovz27xxvM9bm/Zy+TX11Y9J0E/eqbtYmqDUS4zs+HG2jHXO6lNqjdJMbyesPp/DFzv38myNG2lli+mbly92yoA9fsv/9YfMbhYs0pAGE005mZhd80H96+Wv7k3ijKywZ4DEhlS67fFNB9wCdzoDbalnVWqBk8brqHgKypVaUKz3ghekT58ZmHWbvDh6/Gmlb9uLCJM6ZdK5W8y0Xq6hWxE34IbnCABHXuikc5hSs6wBMDjplJKBlX5eP22rPas5MAx7qPkOE8gHsI1VYnrpI3RlyTqy+jwuMqnEQYH0llVef39FlRd5Fl/s/Ch55oudo1Nf8MXOuAG+MQns9Ib/9kfO3oCGaUhjOk7KGKbb2S/whzsTnzmdkwYdOmm0ZitZS33gUXMCdzpjpbbnVBGDRpgsnqkX9kLpfq4dH2pnATZnIX38rPXkJnlZkRmrxxdhZ7tl0tnJajqs0Bi8nE8KkCSaSvYXo+DGRAl8TjodomFO109cu3/asHlz0gVneGKAN6REk0y93MwnKLnD6nOzI6vP9mOhnNKB1edz+GLnh8lflF/GfahiiUV6zhc74+XdetFMwqX35fB/fs/Z3dEwsaSwG+lktWR7hx91+3gSH5uGpNCZDoehIx0OXYjd6Yx1D59U4RIyM7BlrQVM8apVuMTR/+dawBS7SvqYSWfqJnnZAcFYSd7ZfJlbJp2dkJWwzg5B8GRLCgRqOolVWZJ4vFYXO0InnRL4ypL1KXvABsmoa9wc5xrN9bFILZoA8yWTO6w+BTlu56w+n88XO3kwef5VXULCpLaPf4OvPiEnFKYhHU83T88WVmz/MMBRrAM6bbrYSyoJnCVJOngxmTudUUFkzKq+DCeOFxZERrX6MurpzSvSM5VX+0KZKC27ek+xDgmM9S50IrgZGrx8q2ndTVMzFE2la5mVKBENeZ6TzowJl5NOB4SvXE8c5s7VZ4J2NouzgXFMgjGlAr4dVp+uG1afBVcNzKSexxc7C33RFztvfBQjPGr76uP+ybtThMJYOk4nq1vmFz1PUrJOXvRcTi9JtEngACZyp3NKsX5c18HMVzzNcE1/mKgyQO5TXyAj8aKhmH20uKOOO1MT4+kOY8GkbK8XfgYcgk6kZfPLaobVSScDbK649q/EkKLiZIUnZKkFMTUEACnfAqvP92tdJ6w+CxgEyVP4Yuccn/liZ0Fe8MXO8OLzzs9/oSUOtTXL3/zm1ScJKEzLuDnZTH7c958jMBI0ENXBddDGIUV1Lkkdk5zOQ23pey7na6vWhBmsWpO7pC8z6WyXR+OqJ8VcwaSTCiVS4cDGshmXdJn0FK2TTuJKuNz2z0cjQp0z7dXp2TzJFOJRRvjidSrhM6w+nRNWn0/ki50dXOyLnXr5Tn/xLRuMQ90X7/LkTTCVURrTyelrsvrD3r8sIZkgVQAhOe+5nKgogux66nIMnb43ohc/gwX3c7UUbX5rX1ILLb7l/1w7Of3p8IdMOsN58voPt7hrdNwJhWQp0NNmMokzu1RH17w87uyWoXTSKSLOh2LTkhyyMLG0txI3wQq+jSMzB1HOOavPp/LFzqUBs9KYNydf7JQuz3z27pIAgKaV3TA38R/ARvIfrn7x3HM5STPLOc/lzMJBAEzFnc49awsZ4Aat5RbX6czAWzJnVO0z5e1z7Uh6p5yeXOKdt2W1mdXFc42OO4nQASBMyE2AFbZpEg9487hTSsimT+FwubpRSZNurJOgI22nL07kzHyCzKJzw+qzLy9V9ZEfiYLkiXyx83jlmS92dr03I1/s/OxXObsL54FiUuRrvJ5x8ovkw/rx6ftnREiwbSYCWFFRUAGCDIaiggBDcYXupJckIrrHM7pN3byyhnT6EdgnS8Lcq2/rzDU67oTm518Ob8N4WGOPrijPy3FnhxfWPO50wFX5zxHo0APL2vTQwhgESdwAz4sJn7nylNXnM/lip0+IVLhxl8xtPNt5U/LFzuWZ258+RQhKsOV6qul1+OF+vzx9/+08R3tUOGusPv9cNZ/bIhKAGJFsE9zpTJsR4EyubyBLidqDsDdlJp3NRTruhA5UFWFCaGmaRkYoBlGSkqWlFQKxk07x393mSTgIHDxx6SIMpVFHOLAX+lzE6vP5fLHzCXwCz3yxs+v7JuSLnV+8w+xKGCDnCXmimaTfh2b6yfr+TV3JRZ7LSYKSASTnUAzHlY00sHqj6o63rLUvq72jfhD23soPG+LtIh13Ep4z6azJKDvPpNMRTsQ8n6eMqFABvE8K0upvvHOsPikybgrSxeQkgG/pFWMsohxiPa0vdvoxBq0XO2+/PQ8Z1kyYlpNdtiGfzy/u4Ir1JqipCapYfj61HAACCepzQVJ1T0Mt3bLWzvnQ091tSU7QTmY/3DIX6bgTKhUAkiTocVPaxCWJ1BUFTElpiQdxHndKkF9mdbVzrD4pbsZR0kU1QgD021E6NjuaekJf7HxHltyvcLb3BuSLnTnnxfVBATCcmoxk2x3M89Sn3utK31lCY8gARjzvuZyo0iw8PQleaQPDnKEbpauaDDEvqVmqXmD/mG8+VQ+qXDM2CCwnWKUvMumEKE0X2PO4k7cmBhQA6ECURh1tO9InEsC3VTPpxHpCX+ysdEt+Yw/2mr3meN94fLEz51yPiAOQqdVpgTls61iTVjq1SEMKAbBhRcmADM0ZIt3AiJnVyoWCdnoARn51rnQ1fAcNK6c3L0lfbVmBra4LAnqOSeeaZ2Li9DyTzj6xwACBfKLY/+W3+bMXgQCAoTGhTrVZdiKQCqDXHGmIAnk6X+wsSGi2dFm/OrbYt97X7NdfL3Yyh37N5azlvVsOtzWXU5Ms9Iz0KLNYC1lszJ/jQ2dqtR7mGqr1MNnEihGzhtKLWvpdZ9KpQAAkAYKiAQqYcKlLH0/fLG3xIC1xbAAA5By8+Pk/hoOLQYpESa5z4+b8VENQURHBKFl9umnfdV/szDmTMEBHYjWT2XvWq7mcFBOYnQWawBSmpaHM860OfJvRnME6RBNhNaPdoibSZoyZySorJIwkKSAZoIDmvhu3cm4ePNfJQw9zAH+2KX/tV5qnRIZvKdLacd7yTmlCQZSJ/hlZfX7ffbEzowSBImE4wDRbzUnYRmemLBzQiJV18cQpKgjlaXKah3rT3pQJlfbmmZJedUqvBOnrt7l1x3wFBLNigLKqeD9Px/zg6uBJKc/6FRphR1ixfvMXcCJ42JbQ8KonYDFFUwEAIUSxAdG+677YmXOmQAR8FnQydmCRbEOWrubUknGfZUA6TEDmxWC0B3oL7JQJVWDnGU5/bSiksjWwrG6EnIskR4BowIKKuroeB3PciAS20z9OVqAnC/vO/xYYaTS0SLH2dGzGDRpGVUGIUDJuTPRd98XOnDMxUwHFVmDr+jWXE2FSMlBDmNkzM4ye0wO9oXwya7RC+VoMYk9IL1xRhfKpxprRxhYRfQPJ4lQDzE7dnLVPSgNzKErcvv53QEHAZDH74Pg7ODB9sy1Bt246pQYNoipjUFwM9a33xc5+zeVsoV9zOYOorOtrNEmDYZ/0C6m9EYJxZEZpgpohA1ZL19OFCbeRKK18Ppe/AEAAwr762zgSHGxLS4vLOTpFHXUUfV5Wn4JYL3b2ay5np/3v1VrBnmYH66FJZg0c6XRN+ZWeBICgjAFHtdXjtJoW2xwIyObN6VMSzoqXv1McCSyLRAk2DRggqM5UI2T1aX3/fbETpBT0bs3lzAqpSHaIfc6px6Ag0b6zqfsx6YyCtCwonIAhhLWY1MiCRaDMvxeOJHD0brUQmF52boKVDyKMMtNRZlGy+vzW+2LnlprLGWaiIEN4aEiLX3N+EUc4ij+qnUDPx52I1TwJ7FwvJgFx8QvSSCAux98FEDwMfNs0USVFZaphsvr8zvtiZ887nXdrLmdIBtOjZoau18svhIhsnGKkCVPUphm6Chvmm4EHASC7088T1IICRB9/WyZkBKELpDJR5aiEyepTe3Jf7OQNW2ou5+d45rHXLLVpvhnd3sLjTgmiigraEaYNrQMCoufjTkka3m7o42+CbnqGzWyMJKJDkBBZfQoMir7rvtiZc97inc4wMhl8bhEy+HbyFH0HjzsjOnaiYwAVpRg+2IxxM4DK11O+BrAkUD8HBIhkIMGcKDCPYbL61J7cFzuZ05xBEsHdrbmcE5skZIU0jHwz1Qt7F487j4m0jff6uLN5L6yfCU1u7mH1qQimHK24xJfnJRvQhvXsvtjJG7Z5pzNEIdZKsOV7CfN4G487Q6SSgMrANAWUmJ8ZH3eWZ/ex+gx2elKVGJTVpxW+gC92Mip3OieKE7Kz6LsZv5HHndnlQAF7Pu5EAMgysPkY5TOhuN7P6lN2ec6FhlrMRL73vti5reZyhrTkWIKs/Ws6U4KN5b1B/gtkgwCy5+NOBDHf+rhT22dCIXMGUZ0EMxAgDIBKW4GsBhOQBRr6zvtiZ/Cey7kv7nSKfqMFZ58gk07VkE20Qi0MdSXqASedbz8Wwkmnqjmy+myuYvVJI2O+9b7YGbzncnowlrn/n8u5KGxm6Rn7voASRjzkpPM1hQVx9ckEtrmI1adlKMma77wvdhbfcznXBBOrVY829p9VXWrJAKkecNJ5ukBaBqvPbLDaUq1rWH3O2Dgk+sb7Ymf8nstpoEqDGdsbpRNk0qmNVj72I0q8jjrulD3gpHPUYpxgtazcZfZdz1zD6nPUjIV9532xs/aeyylWhdNYsBv4NNEgaoGKKMvjpFOxMZnU7Ft7+x7v9drdkdVnbww8PFCGUmRCFnp2X+xk1/+rteZ9YopMOo1azKTzjo476xtbHU/z2uQCOelEuapV2MvcsPrsLl1nRZm1enuQ1SdlE5yYZ1r0qrCNr2XZOpfzfVpPkUmnNppdzqRzKGZNBdzRCBodlldfICedKcVStMzLsqjuzll9Nr3FmslYfSqwUt4jNHimwEy+ja/l1DqX07Pv/udyrkpjYzmSTWNAwHnZnr5BMRowK6vudeocdNwZfrIFctJZRqHUqk/VGavPmgOrTwqcspjVJxtQYnAaINZ6bl/s5Ng6l3NVxKPBo4a8QiadFY87e3v+4SyQk86I8XghKSOerbGrcskmr/qyOCUuqFLUWjGrTwFtKmPnRRHqyX2xk2G507ks4wyDIVnApLPmcWeGqVsgJ52CAXPK6rPshtWnUevedn8MNPHYiE0z3/g2vvb93nM5F3JBI6t63BlRPeCkc3ldfXb3jFnfe1/sTNzpXI/dIUjzuHOBnHRGI8DcYfX5E+OLnYX3XM63MmB10mlFqWufGca1JI+0sZuysSB1KBs5X94XO/nkgXMpH8iddLoW5/8/58fv4SfJFztzDpxagBbNJHkc12H1dPkyLUvz/5+TTEgx0y3kSkG0fm58sbO7Uw6cbvBmBJCFM487XeBaGiedawZLQepQNlIIJvk58cXOmenujAMnNfcNZIOTTpEeN94UHA/mkHPgpOZOK6iddIY0rj5TDpwaqGlG7aSTL64++eSBczHXbNE76SRs2oiNh4Z0CQdOchIqFbmTTr64+mSVB05q0n8At5POsMbVZ86Bk5gKt5POkMbVZ86Bk5bbJ9jgpBPlx43geDCHGgdOGgYR4KQzpHH1GXLgXNBjKZE76eTLerGTVx44lSBmi6iddIY1rj5TDpy0zBxgd9IZnPViJ+ec3WgXO0d4GGneygBiVnN2h379zxmU9WKnl/tsd6Nd7BzgYZo9yjhwErMz5HncGZj1YqduOTx3o13sHOBhnuk348BJyRZpz+NO+M7sRrvYOcTDMFXmTqdGRr+p78Yed2I/2sXOIR6iLpO925CO6+W1xZrfp45wTpSrxbdn1nhk2Up4vpc7ndF2Z/Tncee63AiLR8Vdfb7IVsKTDdpalyOcBsjjTm6EIGG7TDUJnTfHcee3gtUnuHmthGePAFCDh4GaBGBkNU9SNEEedw5zn+0OxLenSQC3WqHPrtqnwcMsqBJ3OhfDcEt7HnculvtsVcvw27Pyrj5VnYKLB1X1nThw7n+2Z+Ht/h53rqXVZ2g86F2Peobb5WXudC7GIx/yuDM/bsTFI5CuPgFMU34UOcLJxMeN2HjwydWnALKp7uVkQuNLHnfmjscLrKjZIg6cqykYiAt53LnX4bcnh1x9msSdTlkMEwYf8rjTrMNvTwa5+kzd6fyXSx5bmSOcey1+e+oQljvV6Qr294cjnIlxIzoe/Kkr7nT+q2W7SCtzhJOpHDcC48GenWXudK5nMTHBSae9wnGDJiweEGCQq8/Lvw1td3/jVyFsKZNOk5XgqSE3NIHb1adycejVOcKJ2UmnsxI8fzPcwDw+rIuDdEuzYNZtbYuYdJasp006zxuU80UeNzQhGVefInSn8zvgQ1U+aJPOZaUN6bj6zNzp/AD6CKfJmn7HndG5ofV9xerTpO50rhtSumURhMQ6cPDUkBuox4cyiWuDPd2dToPmCCfbwtIG+vGxnqAW706nGXOEc4Fpgw/jY/3udJoyRzgXljaQjw/boryt3Z1OM+YIZxckkOWlDaTj47hBArk8PQPCnK8LmIs7nYt+cN6btFnWb4QTNMQbT8XjRmnr8LCg/uhevTudxswRzquQNmRpf/hRL89Qc6fTawwGzRHO6EKuzExxA80drir9cXWqpJO702mN951OjucI5xlzQwOeaUNsBTlhf5jD8rg2w3x3Os2ZI5yV9FnId/Kl4nJDZP3hsT2WR8e1+YQXuNNpzhzhrJmFGGG5IfL+8HZYHtdm3sfFTucvWOLYlPt3hLOpXYAR1J6WZJoBuRF9kbJBtBDEId7pzJmY80iQb8ZOZw0kiH6tFGET2izCbs1jhLMJENOhfCzJWjLGgf72fP7QoggQQBngnc5ICObczPXXjp1Os+UIZ/NdvSOciAfmhpP45FF0p5M7N3R9H7HTyfAc4ZR8aG6QvIFEduX+4E3zN2Onszx7dzoXqCjCFDSg5vk7wunnFuQ5gLgh/vZMQXRTNpokVUgAsggVAKQOiAdv9uXJsdO5OpsZNK+8I5wHp0BmH7YFQWRwbqQOvziaRqTcH5QLZCjtj0578Yia8wY2pjc9JXY6F/iML0Ca5+8I58QsRjil5WD6GnBgbqSOZaNFZdwdDRpq77w/kvXjwZvmJ8ZO58LM5VoCU/PSO8J5eDeLEc7V55aDww/H4bmRIiidtetyZKS2ANKabfHour14xBBzml29qjICvvxkNyvCKVNby1TZv7psAyaUxfu81zJc2rBnkq3qOkQJJjXJXERz+r3loP6YUC83Cro3N5LTstGpNGq7IHOn8/54JHHwx4cnuHOHJlE5ZKgoKz50jDJb1sAs4YsFCcOva0m51uOLJWhgaK3mjUyqF8VOidKptA5BUheff5aD2f2Q3eZGp0NyIwUyDCqVIdKwIHSns9Afrv74aIwTb7AY1LcUGxKlSyW1+yBKKLUjSMpk5FdX401iy52/CRmTEkSpTUmUyqXSU0npxsY2YakkF7r4/1sOjt6HekBudLpjQ7QkQnc6k/4oAJWsF49GwZxdu9lo27HWS+giKgmVKFFbNtZ3p1Mtt8V33PI/USAwSLhYga1CBEpfkYhLblVt2nKMg8jJt5aDo2/Tbj83KujnRuq0bMi4NaBkj54QoIZLf1BJf5To5dGLhwvM2WCxme1zU7cqKyhFKb5LrnZyqzEZpKrQ/FZpGvNWvdIUCqw9ejoqmbAaLFfuDlRDDWndyg463Hd3wuv16pvloP6weu2e3Nhyt2yUFggEKBc6cKcz6g+lm3i4ltVJd60XjyYL5uwRey5R393kNGMXXelKlNhDavGeu/b6xqkuO33HLaYVMy4HdZvlHeF05cKMHBV+cKicdQ2uXOPZviqxuRip7N79999yMDlOn/RyY6lTKVTdVlt7oGyQBk0mgkATu9MJyBmiIhBIIQwViyyMha6rF4+INBTjDR5vpjfdZNjOowwqXZTuVMmVinKnZKfSLZkgKm1AwMzWPJu5WcFgj8HyaZ6FICrYUjKf0+lSsuFEO0G63P3QWKtryKk3bDeqy8IcavXe+/+yHJT3Zh/r5cZSb3Ljha3ey0bqrGwQKG6y6tbkgYbasTudd+IRoGClRplWrKX14hGThpHzhjaG/bz5fbvtWu9s7AYGFenuKKHURhIJAwVCuPYa05ra0nQwP0FP093XEc495nFw2caO3KWGjuuHfnRDnaS/uudtNwpb8lL35n9u/bnlIC4Xn95ebmyWazzmFvpiL2x4V9wtGwVCI0ori8vWiNCdznN/6BAgaNQJRp0Ba0O9eLRCXGINhZlc/TEmMINNLIHuybmy09netTiMKynD1hFkqnLBsyAY2dp/jWBJ6QfNLCgAFoBHgW+T6caWgYRlMdm+u/GVltgqDFPqQpaPob4+NDg5vIUJzGArNoHu3X2BDXTYSwraCAHP84YQBQDN8TuxVfIg9iStIAgqNtkzge8m02UtWxMT0N3FB8tRjAtO7UDr14ReNlxbf7I/xZQ2mJiEZBRuZm4QFamVehlwJdjYfEGyUcCseoYeQ1qisWCunVALHRQVMoqcmBeRBHVnUp7cubvpnYVzwgkbmVikPH26Kr5GBDH39RNSYpE2jHEZlqPzbr75Y44pdOKg6lGA+jxvoCgC8r33IEEk6KqMKk/Mq0jCunRbC+Pk1tq181WzONjIiPXt95JeNvzoxZ9uzmfC1NQSaKk/2T9PVCQUC1OaeWOMCzANkZIBVV/17HGOICnPeklzQMcCoNAApUBVVzHvhN2wBI433titNz/lMqzYhMhkSPjwiaUCXiOiHj1KGywwtWgTaLn4ySf+35w0qI2Yq4CFFQWAAsYKydkDfdO9G5GeKkqhywSqcRHzIuxyS2jcpvmuvm+2JuUiGBuBdeZ7s4OXDX/rM39m9p3zFEBliER6w323S0lA00q7VXlcVlckIHeJrHpmU0Na8LRZe/CUCkAHRAeAQmgGR4cE3rWwrrt398NP/Dy9hqkZGgiFkxaXT2YCeI20BGxl+Qg3ACpDjNIbb/yY+Dwm6FxV4aQACBCVyOb8opFvuuc90iF1l1QXNHCODgm9tLBuUvZh+CjuJWMbB0YLEO53M/DC4Z/+o79w+uxtzjIiwpgCO/Levn2Pq6YVq1XbGo4h4IuN9A7Oqmfddrh1aculd2nbzIYOEgAhA8CIApScsJO2O4Jb99/37/9oDhlsBKAwICyfEj0I4HWSYDa/pU2e5Q2LwO7oD5uTWEdXVRJSolAiBgZQPHej3HSvsIQCIqkoiI1EgJoT6aAtR7W0f9Fdd1uz0RAi0DLm4vb7gRcO/+Af//l4+zTnmaExhFoUlvKj3razoVJT77znV4uhuSCROt1JsOoZIR5v+eC2m54PHoiAZ4KiUDx6QBXMdI5H+sH9T3Gyb0xRFKE0rfEnpkAFvE6SXuOTtIMlNKZQG4W/MPvmSHsHGZQQrFJRGSAAFCDs2+6xnECqevYYimeeQyOY4RyP8Bb5ZZjEjVgkXEAtsn6rUye9cPi7n/3z2y+yfHo+pQCg1HwSJ+4n+8du/N+ZrBafMTXAIIkgVafIwmcremAjm4DHYWyiB3NEHQAQKEQxS2V8IkM50SdLJeaWLwWoDKxA9OrbTqHOvV4yR5NtufUjPT2XN7aHjyTAOkUjkNrGGoiJIalVCpUB1033plEUSF1IkQoSqc+klBN5Mqfw/boP41BpIKQQule7P30Oe+nU/s5n/pyZ+DDNCQaoATDFVZ5HzebeT/r527v/sf1mMy7LziJKFKhILnomvUNbjNsgWyEAqEoIcuwIJj22tZdr9eBnrY8oSqFUTvsxPLEwTfZ6US009jitMkBNgImE6d7B/jYlkVAdCXAQU5pMNQnk0I339FRULhLSNSCPlWjSY9v07hrZgSobna4YOVC5srrzyz/NqZNePOS9522ejmCWKYxXwSzeTqi+79/yX227PRw7nYue5fXQ1kyHQihUihUqqgRlECxNMkELOH1R36QDgElG1z1mCpDavWaUd1j7UBZLmcL4towlq8AT4ASiCKlBglpi0QZTqstzeaSLmXLceIk7nXKoVMFSkwlSSMASowQ1NRR89eC//v6FwYsHquGtL371J7hqyMQhdR0+zXM7z5/ur+Rfn65oW4s709q92Olc7gzkx2zkkmZ+MU0y8wzPkSknjAbDgALXC1iAopp227TjBMAJEg/TW4NQXzeiWnzn6fqBp5oy8RLFkCSYpAHKsItTLYwlFLoAwUR5dt4wc6895JZvx04nAyq83oEFKIiphSKxyMiBy8WdX57c/f8rSS8fMnV8yfQbxfoyBeReOmz1MM/b/Lm/9d1lfTw3NHsgdjptZsF0DEKkQPDgUsYgOSugJSYBQjWlMciRjHuhsy4xdIz9QdoAiNTkUzx2E6CA106NOpLNx2B9WQRkRiojtJMEkexvt7RMSlM0QYsaaz7q6Ox5jHWjvbeX3J3O1RhGMi6hWE2AwhDEhJHEtD3v4M3/CUDwAiLn6z9vePSEDaPQoS/tpinj9aZ+cvdGh7sv12UeiJ1O297LJjcR00c4a1FAM0FDErGonMCMyrWSzJNlYyQqgHQoAADRFY+yVwDU149y3mXhNtYxCjMJQNWhwyNhuabXknGYmFFS2mIaJs9lnununrpnETPbnc5RvYbJPJlrjJwqIBAqBEg4u/NTNy+YeBkBee//J9zikShIrGF1Ga/hGmp8vsH254O7op3CLHY6y3p6Njdvy6YKEtFHOKucVCGFDkMBoVbyDtstT+R2crzSWleBxIsQAIG5dntBqIDXkSA3bs8GRSJAkFwCr0lO9W7ylbRcaCpaTMYy1sr81z5w+TxjHM/UvV6Zqe50ntQf2G2ewG08XtcaF4EcFQhAtrjz6/XVT4CcLySKw/0vPkUfQRZzaItSni9qf3fFvm7s07mafWrNYqfz6O+xrYx4y+sd4ezn+LdHpsKCmFa6JVtuyd0ZP9GzJu1rS48qAAFBXdm983AVgQJeT4q492jRRyAFEzh2vVab8sT8cfk9eVgWnFdHN2Y+2oeOeep48zKT9sho5rvTOXav6w/2q8/vTu4TONtP2ra1R1VAJqqAa9cLlLwpiZq3Xvr+P0n1WggAnXdA8eot092NbdvU9m3L9u6wJB3HMEumsRMndZyecnTBAKLZ0Kks62/m+VXyZTyBJbR7PXPI6okTK8iNh24ggPp6EjVP3M2HVzEmABQVLz3Ul63LsntKbpf73boH3lRq0w9ze5rF3G5vwcaXFSX62J3nnZ3O1bnmS3cCS2i3z24PdfLApF0GyG9MtUwFbr/w+/8oo1fBHkDCtBh37Zq0b5u22+pmlLIptR107BkB5LDlkkKKkIhRg0MGDY7uH3djtsFGrN37pvtq76CbdXVX76t7ba/fn76vdxmX29j3wcPbYgBqfj0pU4Fb7IOHP86Vb8/Eur2Grbr55rj3Nfvq2Mlxaa9k/5//df/j/zqwbrcnewNRQ9Za1WmG7Vpfs8/O6lJv6q7t+n19z0vm0XghbsHeiKShPuFBTuQfAS0B0Zswrt1XNUIbBCkQQxjDMpywzDCutzrfxtU7unqLNRugWZ1m3Win8ytRrArTT6NYdUmfUKwac4SzZRAdzD/nH/qxEVNneZ+8eS2tHumYTt09P9nihQQpZ7MyHRDcRQCELeETBNfnt83c7/FxBkeQeZ43wmmWGXmWNyZaoI4PyY3pFKsagUECRFVygVEDEJNbSt5EAocU6dDdxw929ECClF28/NH97008dh6FlQq7lDGtxecNzWvECICgcmKRIyNBGNaFWZGzWRy2euH1vhe9snV+t1EZ5GF9BcJiBdM4xwmLPVZiGucAYbGHu8QzMHswVWM1pvXB/F/+k/Vr6x47enIz8IMt2YoLi6Q3JXzvZkdQAkAhAEtZB9bh5+4eaxATAASVo0UOjASRsC5osekQcXhuTCUsZs7udHpsaBTkbTxuvNNpiyM3M1+s7GgLVwZBb0v73vLlrReP3acvirVaAKyq8xv3RFLhBA4IA80UKJ0bAHEoqxg5aKez5qidzvqynpv+W7p1rp1L/y1Lj+0xRzgbmEqxU+s7winIGH3xlcG9JCYhnhY3v6BDIHA6kQIO8JPesfNyQd7wESAo8oDcGKP/NoeHLe0PD8+RG4GNGA+Lm1/M14vHDjVTpLEhX4TPypkoQAF5oIMCCVKKAEunpTvXTudXI9NnZpPp8+Rk+gYd4QxGMkRCUAnoWmJDWXqU3ePbL+erCCqMRhFFLd7DO5u5g1yQN0QH58YUMn2zeIxIiGA/HgbYULbzLPmOj1+GV9wwAHanzkvwKdq4hM/C7TLbcQeRAhCIA4Ao+eLUFM1saoqmQE1xjiOcKAaBOSpVh6Pty57nFZ3g5/IVOEiBa7jDHuwtjrhAZADIXjFvvIaaIhICQFKoAOSdeGhVh6P48vicogoI7kxSQoNPyZ4v9DYsvHpHUez5m70EeH6ilwhE2RFOM4noZdE0TgTMJV7VEc7o9h3hRDB9nUQ9nu0u83yomkgvW+jsuVfvb1Zc0ygKXjFvzCF6WXKnE3E3Hp6T5+r7nH3+9RLOp6qJ7VCAvGE1eAkAoW7ZARLq/d8FS8jVmxKW9QZK5LVoKOyr7vQEDAA="></p>
+<h1 id="图片素材"><a href="#图片素材" class="headerlink" title="图片素材"></a>图片素材</h1><p>备注：一个格子是140*140</p>
+<ol>
+<li><p>左上角：footcloth_angle，其他几个角可以通过旋转得到。</p>
+<p> <img src="data:image/webp;base64,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"></p>
+</li>
+<li><p>底部：footcloth_bar_down</p>
+<p> <img src="data:image/webp;base64,UklGRnQDAABXRUJQVlA4TGcDAAAvRQASEBmASNqfe4eI/qc34zEQYsEU7wyi/gcAZrTBQ8ehGEd21D1aE/l77P3PsrfY1P4Oqmtk48VLRRJg1pghJpXpfF3Hcp3zAF+oWKgDCGiAQds2gpJQfP5I7u7rsG0jR5J8ufArOvyPJ2ACfvpu/PX7Ec1MFIyqmMRAMQKrDMMgkLMSyUoYA4riLRwzZ0/WaCjwFoQsePhCSDgAnxgrZ05VbWUCo6BGIkCCJCAJAiRCja1zqUntYKMDw8q5SJEAQgopJIAUuaKDAjY6bx9FpoBQTgJUSJAkjDAkQUiHoExIkTOycKBTFsa5wbxxbswBG6CFF+UckhvzUTykzdElOWO219ZLL6aBJ3MMxbZeamceS0M3Up6IFLqztLe1OGPrGCilkAiNJUFIkMZCImSBQ7D1M44zdKNMhBSw4OEtIIVEKLs/iiHFWym4wHpZuRDWBD2At04uYaxc1guslHnY8Fft3yKAg0kN1jJMqPCJ6krZWCgvVMeJdO7bdaR4C2zFiSjQgkHIWx42AUcB4WGPFAqnPKkZZmAjFwKcyZp5+BUFowkdZuZPRSUOsNhABTAIC6aAVJJxwMIggHToFvDWKg9QpYUzOdyHf3xyYbQ2Z2nki7ZYJdryUVga2idE6t9DoToSqC2Vk4sKh/oFeMsEom8g6YP1dwpGYAQpn64qCX2zzgGs6m+pfs2mMoY1twW9LaQBQnd1FaCxAOnqupFACO2l07pc3lS+bFE4nNQJkRMlpiaAMRuGkIoLSRizAWR45CHcWXcUaPGnKAIeGCfgnzdMhW3Tj4KQOAZhhEGgCEm+8N5JD/qud+JPxgDYim94FCOCk1j57GA7i7Pd9JqoA2GBhQHqXO89RoU2+go6EUzW3QBvix95FQjP+94Jt11xuQtIOioN6Sa02BNJR6/JiRiE4n1VY+/7a5Ly53eZgefdu9wUubHc5AaKNEojKCVxiIxGJB656343MP/LQWVMeCrspKCi0phdphSO2ovGrKSnk1c6+FV5Uxn+vwoHwwa5g4DeAIIG13scZVjcg2AA4ZDQrwwGG9Vf/7/CIRovdxT24LYVEA1abBwmIMbsEVgHp98QAy0eoKK8U8sb4yU7SbQWDqNB9xx+fHT07yFcdect6CREjCudG+sY2klR/QPUnvIBPiMAAA=="></p>
+</li>
+<li><p>左边：footcloth_bar_left</p>
+<p> <img src="data:image/webp;base64,UklGRlYDAABXRUJQVlA4TEoDAAAvSEAREOflppEkSYq8zzsYxx9iGTPHgVHbRoKc3bvXgTr+qMqwbdtI1L3j3v7AAZ5/AUGxQG7A7/8KEhgOgknEQIKS4RBOQDzfSyBEMEFwWCGCmSSCSYhgBudxjIuEBEYMSTgIZShIMBTBcPizJBfmUYIYEhEYw4EExnKxDA2HIJihEsjTjzEGm8EYGGPlfQ+i5xXO0ANEkCB0CEGQ4YF7YGByyBwA0QQiPu8hEKMoiEg0gXy/BxFMkgimEgikDQBY1tGOs217Tfuus23btm3jfDfbto0/lzRTmsPHiP47kiS3bVpyABxODACfIPVOTV7ftP1i6+dEf1VeWmyYv5e7M8+zgAGfOA6QvP6bKAh2fk3hAnCsaM4fC38a88dS1LdpvjmcX/5aVZQqLiUlY5vGu6OVje/15ZmJ0eHoi25OPM/xPPG0ImTbcHO0uvGjrlQQ4O2EXnheBB+VDe167k7WN7/VC0J93N3dXHjelWUBae8UDe27705X1r7UFmckxkR64XiWdyTPyL7hHlqBitBTiBd6uOAhaR/kDOwbH06Xlz/XlqTHhQch/CMseVaNd8eLiwO1BU/hOAQQ9gZpujlcWOqryUlPEsaviyvHiUNa16H5FpqBclNjwwO9PFx4Dj1JAJAQ9lZW1wran54ZLMlMQTwELIcNXhG03ByMzQyVQgnhfh7uAlYMH6R1rFuvD8ah6vynAYYhTeadtlnb5d7k7FBplsDLA8My5MlD5u2XO8NIZnK88OT8CCBNDjJpP9uGenFejwBAnCIK2i93f0Nl2cmxAiwAIum42IEGSzNTEA83DMMwItARDM8OVGQmxz5KcywD0BvCVJDOS5QerMkVnrxxQIQ/UnlvYNZ+tjMyM1BZgAR4uLuJRU0auYBmB6sK0xDfxwDxQBM3OttXWQBFBHg+SotAS1rPpP0cmoIykzEuCAcY8lQVDCzar/aQCozHYwxx6oqP0o/44CQiBBrS+pZdZ3ujcwNCEBUMOeMBTegJaPoKPX9E10SgaGpStFjQs3zRtKBSs8RTtOnQtA1StDFTVCpQVLzQVE7RU+DRVHJSVARTVJZT1CjQ07pQ1ExR1N7R1HBS1AJT1JT/jc4b6DhKoejc6r8UAA=="></p>
+</li>
+<li><p>右边：footcloth_bar_right</p>
+<p> <img src="data:image/webp;base64,UklGRlQDAABXRUJQVlA4TEcDAAAvSEAREOflppEkSYq8zzsYxx9iGTPHgVHbRoKc3bvXgTr+qMqwbdtI1L3j3v7AAZ5/AUGxQG7A7/8KEhgOgknEQIKS4RBOQDzfSyBEMEFwWCGCmSSCSYhgBudxjIuEBEYMSTgIZShIMBTBcPizJBfmUYIYEhEYw4EExnKxDA2HIJihEsjTjzEGm8EYGGPlfQ+i5xXO0ANEkCB0CEGQ4YF7YGByyBwA0QQiPu8hEKMoiEg0gXy/BxFMkgimEghkCwBYRpJt20ax17Vt27Zt43y3tm0bPxesMjk8RvTfkRtJiuTB6oVTQ1U/gSV58PwnlmE5QXDz8g2KTMgsrB2a/rl73WVuqKghKfZ/isMF42Z/7SNKpDGvi3rp6m8io7T269rSyX2bnaEy+WZB4AXB1dPLNygqLiWnqun79vrpY4udqYoKedjh5uoXjFQ0/tjeOL1vtgeUSWM5zkMQ3D29vPwjkKZvO1vnj/0OxqoypLkInIDzjYlPyS5r+LK5fvHY52isLEnYi9gdnr7h8FYKrANPzY4mxHEvCFBoVGJWecPntbWL5xZHIwVpwliI519T3DC8snL22GIjKjzv4Y76b2pWfv3g6vLJfSskTpgzjHhe4AV3b9+QqISMAmAeeGhz0pfFEe7CPId4Q+k55SPzc0eAjb68hChwiJd3YFQyUDE6P3l83y4KDMO+rqgOmDq+67DVk5Umj+Ew3r5IbsXowszhTaeFrqQc8eAFN3RLSsuBxvZvuiwBReJY9gVf3ACwd9llBiiIAIs1IwlpeZXA74ObLhgoiyBgMJ7eUHpOxQiwf92NI/3GMhyPNaNbTvXwwhiiR/4GsTg/dCuoH4HNNz2Qmqh4enkHQ8U1w/Pj+5ddFkZSEOnrpQC0epXUjiwA15CsBnkvm32Co4HimsGFCZw2eQzL87zgjknLAWaBqy4zA1kd4piXvDHV0OFtl5WRkroIAmec/wsvmpU1RRW4AWGxKBhenDi87LU2lNWiCEUBRV+h6I8oGggUDU2KJguKpi9qJlSqpniKFh2KlkGKFmaKUgWKkheK0imKEjyKUk6KkmCK0nKKCgWKSheKiimKyjuKCk6KSmB6ivK/0X4DRVspFO1b/S8RAwA="></p>
+</li>
+<li><p>顶部：footcloth_bar_top</p>
+<p> <img src="data:image/webp;base64,UklGRnQDAABXRUJQVlA4TGgDAAAvRQASEBmASNqfe4eI/qc3AEH47xYRo9H/VPbQcW27kSRFtHRnE4PZ/8a0JTMMBrOlPbj2/x+gR0R9lNsi/FF0Z2KEp/4CqkG7wQU0EACDto0kOffyOP4Yr44jSXKUrrl7KXAAI7FeQ5eAoMj/0SZgkng5fvzdf0k8aJW7pGlapiUxE4tgKpjFFLpPAHODuSgx/VqOKEw0L6YD00IbiwJdiloNYbAEZpgP9HuQ+76/pIB3XjcUmmMLseoduh/MwSpUY/V0bEBh3FINNHl8bZL0ZFoRDQTUEqfDNEyJgnJzBxVLvEDAEKYGB9npWGT+o4RCIwQVlc5qXQ54QW2eOqs1ShRCGFBE+Sfz0XOVuRdGGWKKGNXEQJFOajhpDQp4eMeD4tG0XSjzyXuzImyjDbwsqSlFLkchUVDpyLBK9xbUKKgE9zZCKWMGNdpoFyJWPvWQzAD3ws6cCiypUQuH6U2gBXBzzA3QgtwVP9HO2EEXYLsQHMlXvhKH+417onxomAqt6TtBCAoGbriBowhBvCpjEMUZf+ul+F5NgpbcF0mBe+EeEAuJqQlgrLohhFKEwI1VB8KLxylc0g6afLu/BJiPmCFaRW8rYYAwihYVoFOBKFq0EYAL/XWhD1nSsmD9a18Z5qBlAw6ajwYS5W4eQjAcwwlZDt2oBIxmgxPYtRxkL/4y3QtLVcr01/sifGiF2olXvRrr3us7oXYmGn8T+uN0DNXZQK1mvk8ZP8F8EaACGLg575BM8ApzAweiwDCHwzKXVYYToBEVh8LG091RMKYgDICD7IVWdCXk4EkDKCggK9eeIStl5VIlTnJ7V29Q4X1uBtJOJd1yPxKFu37zOqEl068k/dkPId1g33Y23LqgJ3AUorqxs+0b7KRx2m9kj9ypjTQQQsCcJzeHEAJJmItyPI02MFBSIRA6NUAIkE4lEIK0gNPGFXZF7WgjJHnmIYxC7VdcuW8D4Heez/kIgLZvuZYbrEq0jD8FywyJBFpOk3KFALa26hlLsg7EFZpIkp4RsgYGKgRI4IYbEiBEAScNCJGDbFxBYwC1sAmBBIAQQggBIIEQO9qBxuBp7LQBcICQAAESgAQIkBBwArTBlvsxB9vc0FwAwpMHILmyqJ0nPuAEWArFjXUJ5KpAktSN4gAHnCvbyg+7Bw=="></p>
+</li>
+<li><p>中心：footcloth_center</p>
+<p> <img src="data:image/webp;base64,UklGRiQAAABXRUJQVlA4TBcAAAAvRUARAAfQlk61sP8BICH8ny9F9D+lAwA="></p>
+</li>
+<li><p>桥：footcloth_bridge</p>
+<p> <img src="data:image/webp;base64,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"></p>
+</li>
+<li><p>凹陷进去的角：footcloth_inner</p>
+<p> <img src="data:image/webp;base64,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"></p>
+</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code class="highlight cpp"><span class="meta">#<span class="keyword">ifndef</span> __CARPET_NODE_H__</span>
+<span class="meta">#<span class="keyword">define</span> __CARPET_NODE_H__</span>
+
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cocos2d.h&quot;</span></span>
+
+<span class="keyword">struct</span> <span class="title class_">CarpetBridge</span>
+&#123;
+	<span class="built_in">CarpetBridge</span>(cocos2d::Vec2 a0, cocos2d::Vec2 a1);
+	<span class="function"><span class="type">bool</span> <span class="title">is_same</span><span class="params">(CarpetBridge st)</span></span>;
+	cocos2d::Vec2 p0;
+	cocos2d::Vec2 p1;
+&#125;;
+
+<span class="keyword">struct</span> <span class="title class_">CarpetInner</span>
+&#123;
+	<span class="built_in">CarpetInner</span>(cocos2d::Vec2 a0, cocos2d::Vec2 a1, cocos2d::Vec2 a2);
+	<span class="function"><span class="type">bool</span> <span class="title">is_same</span><span class="params">(CarpetInner st)</span></span>;
+	cocos2d::Vec2 p0;
+	cocos2d::Vec2 p1;
+	cocos2d::Vec2 p2;
+&#125;;
+
+<span class="keyword">class</span> <span class="title class_">CarpetNode</span> : <span class="keyword">public</span> cocos2d::Node
+&#123;
+<span class="keyword">public</span>:
+	<span class="function"><span class="type">static</span> CarpetNode * <span class="title">create</span><span class="params">(<span class="type">float</span> af_cell_width, std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; av_grid)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">updateWithGrid</span><span class="params">(std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; av_grid)</span></span>;
+<span class="keyword">protected</span>:
+	<span class="function"><span class="type">bool</span> <span class="title">init</span><span class="params">(<span class="type">float</span> af_cell_width, std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; av_grid)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">initGrid</span><span class="params">()</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawGrid</span><span class="params">()</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawCell</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">cleanCell</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawInner</span><span class="params">()</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawBridge</span><span class="params">()</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawCellLeftTop</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawCellRightTop</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawCellRightBottom</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">drawCellLeftBottom</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+<span class="keyword">private</span>:
+	<span class="function"><span class="type">bool</span> <span class="title">isInGrid</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">bool</span> <span class="title">isSelectedCell</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">addInner</span><span class="params">(CarpetInner st)</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">addBridge</span><span class="params">(CarpetBridge st)</span></span>;
+<span class="keyword">private</span>:
+	<span class="type">float</span> m_cell_width;
+	<span class="comment">// 棋盘数据，每个格子都是0和1两种状态</span>
+	std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; m_data_arr;
+	<span class="comment">// 每个格子的中心放一个节点，从来显示四个角落的精灵</span>
+	std::vector&lt;std::vector&lt;cocos2d::Node*&gt;&gt; m_ui_arr;
+	std::vector&lt;CarpetInner&gt; m_inner_arr;
+	cocos2d::Node* m_inner_root;
+	std::vector&lt;CarpetBridge&gt; m_bridge_arr;
+	cocos2d::Node* m_bridge_root;
+&#125;;
+
+<span class="meta">#<span class="keyword">endif</span></span>
+</code></pre>
+
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;CarpetNode.h&quot;</span></span>
+
+CarpetBridge::<span class="built_in">CarpetBridge</span>(cocos2d::Vec2 a0, cocos2d::Vec2 a1)
+&#123;
+	p0 = a0;
+	p1 = a1;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">CarpetBridge::is_same</span><span class="params">(CarpetBridge st)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">if</span> (p0 == st.p0 &amp;&amp; p1 == st.p1)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">true</span>;
+	&#125;
+
+	<span class="keyword">if</span> (p1 == st.p0 &amp;&amp; p0 == st.p1)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">true</span>;
+	&#125;
+
+	<span class="keyword">return</span> <span class="literal">false</span>;
+&#125;
+
+CarpetInner::<span class="built_in">CarpetInner</span>(cocos2d::Vec2 a0, cocos2d::Vec2 a1, cocos2d::Vec2 a2)
+&#123;
+	p0 = a0;
+	p1 = a1;
+	p2 = a2;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">CarpetInner::is_same</span><span class="params">(CarpetInner st)</span></span>
+<span class="function"></span>&#123;
+	std::vector&lt;cocos2d::Vec2&gt; v;
+	v.<span class="built_in">push_back</span>(st.p0);
+	v.<span class="built_in">push_back</span>(st.p1);
+	v.<span class="built_in">push_back</span>(st.p2);
+
+	<span class="type">bool</span> b_found_same = <span class="literal">false</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">auto</span> it = v.<span class="built_in">begin</span>(); it != v.<span class="built_in">end</span>(); it++)
+	&#123;
+		<span class="keyword">if</span> (p0 == *it)
+		&#123;
+			b_found_same = <span class="literal">true</span>;
+			v.<span class="built_in">erase</span>(it);
+			<span class="keyword">break</span>;
+		&#125;
+	&#125;
+
+	<span class="keyword">if</span> (!b_found_same)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+
+	b_found_same = <span class="literal">false</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">auto</span> it = v.<span class="built_in">begin</span>(); it != v.<span class="built_in">end</span>(); it++)
+	&#123;
+		<span class="keyword">if</span> (p1 == *it)
+		&#123;
+			b_found_same = <span class="literal">true</span>;
+			v.<span class="built_in">erase</span>(it);
+			<span class="keyword">break</span>;
+		&#125;
+	&#125;
+
+	<span class="keyword">if</span> (!b_found_same)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+
+	<span class="keyword">if</span> (p2 != v[<span class="number">0</span>])
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+
+	<span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function">CarpetNode * <span class="title">CarpetNode::create</span><span class="params">(<span class="type">float</span> af_cell_width, std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; av_grid)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">auto</span> p = <span class="built_in">new</span> (std::nothrow) <span class="built_in">CarpetNode</span>();
+	<span class="keyword">if</span> (p &amp;&amp; p-&gt;<span class="built_in">init</span>(af_cell_width, av_grid))
+	&#123;
+		p-&gt;<span class="built_in">autorelease</span>();
+		<span class="keyword">return</span> p;
+	&#125;
+	<span class="keyword">delete</span> p;
+	p = <span class="literal">nullptr</span>;
+	<span class="keyword">return</span> <span class="literal">nullptr</span>;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">CarpetNode::init</span><span class="params">(<span class="type">float</span> af_cell_width, std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; av_grid)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">if</span> (!cocos2d::Node::<span class="built_in">init</span>())
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+
+	m_cell_width = af_cell_width;
+	m_data_arr = av_grid;
+	<span class="comment">// 给每个格子添加一个根节点</span>
+	<span class="built_in">initGrid</span>();
+	<span class="comment">// 创建一个显示凹陷拐角的节点</span>
+	m_inner_root = cocos2d::Node::<span class="built_in">create</span>();
+	<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(m_inner_root);
+	<span class="comment">// 创建一个显示桥形连接的节点</span>
+	m_bridge_root = cocos2d::Node::<span class="built_in">create</span>();
+	<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(m_bridge_root);
+	<span class="comment">// 绘制棋盘</span>
+	<span class="built_in">drawGrid</span>();
+
+	<span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::updateWithGrid</span><span class="params">(std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; av_grid)</span></span>
+<span class="function"></span>&#123;
+	<span class="built_in">assert</span>(m_data_arr.<span class="built_in">size</span>() == av_grid.<span class="built_in">size</span>());
+	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; av_grid.<span class="built_in">size</span>(); i++)
+	&#123;
+		<span class="built_in">assert</span>(m_data_arr.<span class="built_in">at</span>(i).<span class="built_in">size</span>() == av_grid.<span class="built_in">at</span>(i).<span class="built_in">size</span>());
+	&#125;
+	m_data_arr = av_grid;
+	<span class="built_in">drawGrid</span>();
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::initGrid</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	m_ui_arr.<span class="built_in">clear</span>();
+	<span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; <span class="built_in">int</span>(m_data_arr.<span class="built_in">size</span>()); x++)
+	&#123;
+		std::vector&lt;cocos2d::Node*&gt; vec;
+		<span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; <span class="built_in">int</span>(m_data_arr.<span class="built_in">at</span>(x).<span class="built_in">size</span>()); y++)
+		&#123;
+			<span class="keyword">auto</span> lab = cocos2d::Label::<span class="built_in">create</span>();
+			lab-&gt;<span class="built_in">setString</span>(cocos2d::StringUtils::format(<span class="string">&quot;(%d,%d)&quot;</span>, x, y));
+			lab-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(m_cell_width * (x + <span class="number">0.5f</span>), m_cell_width * (y + <span class="number">0.5f</span>)));
+			<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(lab);
+			<span class="keyword">auto</span> node = cocos2d::Node::<span class="built_in">create</span>();
+			node-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(m_cell_width * (x + <span class="number">0.5f</span>), m_cell_width * (y + <span class="number">0.5f</span>)));
+			<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(node);
+			vec.<span class="built_in">push_back</span>(node);
+		&#125;
+		m_ui_arr.<span class="built_in">push_back</span>(vec);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawGrid</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	m_inner_arr.<span class="built_in">clear</span>();
+	m_bridge_arr.<span class="built_in">clear</span>();
+
+	<span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; <span class="built_in">int</span>(m_data_arr.<span class="built_in">size</span>()); x++)
+	&#123;
+		<span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; <span class="built_in">int</span>(m_data_arr.<span class="built_in">at</span>(x).<span class="built_in">size</span>()); y++)
+		&#123;
+			<span class="built_in">cleanCell</span>(x, y);
+			<span class="keyword">if</span> (m_data_arr[x][y])
+			&#123;
+				<span class="built_in">drawCell</span>(x, y);
+			&#125;
+		&#125;
+	&#125;
+
+	<span class="built_in">drawInner</span>();
+	<span class="built_in">drawBridge</span>();
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawCell</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="comment">// 根据x坐标和y坐标，绘制左上角、右上角、右下角、左下角</span>
+	<span class="built_in">drawCellLeftTop</span>(x, y);
+	<span class="built_in">drawCellRightTop</span>(x, y);
+	<span class="built_in">drawCellRightBottom</span>(x, y);
+	<span class="built_in">drawCellLeftBottom</span>(x, y);
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::cleanCell</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="built_in">assert</span>(m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y));
+	<span class="keyword">auto</span> nod = m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y);
+	nod-&gt;<span class="built_in">removeAllChildren</span>();
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawInner</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	m_inner_root-&gt;<span class="built_in">removeAllChildren</span>();
+
+	<span class="keyword">for</span> (<span class="keyword">auto</span> st : m_inner_arr)
+	&#123;
+		<span class="type">float</span> xmin = st.p<span class="number">0.</span>x;
+		<span class="type">float</span> ymin = st.p<span class="number">0.</span>y;
+		xmin = std::<span class="built_in">min</span>(xmin, st.p<span class="number">1.</span>x);
+		ymin = std::<span class="built_in">min</span>(ymin, st.p<span class="number">1.</span>y);
+		xmin = std::<span class="built_in">min</span>(xmin, st.p<span class="number">2.</span>x);
+		ymin = std::<span class="built_in">min</span>(ymin, st.p<span class="number">2.</span>y);
+
+		<span class="type">float</span> xmax = st.p<span class="number">0.</span>x;
+		<span class="type">float</span> ymax = st.p<span class="number">0.</span>y;
+		xmax = std::<span class="built_in">max</span>(xmax, st.p<span class="number">1.</span>x);
+		ymax = std::<span class="built_in">max</span>(ymax, st.p<span class="number">1.</span>y);
+		xmax = std::<span class="built_in">max</span>(xmax, st.p<span class="number">2.</span>x);
+		ymax = std::<span class="built_in">max</span>(ymax, st.p<span class="number">2.</span>y);
+
+		<span class="built_in">assert</span>(xmax - xmin == <span class="number">1</span>);
+		<span class="built_in">assert</span>(ymax - ymin == <span class="number">1</span>);
+
+		<span class="type">float</span> rotation = <span class="number">0</span>;
+		std::vector&lt;cocos2d::Vec2&gt; vec_temp;
+		vec_temp.<span class="built_in">push_back</span>(st.p0);
+		vec_temp.<span class="built_in">push_back</span>(st.p1);
+		vec_temp.<span class="built_in">push_back</span>(st.p2);
+		<span class="function">cocos2d::Vec2 <span class="title">check_point</span><span class="params">(xmin, ymin)</span></span>;
+		<span class="keyword">if</span> (vec_temp.<span class="built_in">end</span>() == std::<span class="built_in">find</span>(vec_temp.<span class="built_in">begin</span>(), vec_temp.<span class="built_in">end</span>(), check_point))
+		&#123;
+			rotation = <span class="number">270</span>;
+		&#125;
+		check_point = cocos2d::<span class="built_in">Vec2</span>(xmin, ymax);
+		<span class="keyword">if</span> (vec_temp.<span class="built_in">end</span>() == std::<span class="built_in">find</span>(vec_temp.<span class="built_in">begin</span>(), vec_temp.<span class="built_in">end</span>(), check_point))
+		&#123;
+			rotation = <span class="number">0</span>;
+		&#125;
+		check_point = cocos2d::<span class="built_in">Vec2</span>(xmax, ymax);
+		<span class="keyword">if</span> (vec_temp.<span class="built_in">end</span>() == std::<span class="built_in">find</span>(vec_temp.<span class="built_in">begin</span>(), vec_temp.<span class="built_in">end</span>(), check_point))
+		&#123;
+			rotation = <span class="number">90</span>;
+		&#125;
+		check_point = cocos2d::<span class="built_in">Vec2</span>(xmax, ymin);
+		<span class="keyword">if</span> (vec_temp.<span class="built_in">end</span>() == std::<span class="built_in">find</span>(vec_temp.<span class="built_in">begin</span>(), vec_temp.<span class="built_in">end</span>(), check_point))
+		&#123;
+			rotation = <span class="number">180</span>;
+		&#125;
+
+		<span class="keyword">auto</span> spr_inner = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_inner.png&quot;</span>);
+		spr_inner-&gt;<span class="built_in">setRotation</span>(rotation);
+		spr_inner-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(m_cell_width * xmax, m_cell_width * ymax));
+		m_inner_root-&gt;<span class="built_in">addChild</span>(spr_inner);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawBridge</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	m_bridge_root-&gt;<span class="built_in">removeAllChildren</span>();
+
+	<span class="keyword">for</span> (<span class="keyword">auto</span> st : m_bridge_arr)
+	&#123;
+		<span class="type">float</span> rotation = <span class="number">0</span>;
+		<span class="keyword">auto</span> p0 = st.p0;
+		<span class="keyword">auto</span> p1 = st.p1;
+		<span class="comment">// 往右上</span>
+		<span class="keyword">if</span> (p<span class="number">0.</span>x + <span class="number">1</span> == p<span class="number">1.</span>x &amp;&amp; p<span class="number">0.</span>y + <span class="number">1</span> == p<span class="number">1.</span>y)
+		&#123;
+			rotation = <span class="number">90</span>;
+		&#125;
+		<span class="comment">// 往右下</span>
+		<span class="keyword">if</span> (p<span class="number">0.</span>x + <span class="number">1</span> == p<span class="number">1.</span>x &amp;&amp; p<span class="number">0.</span>y - <span class="number">1</span> == p<span class="number">1.</span>y)
+		&#123;
+			rotation = <span class="number">0</span>;
+		&#125;
+		<span class="comment">// 往左下</span>
+		<span class="keyword">if</span> (p<span class="number">0.</span>x - <span class="number">1</span> == p<span class="number">1.</span>x &amp;&amp; p<span class="number">0.</span>y - <span class="number">1</span> == p<span class="number">1.</span>y)
+		&#123;
+			rotation = <span class="number">90</span>;
+		&#125;
+		<span class="comment">// 往左上</span>
+		<span class="keyword">if</span> (p<span class="number">0.</span>x - <span class="number">1</span> == p<span class="number">1.</span>x &amp;&amp; p<span class="number">0.</span>y + <span class="number">1</span> == p<span class="number">1.</span>y)
+		&#123;
+			rotation = <span class="number">0</span>;
+		&#125;
+		<span class="type">int</span> xmax = std::<span class="built_in">max</span>(p<span class="number">0.</span>x, p<span class="number">1.</span>x);
+		<span class="type">int</span> ymax = std::<span class="built_in">max</span>(p<span class="number">0.</span>y, p<span class="number">1.</span>y);
+
+		<span class="keyword">auto</span> spr_bridge = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bridge.png&quot;</span>);
+		spr_bridge-&gt;<span class="built_in">setRotation</span>(rotation);
+		spr_bridge-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(m_cell_width * xmax, m_cell_width * ymax));
+		m_bridge_root-&gt;<span class="built_in">addChild</span>(spr_bridge);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawCellLeftTop</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="built_in">assert</span>(m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y));
+	<span class="keyword">auto</span> nod = m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y);
+
+	<span class="type">bool</span> a = <span class="literal">false</span>;
+	<span class="type">int</span> xa = x - <span class="number">1</span>;
+	<span class="type">int</span> ya = y;
+	a = <span class="built_in">isSelectedCell</span>(xa, ya);
+
+	<span class="type">bool</span> b = <span class="literal">false</span>;
+	<span class="type">int</span> xb = x - <span class="number">1</span>;
+	<span class="type">int</span> yb = y + <span class="number">1</span>;
+	b = <span class="built_in">isSelectedCell</span>(xb, yb);
+
+	<span class="type">bool</span> c = <span class="literal">false</span>;
+	<span class="type">int</span> xc = x;
+	<span class="type">int</span> yc = y + <span class="number">1</span>;
+	c = <span class="built_in">isSelectedCell</span>(xc, yc);
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_left.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addBridge</span>(<span class="built_in">CarpetBridge</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y + <span class="number">1</span>)));
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_top.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y + <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x, y + <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x, y)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x, y + <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y + <span class="number">1</span>)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_center.png&quot;</span>);
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span> - m_cell_width / <span class="number">4.0f</span>, <span class="number">0</span> + m_cell_width / <span class="number">4.0f</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawCellRightTop</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="built_in">assert</span>(m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y));
+	<span class="keyword">auto</span> nod = m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y);
+
+	<span class="type">bool</span> a = <span class="literal">false</span>;
+	<span class="type">int</span> xa = x;
+	<span class="type">int</span> ya = y + <span class="number">1</span>;
+	a = <span class="built_in">isSelectedCell</span>(xa, ya);
+
+	<span class="type">bool</span> b = <span class="literal">false</span>;
+	<span class="type">int</span> xb = x + <span class="number">1</span>;
+	<span class="type">int</span> yb = y + <span class="number">1</span>;
+	b = <span class="built_in">isSelectedCell</span>(xb, yb);
+
+	<span class="type">bool</span> c = <span class="literal">false</span>;
+	<span class="type">int</span> xc = x + <span class="number">1</span>;
+	<span class="type">int</span> yc = y;
+	c = <span class="built_in">isSelectedCell</span>(xc, yc);
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">90</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_top.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addBridge</span>(<span class="built_in">CarpetBridge</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y + <span class="number">1</span>)));
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">90</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_right.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y + <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y), cocos2d::<span class="built_in">Vec2</span>(x, y)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y), cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x, y + <span class="number">1</span>)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x, y + <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y + <span class="number">1</span>)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_center.png&quot;</span>);
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span> + m_cell_width / <span class="number">4.0f</span>, <span class="number">0</span> + m_cell_width / <span class="number">4.0f</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawCellRightBottom</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="built_in">assert</span>(m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y));
+	<span class="keyword">auto</span> nod = m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y);
+
+	<span class="type">bool</span> a = <span class="literal">false</span>;
+	<span class="type">int</span> xa = x + <span class="number">1</span>;
+	<span class="type">int</span> ya = y;
+	a = <span class="built_in">isSelectedCell</span>(xa, ya);
+
+	<span class="type">bool</span> b = <span class="literal">false</span>;
+	<span class="type">int</span> xb = x + <span class="number">1</span>;
+	<span class="type">int</span> yb = y - <span class="number">1</span>;
+	b = <span class="built_in">isSelectedCell</span>(xb, yb);
+
+	<span class="type">bool</span> c = <span class="literal">false</span>;
+	<span class="type">int</span> xc = x;
+	<span class="type">int</span> yc = y - <span class="number">1</span>;
+	c = <span class="built_in">isSelectedCell</span>(xc, yc);
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">180</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_right.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">1</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addBridge</span>(<span class="built_in">CarpetBridge</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y - <span class="number">1</span>)));
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">180</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_down.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">1</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y - <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x, y - <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x, y)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x, y - <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y), cocos2d::<span class="built_in">Vec2</span>(x + <span class="number">1</span>, y - <span class="number">1</span>)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_center.png&quot;</span>);
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span> + m_cell_width / <span class="number">4.0f</span>, <span class="number">0</span> - m_cell_width / <span class="number">4.0f</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::drawCellLeftBottom</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="built_in">assert</span>(m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y));
+	<span class="keyword">auto</span> nod = m_ui_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y);
+
+	<span class="type">bool</span> a = <span class="literal">false</span>;
+	<span class="type">int</span> xa = x;
+	<span class="type">int</span> ya = y - <span class="number">1</span>;
+	a = <span class="built_in">isSelectedCell</span>(xa, ya);
+
+	<span class="type">bool</span> b = <span class="literal">false</span>;
+	<span class="type">int</span> xb = x - <span class="number">1</span>;
+	<span class="type">int</span> yb = y - <span class="number">1</span>;
+	b = <span class="built_in">isSelectedCell</span>(xb, yb);
+
+	<span class="type">bool</span> c = <span class="literal">false</span>;
+	<span class="type">int</span> xc = x - <span class="number">1</span>;
+	<span class="type">int</span> yc = y;
+	c = <span class="built_in">isSelectedCell</span>(xc, yc);
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">270</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_down.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">1</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addBridge</span>(<span class="built_in">CarpetBridge</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y - <span class="number">1</span>)));
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_angle.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">270</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_bar_left.png&quot;</span>);
+		spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">1</span>, <span class="number">1</span>));
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span>, <span class="number">0</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">false</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y - <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y), cocos2d::<span class="built_in">Vec2</span>(x, y)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">false</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y), cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x, y - <span class="number">1</span>)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">false</span> == c)
+	&#123;
+		<span class="built_in">addInner</span>(<span class="built_in">CarpetInner</span>(cocos2d::<span class="built_in">Vec2</span>(x, y), cocos2d::<span class="built_in">Vec2</span>(x, y - <span class="number">1</span>), cocos2d::<span class="built_in">Vec2</span>(x - <span class="number">1</span>, y - <span class="number">1</span>)));
+	&#125;
+
+	<span class="keyword">if</span> (<span class="literal">true</span> == a &amp;&amp; <span class="literal">true</span> == b &amp;&amp; <span class="literal">true</span> == c)
+	&#123;
+		<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(<span class="string">&quot;TestFootcloth/footcloth_center.png&quot;</span>);
+		spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(<span class="number">0</span> - m_cell_width / <span class="number">4.0f</span>, <span class="number">0</span> - m_cell_width / <span class="number">4.0f</span>));
+		spr-&gt;<span class="built_in">setRotation</span>(<span class="number">0</span>);
+		nod-&gt;<span class="built_in">addChild</span>(spr);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">CarpetNode::isInGrid</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">if</span> (x &lt; <span class="number">0</span> || y &lt; <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	<span class="keyword">if</span> (x &gt;= <span class="built_in">int</span>(m_data_arr.<span class="built_in">size</span>()))
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	<span class="keyword">if</span> (y &gt;= <span class="built_in">int</span>(m_data_arr.<span class="built_in">at</span>(x).<span class="built_in">size</span>()))
+		<span class="keyword">return</span> <span class="literal">false</span>;
+
+	<span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">CarpetNode::isSelectedCell</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">if</span> (!<span class="built_in">isInGrid</span>(x, y))
+		<span class="keyword">return</span> <span class="literal">false</span>;
+
+	<span class="keyword">return</span> m_data_arr.<span class="built_in">at</span>(x).<span class="built_in">at</span>(y);
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::addInner</span><span class="params">(CarpetInner st)</span></span>
+<span class="function"></span>&#123;
+	<span class="type">bool</span> flag = <span class="literal">false</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">auto</span> st0 : m_inner_arr)
+	&#123;
+		<span class="keyword">if</span> (st<span class="number">0.</span><span class="built_in">is_same</span>(st))
+		&#123;
+			flag = <span class="literal">true</span>;
+			<span class="keyword">break</span>;
+		&#125;
+	&#125;
+
+	<span class="keyword">if</span> (!flag)
+	&#123;
+		m_inner_arr.<span class="built_in">push_back</span>(st);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">CarpetNode::addBridge</span><span class="params">(CarpetBridge st)</span></span>
+<span class="function"></span>&#123;
+	<span class="type">bool</span> flag = <span class="literal">false</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">auto</span> st0 : m_bridge_arr)
+	&#123;
+		<span class="keyword">if</span> (st<span class="number">0.</span><span class="built_in">is_same</span>(st))
+		&#123;
+			flag = <span class="literal">true</span>;
+			<span class="keyword">break</span>;
+		&#125;
+	&#125;
+
+	<span class="keyword">if</span> (!flag)
+	&#123;
+		m_bridge_arr.<span class="built_in">push_back</span>(st);
+	&#125;
+&#125;
+</code></pre>
+
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">pragma</span> once</span>
+<span class="meta">#<span class="keyword">ifndef</span> __TEST_FOOTCLOTH_SCENE_H__</span>
+
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cocos2d.h&quot;</span></span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;CarpetNode.h&quot;</span></span>
+
+<span class="keyword">class</span> <span class="title class_">TestFootclothScene</span> : <span class="keyword">public</span> cocos2d::Scene
+&#123;
+<span class="keyword">public</span>:
+	<span class="function"><span class="type">static</span> TestFootclothScene* <span class="title">create</span><span class="params">()</span></span>;
+	<span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">override</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">initGridData</span><span class="params">()</span></span>;
+	<span class="function"><span class="type">void</span> <span class="title">initBackground</span><span class="params">()</span></span>;
+	<span class="function"><span class="type">bool</span> <span class="title">onTouchBegan</span><span class="params">(cocos2d::Touch * t, cocos2d::Event * e)</span></span>;
+<span class="keyword">private</span>:
+	<span class="type">int</span> m_grid_num;
+	<span class="type">float</span> m_cell_w;
+	std::vector&lt;std::vector&lt;<span class="type">bool</span>&gt;&gt; m_d_arr;
+	std::vector&lt;std::vector&lt;cocos2d::Sprite*&gt;&gt; m_spr_arr;
+	CarpetNode* m_carpet_node;
+&#125;;
+
+<span class="meta">#<span class="keyword">endif</span> <span class="comment">// !__TEST_FOOTCLOTH_SCENE_H__</span></span>
+</code></pre>
+
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;TestFootclothScene.h&quot;</span></span>
+
+<span class="function">TestFootclothScene * <span class="title">TestFootclothScene::create</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">auto</span> p = <span class="built_in">new</span> (std::nothrow) <span class="built_in">TestFootclothScene</span>();
+	<span class="keyword">if</span> (p &amp;&amp; p-&gt;<span class="built_in">init</span>())
+	&#123;
+		p-&gt;<span class="built_in">autorelease</span>();
+		<span class="keyword">return</span> p;
+	&#125;
+	<span class="keyword">delete</span> p;
+	p = <span class="literal">nullptr</span>;
+	<span class="keyword">return</span> <span class="literal">nullptr</span>;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">TestFootclothScene::init</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">if</span> (!cocos2d::Scene::<span class="built_in">init</span>())
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+
+	<span class="comment">// 棋盘为5行5列</span>
+	m_grid_num = <span class="number">5</span>;
+	<span class="comment">// 棋盘单元格的宽高是140像素</span>
+	m_cell_w = <span class="number">140</span>;
+	<span class="comment">// 生成棋盘数据（二维数组），即给 m_d_arr 赋值</span>
+	<span class="built_in">initGridData</span>();
+	<span class="comment">// 生成棋盘背景图</span>
+	<span class="built_in">initBackground</span>();
+	<span class="comment">// 创建地毯节点，传入单元格的边长和棋盘数据</span>
+	m_carpet_node = CarpetNode::<span class="built_in">create</span>(m_cell_w, m_d_arr);
+	<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(m_carpet_node, <span class="number">1</span>);
+	<span class="comment">// 添加触摸响应</span>
+	<span class="keyword">auto</span> listener = cocos2d::EventListenerTouchOneByOne::<span class="built_in">create</span>();
+	listener-&gt;onTouchBegan = <span class="built_in">CC_CALLBACK_2</span>(TestFootclothScene::onTouchBegan, <span class="keyword">this</span>);
+	_eventDispatcher-&gt;<span class="built_in">addEventListenerWithSceneGraphPriority</span>(listener, <span class="keyword">this</span>);
+
+	<span class="keyword">return</span> <span class="literal">true</span>;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">TestFootclothScene::initGridData</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	m_d_arr.<span class="built_in">clear</span>();
+	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_grid_num; i++)
+	&#123;
+		std::vector&lt;<span class="type">bool</span>&gt; vec_row;
+		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m_grid_num; j++)
+		&#123;
+			vec_row.<span class="built_in">push_back</span>(<span class="literal">false</span>);
+		&#125;
+		m_d_arr.<span class="built_in">push_back</span>(vec_row);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">void</span> <span class="title">TestFootclothScene::initBackground</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	m_spr_arr.<span class="built_in">clear</span>();
+	<span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; m_grid_num; x++)
+	&#123;
+		std::vector&lt;cocos2d::Sprite*&gt; vec_row;
+		<span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; m_grid_num; y++)
+		&#123;
+			std::string str1 = <span class="string">&quot;TestFootcloth/map_cell_1.png&quot;</span>;
+			<span class="keyword">if</span> ((x % <span class="number">2</span> == <span class="number">1</span> &amp;&amp; y % <span class="number">2</span> == <span class="number">0</span>) || (x % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; y % <span class="number">2</span> == <span class="number">1</span>))
+			&#123;
+				str1 = <span class="string">&quot;TestFootcloth/map_cell_2.png&quot;</span>;
+			&#125;
+			<span class="keyword">auto</span> spr = cocos2d::Sprite::<span class="built_in">create</span>(str1);
+			spr-&gt;<span class="built_in">setAnchorPoint</span>(cocos2d::Vec2::ZERO);
+			spr-&gt;<span class="built_in">setPosition</span>(cocos2d::<span class="built_in">Vec2</span>(x * <span class="number">140</span>, y * <span class="number">140</span>));
+			<span class="keyword">this</span>-&gt;<span class="built_in">addChild</span>(spr);
+			vec_row.<span class="built_in">push_back</span>(spr);
+		&#125;
+		m_spr_arr.<span class="built_in">push_back</span>(vec_row);
+	&#125;
+&#125;
+
+<span class="function"><span class="type">bool</span> <span class="title">TestFootclothScene::onTouchBegan</span><span class="params">(cocos2d::Touch * t, cocos2d::Event * e)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">auto</span> world_pos = t-&gt;<span class="built_in">getLocation</span>();
+
+	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_grid_num; i++)
+	&#123;
+		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m_grid_num; j++)
+		&#123;
+			<span class="keyword">auto</span> spr = m_spr_arr.<span class="built_in">at</span>(i).<span class="built_in">at</span>(j);
+			<span class="type">float</span> sprw = spr-&gt;<span class="built_in">getContentSize</span>().width;
+			<span class="type">float</span> sprh = spr-&gt;<span class="built_in">getContentSize</span>().height;
+			<span class="keyword">auto</span> node_pos = spr-&gt;<span class="built_in">convertToNodeSpace</span>(world_pos);
+			<span class="type">float</span> posx = node_pos.x;
+			<span class="type">float</span> posy = node_pos.y;
+
+			<span class="keyword">if</span> (<span class="number">0</span> &lt; posx &amp;&amp; posx &lt; sprw &amp;&amp; <span class="number">0</span> &lt; posy &amp;&amp; posy &lt; sprh)
+			&#123;
+				cocos2d::<span class="built_in">log</span>(<span class="string">&quot;click(%d %d)&quot;</span>, i, j);
+				m_d_arr.<span class="built_in">at</span>(i).<span class="built_in">at</span>(j) = !m_d_arr.<span class="built_in">at</span>(i).<span class="built_in">at</span>(j);
+				m_carpet_node-&gt;<span class="built_in">updateWithGrid</span>(m_d_arr);
+				<span class="keyword">return</span> <span class="literal">false</span>;
+			&#125;
+		&#125;
+	&#125;
+	<span class="keyword">return</span> <span class="literal">false</span>;
+&#125;
+</code></pre>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/20/02Tool/AndroidStudio/AndroidStudio001/" rel="prev" title="AndroidStudio新建工程使用Java语言">
+                  <i class="fa fa-angle-left"></i> AndroidStudio新建工程使用Java语言
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/27/01Work/011_RemoveCommentFromCpp/" rel="next" title="删除C++代码里的注释">
+                  删除C++代码里的注释 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

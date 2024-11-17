@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="官网文档 环境要求Xcode的版本要大于等于12。iOS deployment target要大于等于9.0。 通过CocoaPods下载SDK先添加 pod &#39;AppLovinSDK&#39; 到Podfile。如果要集成其他的平台，在在这里通过勾选来生成。 再在终端里执行 pod install --repo-update 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="applovin max ios">
+<meta property="og:url" content="https://615737749.github.io/2021/05/14/03Knowledge/ios/ios002/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="官网文档 环境要求Xcode的版本要大于等于12。iOS deployment target要大于等于9.0。 通过CocoaPods下载SDK先添加 pod &#39;AppLovinSDK&#39; 到Podfile。如果要集成其他的平台，在在这里通过勾选来生成。 再在终端里执行 pod install --repo-update 。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-14T02:25:33.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.589Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2021/05/14/03Knowledge/ios/ios002/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2021/05/14/03Knowledge/ios/ios002/","path":"2021/05/14/03Knowledge/ios/ios002/","title":"applovin max ios"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>applovin max ios | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87CocoaPods%E4%B8%8B%E8%BD%BDSDK"><span class="nav-number">2.</span> <span class="nav-text">通过CocoaPods下载SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Info-plist%E9%87%8C%E8%A6%81%E5%81%9A%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="nav-number">3.</span> <span class="nav-text">Info.plist里要做的修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96SDK"><span class="nav-number">4.</span> <span class="nav-text">初始化SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS-14-Support"><span class="nav-number">5.</span> <span class="nav-text">iOS 14 Support</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/05/14/03Knowledge/ios/ios002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="applovin max ios | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          applovin max ios
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-14 10:25:33" itemprop="dateCreated datePublished" datetime="2021-05-14T10:25:33+08:00">2021-05-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://dash.applovin.com/documentation/mediation/ios/getting-started/integration">官网文档</a></p>
+<h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><p>Xcode的版本要大于等于12。iOS deployment target要大于等于9.0。</p>
+<h1 id="通过CocoaPods下载SDK"><a href="#通过CocoaPods下载SDK" class="headerlink" title="通过CocoaPods下载SDK"></a>通过CocoaPods下载SDK</h1><p>先添加 <code>pod &#39;AppLovinSDK&#39;</code> 到Podfile。如果要集成其他的平台，在在<a target="_blank" rel="noopener" href="https://dash.applovin.com/documentation/mediation/ios/mediation-adapters?network=GOOGLE_AD_MANAGER_NETWORK">这里</a>通过勾选来生成。</p>
+<p>再在终端里执行 <code>pod install --repo-update</code> 。</p>
+<span id="more"></span>
+
+<h1 id="Info-plist里要做的修改"><a href="#Info-plist里要做的修改" class="headerlink" title="Info.plist里要做的修改"></a>Info.plist里要做的修改</h1><pre><code class="highlight plist"><span class="tag">&lt;<span class="name">key</span>&gt;</span>AppLovinSdkKey<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+<span class="tag">&lt;<span class="name">string</span>&gt;</span>你的AppLovinSdkKey<span class="tag">&lt;/<span class="name">string</span>&gt;</span></code></pre>
+
+<h1 id="初始化SDK"><a href="#初始化SDK" class="headerlink" title="初始化SDK"></a>初始化SDK</h1><p>在 <code>application:applicationDidFinishLaunching</code> 这个函数里边做初始化</p>
+<pre><code class="highlight objc"><span class="meta">#import <span class="string">&lt;AppLovinSDK/AppLovinSDK.h&gt;</span></span>
+
+- (<span class="type">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions
+&#123;
+    <span class="comment">//省略代码</span>
+    [ALSdk shared].mediationProvider = <span class="string">@&quot;max&quot;</span>;
+    [ALSdk shared].userIdentifier = <span class="string">@&quot;USER_ID&quot;</span>;<span class="comment">//这个是给某个用户打标记</span>
+    [[ALSdk shared] initializeSdkWithCompletionHandler:^(ALSdkConfiguration *configuration) &#123;
+        <span class="comment">// Start loading ads</span>
+    &#125;];
+    <span class="comment">//省略代码</span>
+&#125;</code></pre>
+
+<h1 id="iOS-14-Support"><a href="#iOS-14-Support" class="headerlink" title="iOS 14 Support"></a>iOS 14 Support</h1><p>新的广告跟踪政策，需要在Info.plist里增加SKAdNetwork</p>
+<p>SKAdNetworkItems的值在<a target="_blank" rel="noopener" href="https://dash.applovin.com/documentation/mediation/ios/getting-started/skadnetwork-info">这里</a>通过勾选来生成</p>
+<pre><code class="highlight plist"><span class="tag">&lt;<span class="name">key</span>&gt;</span>AppLovinConsentFlowInfo<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+<span class="tag">&lt;<span class="name">dict</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">key</span>&gt;</span>AppLovinConsentFlowEnabled<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">true</span>/&gt;</span>
+    <span class="tag">&lt;<span class="name">key</span>&gt;</span>AppLovinConsentFlowPrivacyPolicy<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">string</span>&gt;</span>你的字符串<span class="tag">&lt;/<span class="name">string</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">key</span>&gt;</span>AppLovinConsentFlowTermsOfService<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">string</span>&gt;</span>你的字符串<span class="tag">&lt;/<span class="name">string</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dict</span>&gt;</span>
+
+<span class="tag">&lt;<span class="name">key</span>&gt;</span>SKAdNetworkItems<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">array</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">dict</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">key</span>&gt;</span>SKAdNetworkIdentifier<span class="tag">&lt;/<span class="name">key</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">string</span>&gt;</span>tl55sbb4fm.skadnetwork<span class="tag">&lt;/<span class="name">string</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dict</span>&gt;</span>
+        and so on...
+    <span class="tag">&lt;/<span class="name">array</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dict</span>&gt;</span></code></pre>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/11/05History/History003/" rel="prev" title="秦淮八艳之柳如是">
+                  <i class="fa fa-angle-left"></i> 秦淮八艳之柳如是
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/25/02Tool/CocosStudio/CocosStudio002/" rel="next" title="csb时间轴动画">
+                  csb时间轴动画 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

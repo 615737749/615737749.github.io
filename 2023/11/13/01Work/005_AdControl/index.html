@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="cpp所有视频能否播放和播放都路由到CandyManagerbool CandyManager::of_video_can_play(const string&amp; as_page) &#123; 	cocos2d::log(&quot;maxadlog call func CandyManager::of_video_can_play(%s). game_level&#x3D;%d&quot;, as">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AdControl">
+<meta property="og:url" content="https://615737749.github.io/2023/11/13/01Work/005_AdControl/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="cpp所有视频能否播放和播放都路由到CandyManagerbool CandyManager::of_video_can_play(const string&amp; as_page) &#123; 	cocos2d::log(&quot;maxadlog call func CandyManager::of_video_can_play(%s). game_level&#x3D;%d&quot;, as">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.565Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2023/11/13/01Work/005_AdControl/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2023/11/13/01Work/005_AdControl/","path":"2023/11/13/01Work/005_AdControl/","title":"AdControl"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AdControl | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp"><span class="nav-number">1.</span> <span class="nav-text">cpp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E8%A7%86%E9%A2%91%E8%83%BD%E5%90%A6%E6%92%AD%E6%94%BE%E5%92%8C%E6%92%AD%E6%94%BE%E9%83%BD%E8%B7%AF%E7%94%B1%E5%88%B0CandyManager"><span class="nav-number">1.1.</span> <span class="nav-text">所有视频能否播放和播放都路由到CandyManager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%B1%8F"><span class="nav-number">1.2.</span> <span class="nav-text">插屏</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2023/11/13/01Work/005_AdControl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AdControl | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AdControl
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-13 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-13T00:00:00+08:00">2023-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/01%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">01工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="cpp"><a href="#cpp" class="headerlink" title="cpp"></a>cpp</h1><h2 id="所有视频能否播放和播放都路由到CandyManager"><a href="#所有视频能否播放和播放都路由到CandyManager" class="headerlink" title="所有视频能否播放和播放都路由到CandyManager"></a>所有视频能否播放和播放都路由到CandyManager</h2><pre><code class="highlight cpp"><span class="function"><span class="type">bool</span> <span class="title">CandyManager::of_video_can_play</span><span class="params">(<span class="type">const</span> string&amp; as_page)</span> </span>&#123;
+	cocos2d::<span class="built_in">log</span>(<span class="string">&quot;maxadlog call func CandyManager::of_video_can_play(%s). game_level=%d&quot;</span>, as_page.<span class="built_in">c_str</span>(), g.game_level);
+	<span class="keyword">if</span> (g.game_level &lt; <span class="number">5</span> &amp;&amp; <span class="string">&quot;n_video_finish_ad_play&quot;</span> == as_page)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+	<span class="keyword">return</span> PFJava::<span class="built_in">cpp_func_of_can_play_ad_video</span>(as_page, g.game_level);
+&#125;
+<span class="function"><span class="type">void</span> <span class="title">CandyManager::of_video_play</span><span class="params">(<span class="type">const</span> string&amp; as_page)</span> </span>&#123;
+	PFJava::<span class="built_in">cpp_func_of_play_ad_video</span>(as_page, g.game_level);
+	g.cm-&gt;<span class="built_in">of_play_video_set_state</span>();
+
+	<span class="comment">// 数据统计与追踪</span>
+	<span class="built_in">of_track_function</span>(as_page);
+	<span class="built_in">of_track_function</span>(<span class="string">&quot;n_video_all&quot;</span>);
+	<span class="built_in">of_adjust_event_time</span>(<span class="string">&quot;n_video_time&quot;</span>);
+
+	<span class="comment">// 成就统计</span>
+	candy_achievement-&gt;<span class="built_in">of_add_key</span>(_bbb_ccc_ffff_lll_pub_achieve_count_ad);
+&#125;</code></pre>
+
+<pre><code class="highlight cpp"><span class="comment">// PF.cpp</span>
+<span class="function"><span class="type">bool</span> <span class="title">PFJava::cpp_func_of_can_play_ad_video</span><span class="params">(<span class="type">const</span> string &amp; as_page, <span class="type">long</span> al_level)</span></span>
+<span class="function"></span>&#123;
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
+	JniMethodInfo t;
+	<span class="keyword">if</span> (JniHelper::<span class="built_in">getStaticMethodInfo</span>(t, <span class="string">&quot;org/cocos2dx/help/plugin/DreamPub&quot;</span>, <span class="string">&quot;of_vedio_can_play&quot;</span>, <span class="string">&quot;(Ljava/lang/String;J)J&quot;</span>))
+	&#123;
+		jstring k1 = t.env-&gt;<span class="built_in">NewStringUTF</span>(as_page.<span class="built_in">c_str</span>());
+		<span class="function">jlong <span class="title">j1</span><span class="params">(al_level)</span></span>;
+		<span class="type">long</span> ret = t.env-&gt;<span class="built_in">CallStaticLongMethod</span>(t.classID, t.methodID, k1, j1);
+		<span class="keyword">if</span> (ret == <span class="number">1</span>) &#123;
+			<span class="keyword">return</span> <span class="literal">true</span>;
+		&#125;
+	&#125;
+	<span class="keyword">return</span> <span class="literal">false</span>;
+<span class="meta">#<span class="keyword">endif</span></span>
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span>
+	<span class="keyword">return</span> PFIOS::<span class="built_in">ios_func_is_video_can_play</span>(as_page);
+<span class="meta">#<span class="keyword">endif</span></span>
+	<span class="comment">// windows下</span>
+	<span class="keyword">auto</span> s1 = PF::<span class="built_in">read_asset_string</span>(<span class="string">&quot;config/app_config&quot;</span>);
+	s1 = PF::<span class="built_in">key_format</span>(s1, <span class="string">&quot;exe_have_video&quot;</span>);
+	<span class="keyword">if</span> (s1 == <span class="string">&quot;true&quot;</span>) &#123;
+		<span class="keyword">return</span> <span class="literal">true</span>;
+	&#125;
+	<span class="keyword">return</span> <span class="literal">false</span>;
+&#125;
+<span class="function"><span class="type">void</span> <span class="title">PFJava::cpp_func_of_play_ad_video</span><span class="params">(<span class="type">const</span> string &amp; as_page, <span class="type">long</span> al_level)</span></span>
+<span class="function"></span>&#123;
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) </span>
+	JniMethodInfo t;
+	<span class="keyword">if</span> (JniHelper::<span class="built_in">getStaticMethodInfo</span>(t, <span class="string">&quot;org/cocos2dx/help/plugin/DreamPub&quot;</span>, <span class="string">&quot;of_vedio_play&quot;</span>, <span class="string">&quot;(Ljava/lang/String;J)V&quot;</span>))
+	&#123;
+		jstring k1 = t.env-&gt;<span class="built_in">NewStringUTF</span>(as_page.<span class="built_in">c_str</span>());
+		<span class="function">jlong <span class="title">j1</span><span class="params">(al_level)</span></span>;
+		t.env-&gt;<span class="built_in">CallStaticVoidMethod</span>(t.classID, t.methodID, k1, j1);
+	&#125;
+<span class="meta">#<span class="keyword">endif</span></span>
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span>
+	PFIOS::<span class="built_in">ios_func_play_video</span>();
+<span class="meta">#<span class="keyword">endif</span></span>
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="comment">//DreamPub.java</span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="title function_">of_vedio_can_play</span><span class="params">(String as_page, <span class="type">long</span> al_level)</span>&#123;
+    <span class="keyword">if</span> (al_level &lt; <span class="number">5</span>) <span class="keyword">return</span> <span class="number">0</span>;
+    <span class="keyword">if</span> (as_page == <span class="literal">null</span>) as_page = <span class="string">&quot;&quot;</span>;
+    <span class="keyword">if</span> (MaxAdHelper.of_can_show_video(as_page)) &#123;
+        Log.d(<span class="string">&quot;maxadlog&quot;</span> , <span class="string">&quot;of can show video(&quot;</span> + as_page + <span class="string">&quot;) = true.&quot;</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    &#125;
+    Log.d(<span class="string">&quot;maxadlog&quot;</span> , <span class="string">&quot;of can show video(&quot;</span> + as_page + <span class="string">&quot;) = false.&quot;</span> ) ;
+    <span class="keyword">return</span> <span class="number">0</span>;
+&#125;
+<span class="comment">/**</span>
+<span class="comment"> * 视频播放状态   ,读取一次后将失效</span>
+<span class="comment"> *    0 空</span>
+<span class="comment"> *    1 成功</span>
+<span class="comment"> *    2 失败</span>
+<span class="comment"> *    9 正在播放</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="variable">il_vedio_state</span> <span class="operator">=</span> <span class="number">0</span> ;
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">of_vedio_play</span><span class="params">(String as_page, <span class="type">long</span> al_level)</span>&#123;
+
+    <span class="comment">// 如果没有广告，直接返回失败。</span>
+    <span class="keyword">if</span>(of_vedio_can_play(as_page, al_level) == <span class="number">0</span> )&#123;
+        AppActivity.buyItemOk(<span class="string">&quot;VIDEO_PLAY_CANCEL&quot;</span>);
+        <span class="keyword">return</span>;
+    &#125;
+
+
+    AppActivity.ib_video_have_award = <span class="literal">false</span>;
+
+
+    Log.d(<span class="string">&quot;XXXXX&quot;</span> , <span class="string">&quot;XXXXX SDKAgent.showVideo(  ls_page   ); &quot;</span>  + as_page ) ;
+    il_vedio_state = <span class="number">9</span> ;
+
+    <span class="keyword">if</span>( as_page == <span class="literal">null</span>) as_page = <span class="string">&quot;&quot;</span>;
+    MaxAdHelper.of_show_video(as_page, al_level);
+
+    Log.d(<span class="string">&quot;XXXXX&quot;</span> , <span class="string">&quot;XXXXX SDKAgent.showVideo(  ls_page   ); &quot;</span>  + as_page ) ;
+
+&#125;</code></pre>
+
+<h2 id="插屏"><a href="#插屏" class="headerlink" title="插屏"></a>插屏</h2><p>删去暂停插屏，只留下成功和失败</p>
+<pre><code class="highlight cpp"><span class="comment">//PanelFinish.cpp</span>
+<span class="function"><span class="type">void</span> <span class="title">PanelFinish::on_fail_continue</span><span class="params">()</span></span>&#123;
+	g.<span class="built_in">of_inter_play</span>(<span class="string">&quot;page_fail&quot;</span>);
+&#125;
+PanelFinish::<span class="built_in">PanelFinish</span>(LayerGame* lay)&#123;
+    <span class="keyword">if</span> (g.ct-&gt;<span class="built_in">is_passed</span>()) &#123;
+        g.<span class="built_in">of_inter_play</span>(<span class="string">&quot;page_succ&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="highlight cpp"><span class="comment">//CandyManager.cpp</span>
+<span class="function"><span class="type">bool</span> <span class="title">CandyManager::of_inter_can_play</span><span class="params">(<span class="type">const</span> string&amp; as_page)</span></span>
+<span class="function"></span>&#123;
+	cocos2d::<span class="built_in">log</span>(<span class="string">&quot;maxadlog call func CandyManager::of_inter_can_play(%s). bought=%f, game_level=%d&quot;</span>, as_page.<span class="built_in">c_str</span>(), g.cm-&gt;pub_money_buyed_total, g.game_level);;
+	<span class="keyword">if</span> (g.cm &amp;&amp; g.cm-&gt;pub_money_buyed_total &gt; <span class="number">0.1f</span>)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+	<span class="keyword">if</span> (g.game_level &lt; <span class="number">10</span>)
+	&#123;
+		<span class="keyword">return</span> <span class="literal">false</span>;
+	&#125;
+	<span class="keyword">return</span> PFJava::<span class="built_in">cpp_func_of_can_play_ad_inter</span>(as_page, g.game_level);
+&#125;
+<span class="function"><span class="type">void</span> <span class="title">CandyManager::of_inter_play</span><span class="params">(<span class="type">const</span> string&amp; as_page)</span></span>
+<span class="function"></span>&#123;
+	<span class="keyword">if</span> (<span class="built_in">of_inter_can_play</span>(as_page))
+	&#123;
+		PFJava::<span class="built_in">cpp_func_of_play_inter_pub</span>(as_page, g.game_level);
+	&#125;
+&#125;</code></pre>
+
+<pre><code class="highlight cpp"><span class="comment">//PF.cpp</span>
+<span class="function"><span class="type">bool</span> <span class="title">PFJava::cpp_func_of_can_play_ad_inter</span><span class="params">(std::string as_page, <span class="type">long</span> al_level)</span></span>
+<span class="function"></span>&#123;
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) </span>
+	JniMethodInfo t;
+	<span class="keyword">if</span> (JniHelper::<span class="built_in">getStaticMethodInfo</span>(t, <span class="string">&quot;org/cocos2dx/help/plugin/DreamPub&quot;</span>, <span class="string">&quot;java_func_of_inter_can_play&quot;</span>, <span class="string">&quot;(Ljava/lang/String;J)J&quot;</span>))
+	&#123;
+		jstring k1 = t.env-&gt;<span class="built_in">NewStringUTF</span>(as_page.<span class="built_in">c_str</span>());
+		<span class="function">jlong <span class="title">j1</span><span class="params">(al_level)</span></span>;
+		<span class="type">long</span> ret = t.env-&gt;<span class="built_in">CallStaticLongMethod</span>(t.classID, t.methodID, k1, j1);
+		<span class="keyword">if</span> (ret == <span class="number">1</span>) &#123;
+			<span class="keyword">return</span> <span class="literal">true</span>;
+		&#125;
+	&#125;
+	<span class="keyword">return</span> <span class="literal">false</span>;
+<span class="meta">#<span class="keyword">endif</span></span>
+	<span class="keyword">return</span> <span class="literal">false</span>;
+&#125;
+<span class="function"><span class="type">void</span> <span class="title">PFJava::cpp_func_of_play_inter_pub</span><span class="params">(std::string as_page, <span class="type">long</span> al_level)</span></span>
+<span class="function"></span>&#123;
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
+	JniMethodInfo t;
+	string ls_fun = <span class="string">&quot;of_ad_interval_pub&quot;</span>;
+	<span class="keyword">if</span> (JniHelper::<span class="built_in">getStaticMethodInfo</span>(t, <span class="string">&quot;org/cocos2dx/help/plugin/DreamPub&quot;</span>, ls_fun.<span class="built_in">c_str</span>(), <span class="string">&quot;(Ljava/lang/String;J)V&quot;</span>))
+	&#123;
+		jstring k1 = t.env-&gt;<span class="built_in">NewStringUTF</span>(as_page.<span class="built_in">c_str</span>());
+		<span class="function">jlong <span class="title">j1</span><span class="params">(al_level)</span></span>;
+		t.env-&gt;<span class="built_in">CallStaticVoidMethod</span>(t.classID, t.methodID, k1, j1);
+	&#125;
+	<span class="keyword">return</span>;
+<span class="meta">#<span class="keyword">endif</span></span>
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)</span>
+	cocos2d::<span class="built_in">log</span>(<span class="string">&quot;win32 platform:as_page=%s, al_level=%d&quot;</span>, as_page.<span class="built_in">c_str</span>(), al_level);
+<span class="meta">#<span class="keyword">endif</span></span>
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="comment">//DreamPub.java</span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">of_ad_interval_pub</span><span class="params">(<span class="keyword">final</span> String as_page, <span class="type">long</span> al_level)</span> &#123;
+    <span class="keyword">if</span> (_activity == <span class="literal">null</span> ) <span class="keyword">return</span>;
+    <span class="keyword">if</span> (ib_noad ) <span class="keyword">return</span>;
+    Log.d(<span class="string">&quot;maxadlog&quot;</span> , <span class="string">&quot;XXXXX of ad interval pub(&quot;</span> + as_page +  <span class="string">&quot;,&quot;</span> + al_level + <span class="string">&quot;). begin&quot;</span>) ;
+    MaxAdHelper.of_show_inter(as_page, al_level);
+    Log.d(<span class="string">&quot;maxadlog&quot;</span> , <span class="string">&quot;XXXXX of ad interval pub(&quot;</span> + as_page +  <span class="string">&quot;,&quot;</span> + al_level + <span class="string">&quot;). end&quot;</span>) ;
+&#125;
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="title function_">java_func_of_inter_can_play</span><span class="params">(String as_page, <span class="type">long</span> al_level)</span> &#123;
+    <span class="keyword">if</span> (MaxAdHelper.of_can_show_inter(as_page, al_level)) &#123;
+        <span class="keyword">return</span> <span class="number">1</span>;
+    &#125;
+    <span class="keyword">return</span> <span class="number">0</span>;
+&#125;</code></pre>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/09/01Work/004_AppLovinMax/" rel="prev" title="max sdk 集成">
+                  <i class="fa fa-angle-left"></i> max sdk 集成
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/11/28/02Tool/BeyondCompare/BeyondCompare001/" rel="next" title="BeyondCompare比较文件时忽略换行符差异">
+                  BeyondCompare比较文件时忽略换行符差异 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

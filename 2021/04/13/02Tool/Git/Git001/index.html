@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="查看手册如：git help log或者git log --help 创建仓库的两种方式 本地初始化  cd到目标文件夹下，执行git init。  跟远程建立连接git remote add &lt;name&gt; &lt;url&gt;name一般是取origin。  克隆远程仓库到本地  git clone &lt;url&gt;    git clone默认会把远程仓库整个给clone下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git介绍">
+<meta property="og:url" content="https://615737749.github.io/2021/04/13/02Tool/Git/Git001/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="查看手册如：git help log或者git log --help 创建仓库的两种方式 本地初始化  cd到目标文件夹下，执行git init。  跟远程建立连接git remote add &lt;name&gt; &lt;url&gt;name一般是取origin。  克隆远程仓库到本地  git clone &lt;url&gt;    git clone默认会把远程仓库整个给clone下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-13T07:35:18.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.576Z">
+<meta property="article:author" content="porridgechen890">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2021/04/13/02Tool/Git/Git001/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2021/04/13/02Tool/Git/Git001/","path":"2021/04/13/02Tool/Git/Git001/","title":"Git介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Git介绍 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%8B%E5%86%8C"><span class="nav-number">1.</span> <span class="nav-text">查看手册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">创建仓库的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81"><span class="nav-number">3.</span> <span class="nav-text">查看仓库状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">4.</span> <span class="nav-text">添加文件到暂存区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4"><span class="nav-number">5.</span> <span class="nav-text">提交</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="nav-number">6.</span> <span class="nav-text">查看提交记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="nav-number">7.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC"><span class="nav-number">8.</span> <span class="nav-text">回退版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">推送本地修改到远程仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E7%9A%84%E6%9C%80%E6%96%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">10.</span> <span class="nav-text">拉取远程的最新代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E7%89%B9%E5%AE%9A%E5%88%86%E6%94%AF%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">11.</span> <span class="nav-text">拉取特定分支的代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%B4%A6%E6%88%B7"><span class="nav-number">12.</span> <span class="nav-text">配置账户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-clean"><span class="nav-number">13.</span> <span class="nav-text">git clean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E9%92%A5%E7%AE%A1%E7%90%86"><span class="nav-number">14.</span> <span class="nav-text">公钥管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rebase%E9%85%8D%E5%90%88merge%E4%BD%BF%E7%94%A8"><span class="nav-number">15.</span> <span class="nav-text">rebase配合merge使用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/04/13/02Tool/Git/Git001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Git介绍 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-13 15:35:18" itemprop="dateCreated datePublished" datetime="2021-04-13T15:35:18+08:00">2021-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/02%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">02工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="查看手册"><a href="#查看手册" class="headerlink" title="查看手册"></a>查看手册</h1><p>如：<code>git help log</code>或者<code>git log --help</code></p>
+<h1 id="创建仓库的两种方式"><a href="#创建仓库的两种方式" class="headerlink" title="创建仓库的两种方式"></a>创建仓库的两种方式</h1><ol>
+<li><p>本地初始化</p>
+<p> cd到目标文件夹下，执行<code>git init</code>。</p>
+<p> 跟远程建立连接<code>git remote add &lt;name&gt; &lt;url&gt;</code>name一般是取origin。</p>
+</li>
+<li><p>克隆远程仓库到本地</p>
+<p> <code>git clone &lt;url&gt;</code></p>
+</li>
+</ol>
+<blockquote>
+<p>git clone默认会把远程仓库整个给clone下来，<br>但只会在本地默认创建一个master分支，<br>如果远程还有其他的分支，此时用<code>git branch -a</code>查看所有分支。<br>可以用<code>git checkout -t origin/&lt;branch_name&gt;</code>来拉取某个分支。</p>
+</blockquote>
+<h1 id="查看仓库状态"><a href="#查看仓库状态" class="headerlink" title="查看仓库状态"></a>查看仓库状态</h1><p><code>git status</code></p>
+<p>Untracked files指未受控的文件。</p>
+<p>Changes to be committed指受控文件发生了改变，还没commit。</p>
+<h1 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h1><p><code>git add</code></p>
+<p><code>git add FileName</code>add文件。</p>
+<p><code>git add FolderName/</code>add文件夹。</p>
+<h1 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h1><p><code>git commit -m &quot;add readme.txt&quot;</code>。</p>
+<blockquote>
+<p>提交修改分为两步，先把修改的文件add到暂存区，然后commit到仓库。如果有远程仓库的话，还要push到远程仓库。</p>
+</blockquote>
+<h1 id="查看提交记录"><a href="#查看提交记录" class="headerlink" title="查看提交记录"></a>查看提交记录</h1><p><code>git log</code>要输入一个<code>q</code>才能退出log的状态。</p>
+<p><code>git log --pretty=oneline</code>单行显示，简写<code>git log --oneline</code>。</p>
+<p><code>git log -p a.txt</code>查看a.txt的log。</p>
+<p><code>git log --author=Tom</code>查看提交人Tom的提交记录。</p>
+<h1 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h1><p><code>git checkout readme.txt</code></p>
+<p>checkout是指还没有commit的修改想要撤销掉。而如果commit了的修改想要撤销就要用reset了。</p>
+<p>checkout某个文件是让那个文件回到仓库里HEAD的状态。</p>
+<p>如果是用惯了svn的同学可能会想着先把那个文件删掉，再从仓库里拉取最新代码就行。在git里是不适用的哦。</p>
+<h1 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h1><p><code>git reset --hard HEAD^</code>回退到上个版本。</p>
+<p><code>git reset --hard HEAD~n</code>回退到前n次提交之前。</p>
+<p><code>git reset --hard commit_id</code>退到&#x2F;进到 指定commit的sha码。</p>
+<h1 id="推送本地修改到远程仓库"><a href="#推送本地修改到远程仓库" class="headerlink" title="推送本地修改到远程仓库"></a>推送本地修改到远程仓库</h1><p><code>git push</code>，某些情况下你需要指定远程仓库的名字和分支，如<code>git push origin master</code>。</p>
+<h1 id="拉取远程的最新代码"><a href="#拉取远程的最新代码" class="headerlink" title="拉取远程的最新代码"></a>拉取远程的最新代码</h1><p><code>git pull</code></p>
+<h1 id="拉取特定分支的代码"><a href="#拉取特定分支的代码" class="headerlink" title="拉取特定分支的代码"></a>拉取特定分支的代码</h1><p><code>git branch -a</code> 可列出所有分支，包括远程的。现假设远程有一个叫 dev 的分支。</p>
+<ol>
+<li><p>直接克隆某个分支</p>
+<p> <code>git clone -b dev 仓库地址</code></p>
+</li>
+<li><p>先克隆了主分支，在拉取其他分支</p>
+<p> <code>git checkout -b dev1 origin/dev</code></p>
+<p> 注：dev1 的这个名字你可以随便改。</p>
+</li>
+</ol>
+<h1 id="配置账户"><a href="#配置账户" class="headerlink" title="配置账户"></a>配置账户</h1><p><code>git config --system --list</code></p>
+<p><code>git config --global --list</code></p>
+<p><code>git config --local --list</code></p>
+<p><code>git config --local user.name &quot;xxx&quot;</code></p>
+<p><code>git config --local user.email &quot;xxx&quot;</code></p>
+<h1 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h1><p>删除未受控的文件：<code>git clean -f</code></p>
+<p>删除未受控的文件和目录：<code>git clean -fd</code></p>
+<p>查看将要删除哪些文件：<code>git clean -nf</code></p>
+<p>查看将要删除哪些文件和目录：<code>git clean -nfd</code></p>
+<h1 id="公钥管理"><a href="#公钥管理" class="headerlink" title="公钥管理"></a>公钥管理</h1><p><code>ssh-keygen -t rsa -C &quot;yourEmail@xxx.com&quot;</code>。</p>
+<p>然后会让你选择存放路径和输入密码，可以直接按回车。</p>
+<p>然后就会生成两个文件，一个id_rsa，一个id_rsa.pub。</p>
+<p>拷贝id_rsa.pub里面的内容，粘贴到github或者gitee里。</p>
+<p>添加成功后，输入<code>ssh -T git@gitee.com</code>来测试是否可以正常连接。</p>
+<h1 id="rebase配合merge使用"><a href="#rebase配合merge使用" class="headerlink" title="rebase配合merge使用"></a>rebase配合merge使用</h1><p>多人协作的话需要分支，分支上开发一个功能完成后需要合并到主干上，但是主干上不想要多余的提交记录。此时，可以使用变基。过程大概是这个样子。<br>git branch dev<br>git switch dev<br>&#x2F;&#x2F;modify sth<br>git commit -m ‘dev 1’<br>&#x2F;&#x2F;modify sth<br>git commit -m ‘dev 2’<br>git rebase -i startpoint endpoint&#x2F;&#x2F;不写endpoint的话就是HEAD<br>&#x2F;&#x2F;select pick reword fixup and so on<br>git switch master<br>git merge dev</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/13/05History/History002/" rel="prev" title="南北朝">
+                  <i class="fa fa-angle-left"></i> 南北朝
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/13/04Hexo/Hexo002/" rel="next" title="如何往文章里添加图片">
+                  如何往文章里添加图片 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

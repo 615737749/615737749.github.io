@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文档链接 Edge浏览器如果打不开，可以用谷歌浏览器。 集成 在这里勾选需要的平台，把仓库地址拷贝到项目级build.gradle，把依赖拷贝到模块级build.gradle。  可能需要修改gradle的版本号，这里提供一组：  classpath &#39;com.android.tools.build:gradle:7.0.3&#39;  distributionUrl&#x3D;https\:&#x2F;&#x2F;s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="max sdk 集成">
+<meta property="og:url" content="https://615737749.github.io/2023/11/09/01Work/004_AppLovinMax/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="文档链接 Edge浏览器如果打不开，可以用谷歌浏览器。 集成 在这里勾选需要的平台，把仓库地址拷贝到项目级build.gradle，把依赖拷贝到模块级build.gradle。  可能需要修改gradle的版本号，这里提供一组：  classpath &#39;com.android.tools.build:gradle:7.0.3&#39;  distributionUrl&#x3D;https\:&#x2F;&#x2F;s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.565Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2023/11/09/01Work/004_AppLovinMax/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2023/11/09/01Work/004_AppLovinMax/","path":"2023/11/09/01Work/004_AppLovinMax/","title":"max sdk 集成"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>max sdk 集成 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">1.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">集成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2023/11/09/01Work/004_AppLovinMax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="max sdk 集成 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          max sdk 集成
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/01%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">01工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p><a target="_blank" rel="noopener" href="https://dash.applovin.com/documentation/mediation">链接</a></p>
+<p>Edge浏览器如果打不开，可以用谷歌浏览器。</p>
+<h1 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h1><ol>
+<li><p>在<a target="_blank" rel="noopener" href="https://dash.applovin.com/documentation/mediation/android/mediation-adapters">这里</a>勾选需要的平台，把仓库地址拷贝到项目级build.gradle，把依赖拷贝到模块级build.gradle。</p>
+</li>
+<li><p>可能需要修改gradle的版本号，这里提供一组：</p>
+<p> <code>classpath &#39;com.android.tools.build:gradle:7.0.3&#39;</code></p>
+<p> <code>distributionUrl=https\://services.gradle.org/distributions/gradle-7.2-bin.zip</code></p>
+</li>
+<li><p>可能需要删除旧的广告依赖和广告仓库。</p>
+</li>
+<li><p>需要使用Java8：</p>
+ <pre><code class="highlight gradle">android &#123;
+    compileOptions &#123;
+        <span class="keyword">sourceCompatibility</span> = JavaVersion.VERSION_1_8
+        <span class="keyword">targetCompatibility</span> = JavaVersion.VERSION_1_8
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>需要收集谷歌广告ID：<code>implementation &#39;com.google.android.gms:play-services-ads-identifier:18.0.1&#39;</code></p>
+</li>
+<li><p>需要广告ID权限：<code>&lt;uses-permission android:name=&quot;com.google.android.gms.permission.AD_ID&quot;/&gt;</code></p>
+</li>
+<li><p>添加sdk key：<code>&lt;meta-data android:name=&quot;applovin.sdk.key&quot; android:value=&quot;YOUR_SDK_KEY_HERE&quot;/&gt;</code></p>
+</li>
+<li><p>初始化sdk：</p>
+ <pre><code class="highlight java"><span class="comment">//读取缓存文件里的GDPR值</span>
+<span class="type">String</span> <span class="variable">gdpr_config</span> <span class="operator">=</span> <span class="string">&quot;pub_gdpr_config&quot;</span>;
+<span class="type">SharedPreferences</span> <span class="variable">sh</span> <span class="operator">=</span> <span class="built_in">this</span>.getSharedPreferences(gdpr_config, <span class="number">0</span>);
+SharedPreferences.<span class="type">Editor</span> <span class="variable">shedit</span> <span class="operator">=</span> sh.edit();
+<span class="type">int</span> <span class="variable">gdpr_value</span> <span class="operator">=</span> sh.getInt(<span class="string">&quot;gdpr_state&quot;</span>, -<span class="number">1</span>);
+Log.d(<span class="string">&quot;maxadlog&quot;</span>, <span class="string">&quot;gdpr value from cache = &quot;</span> + gdpr_value);
+
+AppLovinSdk.getInstance(<span class="built_in">this</span>).setMediationProvider(<span class="string">&quot;max&quot;</span>);
+AppLovinSdk.initializeSdk(<span class="built_in">this</span>, <span class="keyword">new</span> <span class="title class_">AppLovinSdk</span>.SdkInitializationListener() &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSdkInitialized</span><span class="params">(AppLovinSdkConfiguration appLovinSdkConfiguration)</span> &#123;
+        Log.d(<span class="string">&quot;maxadlog&quot;</span>, appLovinSdkConfiguration.toString());
+
+        <span class="keyword">if</span> (gdpr_value == -<span class="number">1</span>) &#123;
+            <span class="keyword">if</span> (appLovinSdkConfiguration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.APPLIES) &#123;
+                Log.d(<span class="string">&quot;maxadlog&quot;</span>, <span class="string">&quot;gdpr APPLIES&quot;</span>);
+                <span class="type">AppLovinUserService</span> <span class="variable">appLovinUserService</span> <span class="operator">=</span> AppLovinSdk.getInstance(DreamPub._activity).getUserService();
+                appLovinUserService.showConsentDialog(DreamPub._activity, <span class="keyword">new</span> <span class="title class_">AppLovinUserService</span>.OnConsentDialogDismissListener() &#123;
+                    <span class="meta">@Override</span>
+                    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDismiss</span><span class="params">()</span> &#123;
+                        AppLovinPrivacySettings.setHasUserConsent(<span class="literal">true</span>, DreamPub._activity);
+                        shedit.putInt(<span class="string">&quot;gdpr_state&quot;</span>, <span class="number">1</span>);
+                        shedit.commit();
+                    &#125;
+                &#125;);
+            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (appLovinSdkConfiguration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.DOES_NOT_APPLY) &#123;
+                Log.d(<span class="string">&quot;maxadlog&quot;</span>, <span class="string">&quot;gdpr DOES_NOT_APPLY&quot;</span>);
+            &#125; <span class="keyword">else</span> &#123;
+                Log.d(<span class="string">&quot;maxadlog&quot;</span>, <span class="string">&quot;gdpr UNKNOWN&quot;</span>);
+            &#125;
+        &#125;
+        MaxAdHelper.init_max_ad(AppActivity.<span class="built_in">this</span>);
+    &#125;
+&#125;);
+<span class="comment">//AppLovinSdk.getInstance(this).showMediationDebugger();</span></code></pre></li>
+</ol>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
+<li><p>adjust初始化</p>
+</li>
+<li><p>拷贝MaxAdHelper</p>
+</li>
+<li><p>修改视频、插屏、开屏ID</p>
+</li>
+<li><p>修改adltv点位</p>
+</li>
+<li><p>修改广告关控</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/06/03Knowledge/SQL/SQL002/" rel="prev" title="SQL学习记录">
+                  <i class="fa fa-angle-left"></i> SQL学习记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/11/13/01Work/005_AdControl/" rel="next" title="AdControl">
+                  AdControl <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

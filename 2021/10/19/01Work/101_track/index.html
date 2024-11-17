@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="新增的一个时间戳属性，用来打点 给CandyManager类增加一个属性，在long time_total, time_left, time_used;之后：  string level_timestamp; &#x2F;&#x2F; 用于记录下of_start的时间，用来在数据中唯一标识一局游戏。   在CandyManager::CandyManager(void)里加一句初始化这个属性的代码：  level">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打点统计">
+<meta property="og:url" content="https://615737749.github.io/2021/10/19/01Work/101_track/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="新增的一个时间戳属性，用来打点 给CandyManager类增加一个属性，在long time_total, time_left, time_used;之后：  string level_timestamp; &#x2F;&#x2F; 用于记录下of_start的时间，用来在数据中唯一标识一局游戏。   在CandyManager::CandyManager(void)里加一句初始化这个属性的代码：  level">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-19T13:10:18.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.568Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2021/10/19/01Work/101_track/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2021/10/19/01Work/101_track/","path":"2021/10/19/01Work/101_track/","title":"打点统计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>打点统计 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E7%9A%84%E4%B8%80%E4%B8%AA%E6%97%B6%E9%97%B4%E6%88%B3%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%94%A8%E6%9D%A5%E6%89%93%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">新增的一个时间戳属性，用来打点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adjust%E7%9A%84%E5%87%A0%E4%B8%AA%E5%B1%9E%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">Adjust的几个属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86Java%E7%AB%AF%E7%9A%84%E5%9B%9E%E8%B0%83"><span class="nav-number">3.</span> <span class="nav-text">处理Java端的回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E7%AB%AF%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="nav-number">4.</span> <span class="nav-text">Java端的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%B4%AD%E7%9A%84%E6%89%93%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">内购的打点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E4%B8%80%E4%B8%8Bjava%E5%8F%91%E6%9D%A5%E7%9A%84%E5%B9%BF%E5%91%8A%E9%83%A8%E5%88%86%E5%9B%9E%E8%B0%83"><span class="nav-number">6.</span> <span class="nav-text">处理一下java发来的广告部分回调</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2021/10/19/01Work/101_track/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="打点统计 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          打点统计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-19 21:10:18" itemprop="dateCreated datePublished" datetime="2021-10-19T21:10:18+08:00">2021-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/01%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">01工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+
+<h3 id="新增的一个时间戳属性，用来打点"><a href="#新增的一个时间戳属性，用来打点" class="headerlink" title="新增的一个时间戳属性，用来打点"></a>新增的一个时间戳属性，用来打点</h3><ol>
+<li><p>给<code>CandyManager</code>类增加一个属性，在<code>long time_total, time_left, time_used;</code>之后：</p>
+ <pre><code class="highlight cpp">string level_timestamp; <span class="comment">// 用于记录下of_start的时间，用来在数据中唯一标识一局游戏。</span></code></pre>
+
+<p> 在<code>CandyManager::CandyManager(void)</code>里加一句初始化这个属性的代码：</p>
+ <pre><code class="highlight cpp">level_timestamp = <span class="string">&quot;&quot;</span>; <span class="comment">// 形成新的时间标识。</span></code></pre>
+
+<p> 在<code>CandyManager::of_start</code>函数里增加一句给这个属性赋值的代码：</p>
+ <pre><code class="highlight cpp">level_timestamp = PF::<span class="built_in">tostring</span>(PFJava::<span class="built_in">of_get_time_seconds</span>()); <span class="comment">// 形成新的时间标识。</span></code></pre>
+
+<p> 使用这个属性是在<code>CandyYifanTrack::of_get_pub_string()</code>函数里。</p>
+</li>
+</ol>
+<h3 id="Adjust的几个属性"><a href="#Adjust的几个属性" class="headerlink" title="Adjust的几个属性"></a>Adjust的几个属性</h3><ol>
+<li><p>概述：这几个属性是java端才知道的。通过<code>buyItemOk</code>这个函数传回给c++端。通过字符串<code>ON_ADJUST_USER_INFO_GET:</code>来标志。</p>
+</li>
+<li><p>在<code>PubConfigParm.h</code>里增加一个宏定义，在<code>CandyYifanTrack.cpp</code>里会用到，所以现在就去<code>CandyYifanTrack.cpp</code>里写上<code>#include &quot;PubConfigParm.h&quot;</code>。</p>
+ <pre><code class="highlight cpp"><span class="meta">#<span class="keyword">define</span> PUB_KEY_JAVA_INFO_DEV_STRING <span class="string">&quot;+:::::+&quot;</span></span></code></pre>
+
+<p> 在<code>DreamPub.java</code>里给DreamPub类增加一个属性</p>
+ <pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">pub_dev_key</span> <span class="operator">=</span> <span class="string">&quot;+:::::+&quot;</span>;</code></pre>
+</li>
+<li><p>给CandyYifanTrack类增加几个属性和一个方法，放在<code>#pragma region 数据存储</code>这个区域内。</p>
+ <pre><code class="highlight cpp">string is_user_tracktoken;
+string is_user_network;
+string is_user_campaign;
+string is_user_adgroup;
+string is_user_creative;
+
+<span class="comment">// 因为名字中的内容比较长，比较乱，所以要注意分隔符。</span>
+<span class="comment">// token+:::::+networe+:::::+campaign+:::::+adgroup+:::::+creative</span>
+<span class="function"><span class="type">void</span> <span class="title">of_set_adjust_user_info</span><span class="params">(<span class="type">const</span> string&amp; as_info)</span></span>;</code></pre>
+</li>
+<li><p>在构造函数<code>CandyYifanTrack::CandyYifanTrack()</code>里增加初始化这几个变量的代码：</p>
+ <pre><code class="highlight cpp"><span class="comment">// adjust信息</span>
+is_user_tracktoken = <span class="string">&quot;&quot;</span>;
+is_user_network = <span class="string">&quot;&quot;</span>;
+is_user_campaign = <span class="string">&quot;&quot;</span>;
+is_user_adgroup = <span class="string">&quot;&quot;</span>;
+is_user_creative = <span class="string">&quot;&quot;</span>;</code></pre>
+</li>
+<li><p>在存盘的函数<code>CandyYifanTrack::of_save_track_info()</code>里，存一下这几个变量：</p>
+ <pre><code class="highlight cpp">ls_text += PF::<span class="built_in">create_key</span>(<span class="string">&quot;is_user_tracktoken&quot;</span>, is_user_tracktoken);
+ls_text += PF::<span class="built_in">create_key</span>(<span class="string">&quot;is_user_network&quot;</span>, is_user_network);
+ls_text += PF::<span class="built_in">create_key</span>(<span class="string">&quot;is_user_campaign&quot;</span>, is_user_campaign);
+ls_text += PF::<span class="built_in">create_key</span>(<span class="string">&quot;is_user_adgroup&quot;</span>, is_user_adgroup);
+ls_text += PF::<span class="built_in">create_key</span>(<span class="string">&quot;is_user_creative&quot;</span>, is_user_creative);</code></pre>
+</li>
+<li><p>在读盘的函数<code>CandyYifanTrack::of_load_track_info()</code>里，读一下这几个变量：</p>
+ <pre><code class="highlight cpp"><span class="comment">// adjust信息</span>
+is_user_tracktoken = PF::<span class="built_in">key_format</span>(ls_text, <span class="string">&quot;is_user_tracktoken&quot;</span>);
+is_user_network = PF::<span class="built_in">key_format</span>(ls_text, <span class="string">&quot;is_user_network&quot;</span>);
+is_user_campaign = PF::<span class="built_in">key_format</span>(ls_text, <span class="string">&quot;is_user_campaign&quot;</span>);
+is_user_adgroup = PF::<span class="built_in">key_format</span>(ls_text, <span class="string">&quot;is_user_adgroup&quot;</span>);
+is_user_creative = PF::<span class="built_in">key_format</span>(ls_text, <span class="string">&quot;is_user_creative&quot;</span>);</code></pre>
+</li>
+<li><p>刚增加的方法，的实现部分：</p>
+ <pre><code class="highlight cpp"><span class="comment">// 因为名字中的内容比较长，比较乱，所以要注意分隔符。</span>
+<span class="comment">// token+:::::+networe+:::::+campaign+:::::+adgroup+:::::+creative</span>
+<span class="function"><span class="type">void</span> <span class="title">CandyYifanTrack::of_set_adjust_user_info</span><span class="params">(<span class="type">const</span> string&amp; as_info)</span> </span>&#123;
+    <span class="keyword">auto</span> ss = PF::<span class="built_in">spilt</span>(as_info, PUB_KEY_JAVA_INFO_DEV_STRING);
+    <span class="keyword">if</span> (ss.<span class="built_in">size</span>() &gt;= <span class="number">5</span>) &#123;
+        is_user_tracktoken = ss[<span class="number">0</span>];
+        is_user_network = ss[<span class="number">1</span>];
+        is_user_campaign = ss[<span class="number">2</span>];
+        is_user_adgroup = ss[<span class="number">3</span>];
+        is_user_creative = ss[<span class="number">4</span>];
+        <span class="built_in">of_save_track_info</span>();
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>修改<code>CandyYifanTrack::of_get_pub_string</code>方法，在<code>string ls_msg = PF::create_track_line(&quot;u_event&quot;, as_event );</code>后面增加如下代码：</p>
+ <pre><code class="highlight cpp"><span class="comment">// 这里要先计算一下。</span>
+g.cm-&gt;<span class="built_in">of_cal_life</span>(); 
+
+<span class="comment">// SDK的通用需求：发布的市场字段</span>
+<span class="meta">#<span class="keyword">if</span>(CC_TARGET_PLATFOREM == CC_PLATFORM_ANDROID)</span>
+    ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;__store&quot;</span>, <span class="string">&quot;Google Play&quot;</span>);
+<span class="meta">#<span class="keyword">endif</span></span>
+<span class="meta">#<span class="keyword">if</span>(CC_TARGET_PLATFOREM == CC_PLATFORM_IOS)</span>
+    ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;__store&quot;</span>, <span class="string">&quot;App Store&quot;</span>);
+<span class="meta">#<span class="keyword">endif</span></span>
+
+<span class="comment">// 公用部分事件属性，注意里面有 max_level </span>
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;u_model&quot;</span>, g.game_model);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;u_level&quot;</span>, g.game_level);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;u_page&quot;</span>, is_current_page);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;max_level&quot;</span>, il_max_level);<span class="comment">// 最大关卡号 </span>
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;life_count&quot;</span>, g.cm-&gt;pub_life);
+
+<span class="comment">// adjust的属性段</span>
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;user_tracktoken&quot;</span>, is_user_tracktoken);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;user_network&quot;</span>, is_user_network);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;user_campaign&quot;</span>, is_user_campaign);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;user_adgroup&quot;</span>, is_user_adgroup);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;user_creative&quot;</span>, is_user_creative);
+
+<span class="comment">// 金币段</span>
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;money1_count&quot;</span>, g.cm-&gt;pub_money1);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;money2_count&quot;</span>, g.cm-&gt;pub_money2);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;money3_count&quot;</span>, <span class="number">0</span>);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;money4_count&quot;</span>, <span class="number">0</span>);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;money5_count&quot;</span>, <span class="number">0</span>);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;money6_count&quot;</span>, <span class="number">0</span>);
+
+<span class="comment">// 道具的状态.</span>
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;tool_hammer_left&quot;</span>, g.cm-&gt;<span class="built_in">of_get_magic</span>(<span class="string">&quot;hammer&quot;</span>).count);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;tool_bomb_left&quot;</span>, g.cm-&gt;<span class="built_in">of_get_magic</span>(<span class="string">&quot;bomb&quot;</span>).count);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;tool_same_left&quot;</span>, g.cm-&gt;<span class="built_in">of_get_magic</span>(<span class="string">&quot;same&quot;</span>).count);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;tool_beforelineline_left&quot;</span>, g.cm-&gt;<span class="built_in">of_get_magic</span>(<span class="string">&quot;beforelineline&quot;</span>).count);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;tool_beforebombbomb_left&quot;</span>, g.cm-&gt;<span class="built_in">of_get_magic</span>(<span class="string">&quot;beforebombbomb&quot;</span>).count);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;tool_beforesame_left&quot;</span>, g.cm-&gt;<span class="built_in">of_get_magic</span>(<span class="string">&quot;beforesame&quot;</span>).count);
+
+<span class="comment">// 活动的状态</span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;activity_treasure&quot;, g.candy_treasure-&gt;of_is_doing());</span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;activity_littlebuilding&quot;, g.candy_building_little-&gt;of_is_in_task());</span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;activity_ranking&quot;, g.candy_competition-&gt;is_in_competing());</span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;activity_bigspin&quot;, g.candy_big_spin-&gt;of_is_doing());</span>
+
+<span class="comment">// 装修的状态 ::: 需要待定处理 </span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;area_id&quot;, StoryManager::getInstance()-&gt;of_get_area_id());</span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;area_task_done&quot;, StoryManager::getInstance()-&gt;of_get_task_done());</span>
+<span class="comment">//ls_msg += PF::create_track_line(&quot;area_task_all&quot;, StoryManager::getInstance()-&gt;of_get_task_all());</span>
+
+
+<span class="comment">// 关卡进度相关的数据，这个只同关卡事件相关，放在公用位置更汇总一些。</span>
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_timestamp&quot;</span>, g.level_timestamp);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_move_used&quot;</span>, g.moves_used);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_move_left&quot;</span>, g.moves_left);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_move_total&quot;</span>, g.moves_total);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_second_used&quot;</span>, il_time_count_second);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_time_used&quot;</span>, g.time_used);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_time_total&quot;</span>, g.time_total);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_tools_used&quot;</span>, is_magic_used);
+ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;level_goon_count&quot;</span>, g.ii_count_goon_current_level - <span class="number">1</span>); <span class="comment">// 注意这里是需要减一下的，这个变量代表了是弹出了多少次窗口。</span></code></pre></li>
+</ol>
+<h3 id="处理Java端的回调"><a href="#处理Java端的回调" class="headerlink" title="处理Java端的回调"></a>处理Java端的回调</h3><ol>
+<li><p>在<code>CandyMagic::of_buy_succ</code>函数里增加处理java端回调的代码：</p>
+ <pre><code class="highlight cpp"><span class="meta">#<span class="keyword">pragma</span> region java or ios callback event</span>
+string ls_temp = good_id;
+<span class="comment">//// 因为名字中的内容比较长，比较乱，所以要注意分隔符。</span>
+<span class="comment">// token+:::::+networe+:::::+campaign+:::::+adgroup+:::::+creative</span>
+string ls_key_adjust_info = <span class="string">&quot;ON_ADJUST_USER_INFO_GET:&quot;</span>;
+<span class="keyword">if</span> (ls_temp.<span class="built_in">find</span>(ls_key_adjust_info) == <span class="number">0</span>) &#123;<span class="comment">//因为Java那里肯定是以这个开头的</span>
+    <span class="keyword">auto</span> sss1 = ls_temp.<span class="built_in">substr</span>(ls_key_adjust_info.<span class="built_in">size</span>());
+    g.candy_yifan_track-&gt;<span class="built_in">of_set_adjust_user_info</span>(sss1);
+    <span class="keyword">return</span>;
+&#125;
+<span class="meta">#<span class="keyword">pragma</span> endregion</span></code></pre></li>
+</ol>
+<h3 id="Java端的修改"><a href="#Java端的修改" class="headerlink" title="Java端的修改"></a>Java端的修改</h3><ol>
+<li><p>先按<a target="_blank" rel="noopener" href="https://yifants.feishu.cn/docs/doccn6RIco3MIyqQtDdhFBmEwge">文档</a>做好。</p>
+</li>
+<li><p>在<code>AppActivity.java</code>文件里的广告监听器里增加打点：</p>
+ <pre><code class="highlight java">SDKAgent.setAdListener(<span class="keyword">new</span> <span class="title class_">AdListener</span>() &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onAdClicked</span><span class="params">(AdBase var1)</span> &#123;
+        <span class="built_in">super</span>.onAdClicked(var1);
+
+        <span class="comment">// 此处通过回调进行数据的打点</span>
+        <span class="comment">//  广告类型 interstitial  video</span>
+        <span class="comment">//  广告方    facebook , admob , ,,,</span>
+        <span class="comment">// 广告位ID:广告类型:广告方:广告位置</span>
+        <span class="type">String</span> <span class="variable">ls_info</span> <span class="operator">=</span> var1.adId +<span class="string">&quot;:&quot;</span> + var1.type  + <span class="string">&quot;:&quot;</span> + var1.name + <span class="string">&quot;:&quot;</span> + var1.page;
+        buyItemOk(<span class="string">&quot;ON_AD_CLICK:&quot;</span> + ls_info );
+
+        <span class="comment">// 用户增加类属性</span>
+        <span class="type">HashMap</span> <span class="variable">userAddMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();
+        userAddMap.put(<span class="string">&quot;ad_click_count&quot;</span> , <span class="number">1</span> );
+        <span class="keyword">if</span> (AdType.TYPE_INTERSTITIAL.equals(var1.type))&#123;
+            userAddMap.put(<span class="string">&quot;ad_click_count_interstitial&quot;</span> , <span class="number">1</span>  );
+        &#125;
+        <span class="keyword">if</span> (AdType.TYPE_VIDEO.equals(var1.type))&#123;
+            userAddMap.put(<span class="string">&quot;ad_click_count_video&quot;</span> , <span class="number">1</span>  );
+        &#125;
+        YFDataAgent.trackUserAdd(userAddMap);
+    &#125;
+
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onAdShow</span><span class="params">(AdBase var1)</span> &#123;
+        <span class="built_in">super</span>.onAdShow(var1);
+
+        <span class="comment">// 此处通过回调进行数据的打点</span>
+        <span class="comment">//  广告类型 interstitial  video</span>
+        <span class="comment">//  广告方    facebook , admob , ,,,</span>
+        <span class="comment">// 广告位ID:广告类型:广告方:广告位置</span>
+        <span class="type">String</span> <span class="variable">ls_info</span> <span class="operator">=</span> var1.adId +<span class="string">&quot;:&quot;</span> + var1.type  + <span class="string">&quot;:&quot;</span> + var1.name + <span class="string">&quot;:&quot;</span> + var1.page;
+        buyItemOk(<span class="string">&quot;ON_AD_SHOW:&quot;</span> + ls_info );
+        
+        <span class="type">HashMap</span> <span class="variable">userAddMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();
+        userAddMap.put(<span class="string">&quot;ad_count_all&quot;</span> , <span class="number">1</span> );
+        <span class="keyword">if</span> (AdType.TYPE_INTERSTITIAL.equals(var1.type))&#123;
+            userAddMap.put(<span class="string">&quot;ad_count_interstitial&quot;</span> , <span class="number">1</span>  );
+        &#125;
+        <span class="keyword">if</span> (AdType.TYPE_VIDEO.equals(var1.type))&#123;
+            userAddMap.put(<span class="string">&quot;ad_count_video&quot;</span> , <span class="number">1</span>  );
+        &#125;
+        YFDataAgent.trackUserAdd(userAddMap);
+    &#125;
+&#125;);</code></pre>
+</li>
+<li><p>在类<code>PubAdjustNew</code>里新增几个属性，放在<code>public long  il_goon_coin_times_total = 0 ; // 一共进行了多少继续游戏的操作</code>之后就行。</p>
+ <pre><code class="highlight java"><span class="keyword">public</span> <span class="type">String</span> <span class="variable">user_tracktoken</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;
+<span class="keyword">public</span> <span class="type">String</span> <span class="variable">user_network</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;
+<span class="keyword">public</span> <span class="type">String</span> <span class="variable">user_campaign</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;
+<span class="keyword">public</span> <span class="type">String</span> <span class="variable">user_adgroup</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;
+<span class="keyword">public</span> <span class="type">String</span> <span class="variable">user_creative</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</code></pre>
+</li>
+<li><p>在类<code>PubAdjustNew</code>文件里新增一个函数<code>of_read_adjust_info</code>用来读取Adjust传过来的几个属性。</p>
+ <pre><code class="highlight java"><span class="comment">/**</span>
+<span class="comment">  * 读取玩家来源信息</span>
+<span class="comment">  * 2.3 版本起自然用户全部置为 PAY 用户</span>
+<span class="comment">  */</span>
+ <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">of_read_adjust_info</span><span class="params">()</span>&#123;
+
+     <span class="keyword">if</span>(user_creative != <span class="literal">null</span> &amp;&amp; user_creative.length() &gt; <span class="number">0</span> )&#123;
+         <span class="keyword">return</span>;
+     &#125;
+
+     <span class="keyword">try</span>&#123;
+         <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;
+             <span class="meta">@Override</span>
+             <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;
+                 <span class="keyword">try</span>&#123;
+                     <span class="type">AdjustAttribution</span> <span class="variable">info1</span> <span class="operator">=</span> Adjust.getAttribution();
+
+                     user_tracktoken = info1.trackerToken;
+                     user_network    = info1.network;
+                     user_campaign   = info1.campaign;
+                     user_adgroup    = info1.adgroup;
+                     user_creative   = info1.creative;
+
+                     <span class="keyword">if</span>( user_tracktoken == <span class="literal">null</span> ) user_tracktoken = <span class="string">&quot;&quot;</span>;
+                     <span class="keyword">if</span>( user_network == <span class="literal">null</span> )    user_network = <span class="string">&quot;&quot;</span>;
+                     <span class="keyword">if</span>( user_campaign == <span class="literal">null</span> )   user_campaign = <span class="string">&quot;&quot;</span>;
+                     <span class="keyword">if</span>( user_adgroup == <span class="literal">null</span> )    user_adgroup = <span class="string">&quot;&quot;</span>;
+                     <span class="keyword">if</span>( user_creative == <span class="literal">null</span> )   user_creative = <span class="string">&quot;&quot;</span>;
+
+                     <span class="comment">// 提交数据至用户属性</span>
+                     <span class="keyword">if</span>( user_tracktoken.length() &gt; <span class="number">1</span> )&#123;
+                         <span class="comment">//user_setonce用户属性打点</span>
+                         <span class="type">HashMap</span> <span class="variable">userSetOnceMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();
+                         userSetOnceMap.put(<span class="string">&quot;user_tracktoken&quot;</span>,user_tracktoken);
+                         userSetOnceMap.put(<span class="string">&quot;user_network&quot;</span>,user_network);
+                         userSetOnceMap.put(<span class="string">&quot;user_campaign&quot;</span>,user_campaign);
+                         userSetOnceMap.put(<span class="string">&quot;user_adgroup&quot;</span>,user_adgroup);
+                         userSetOnceMap.put(<span class="string">&quot;user_creative&quot;</span>,user_creative);
+                         YFDataAgent.trackUserSetOnce(userSetOnceMap);
+                     &#125;
+
+                     <span class="comment">// 传给c++</span>
+                     <span class="type">String</span> <span class="variable">ls_info</span> <span class="operator">=</span> <span class="string">&quot;ON_ADJUST_USER_INFO_GET:&quot;</span> ;
+                     ls_info += user_tracktoken + DreamPub.pub_dev_key;
+                     ls_info += user_network + DreamPub.pub_dev_key;
+                     ls_info += user_campaign + DreamPub.pub_dev_key;
+                     ls_info += user_adgroup  + DreamPub.pub_dev_key;
+                     ls_info += user_creative  ;
+                     ((AppActivity)_activity).buyItemOk(ls_info);
+
+
+                 &#125;
+                 <span class="keyword">catch</span> (Exception e2)&#123;
+                     e2.printStackTrace();
+                 &#125;
+             &#125;
+         &#125;).start();
+     &#125;
+     <span class="keyword">catch</span> (Exception e1)&#123;
+         e1.printStackTrace();
+     &#125;
+
+ &#125;</code></pre>
+
+<p> 粘贴完刚才的代码后，可能需要引入相应的包。</p>
+</li>
+<li><p>这几个属性在这里赋值：</p>
+ <pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PubAdjustNew</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onResume</span><span class="params">()</span>&#123;
+        of_read_adjust_info();
+    &#125;
+&#125;</code></pre></li>
+</ol>
+<h3 id="内购的打点"><a href="#内购的打点" class="headerlink" title="内购的打点"></a>内购的打点</h3><ol>
+<li>内购成功的函数：</li>
+</ol>
+<pre><code class="highlight java">VerifyPurchaseUtil.<span class="type">OnVerifyPurchaseListener</span> <span class="variable">onVerifyPurchaseListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">VerifyPurchaseUtil</span>.OnVerifyPurchaseListener()&#123;
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onVerifyFinish</span><span class="params">(GooglePurchase googlePurchase)</span> &#123;
+        DreamPub._adjustnew.of_track_moneypay( googlePurchase.getOrderId()  , googlePurchase.getProductId()  );<span class="comment">//这里调用打点的代码</span>
+    &#125;
+&#125;</code></pre>
+
+<ol>
+<li>给<code>PubAdjustNew</code>新增一个函数：</li>
+</ol>
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PubAdjustNew</span> &#123;
+        <span class="comment">//  只处理次数统计，不处理金额部分</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">of_track_moneypay</span><span class="params">( String as_orderid  ,String as_goodid   )</span>&#123;
+        <span class="keyword">if</span>(as_goodid == <span class="literal">null</span> ) as_goodid = <span class="string">&quot;&quot;</span>;
+        <span class="keyword">if</span>(as_orderid == <span class="literal">null</span> ) as_orderid = <span class="string">&quot;&quot;</span>;
+
+
+        <span class="comment">// 购买成功次数的计算与打点         // 注意要修改此值</span>
+        <span class="type">long</span>     <span class="variable">ll_count</span> <span class="operator">=</span> <span class="number">0</span>;
+        <span class="type">String</span> <span class="variable">save_key</span>  <span class="operator">=</span> <span class="string">&quot;paymoney_count&quot;</span>;
+        <span class="type">String</span> <span class="variable">save_name</span> <span class="operator">=</span> <span class="string">&quot;pub_adjust_count&quot;</span> ;
+        <span class="type">SharedPreferences</span> <span class="variable">sh</span> <span class="operator">=</span>_activity .getSharedPreferences(save_name, <span class="number">0</span>);
+        ll_count = sh.getLong( save_key ,<span class="number">0</span>);
+        ll_count ++;
+        SharedPreferences.<span class="type">Editor</span> <span class="variable">shedit</span> <span class="operator">=</span> sh.edit();
+        shedit.putLong ( save_key    , ll_count  );
+        shedit.commit();
+        <span class="comment">//  一共买了多少次的打点</span>
+        <span class="type">String</span> <span class="variable">ls_adjust_times</span> <span class="operator">=</span> <span class="string">&quot;money_pay_&quot;</span> + ll_count;
+        <span class="keyword">if</span>( ll_count &gt;= <span class="number">5</span> )&#123;
+            ls_adjust_times = <span class="string">&quot;money_pay_5more&quot;</span>;
+        &#125;
+        of_track_adjust(ls_adjust_times);
+
+
+        <span class="comment">// 首次内购日期时。</span>
+        <span class="comment">//user_setonce用户属性打点</span>
+        <span class="keyword">try</span> &#123;
+            <span class="comment">// 根据goodid的后四位来作为价格</span>
+            <span class="type">String</span> <span class="variable">ls_price</span> <span class="operator">=</span> <span class="string">&quot;0&quot;</span>;
+            <span class="keyword">if</span>(as_goodid.length() &gt;= <span class="number">4</span> )&#123;
+                <span class="type">int</span> <span class="variable">li_pos_last1</span> <span class="operator">=</span> as_goodid.lastIndexOf(<span class="string">&quot;.&quot;</span>);
+                <span class="keyword">if</span>(li_pos_last1 &gt; <span class="number">0</span> &amp;&amp; li_pos_last1 &lt; as_goodid.length() )&#123; <span class="comment">// 这里是肯定大于0的。</span>
+                    ls_price = as_goodid.substring(li_pos_last1 + <span class="number">1</span>  );
+                &#125;
+            &#125;
+            <span class="comment">// 得到价格信息</span>
+            <span class="type">float</span> <span class="variable">lf_price</span> <span class="operator">=</span> <span class="number">0</span>;
+            <span class="keyword">try</span>&#123;
+                lf_price = Float.parseFloat(ls_price);
+            &#125;
+            <span class="keyword">catch</span> (NumberFormatException e)&#123;
+
+            &#125;
+            lf_price = lf_price / <span class="number">100</span>; <span class="comment">// 转为美元。</span>
+
+
+            <span class="comment">// 事件数据追踪打点</span>
+            <span class="comment">// 一次性</span>
+            <span class="type">HashMap</span> <span class="variable">userSetOnceMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();
+            userSetOnceMap.put(<span class="string">&quot;purchase_first_date&quot;</span>, DreamPub.of_get_today_number()+ <span class="string">&quot;&quot;</span>);
+            YFDataAgent.trackUserSetOnce(userSetOnceMap);
+
+            <span class="comment">// 增加类属性</span>
+            <span class="type">HashMap</span> <span class="variable">userAddMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();
+            userAddMap.put(<span class="string">&quot;purchase_times&quot;</span> , <span class="number">1</span> );
+            userAddMap.put(<span class="string">&quot;purchase_sum&quot;</span> , lf_price  );
+            YFDataAgent.trackUserAdd(userAddMap);
+
+            <span class="comment">// 返回给c++端</span>
+            <span class="comment">// 内购点:订单号:价格</span>
+            <span class="type">String</span> <span class="variable">ls_info</span> <span class="operator">=</span> as_goodid + DreamPub.pub_dev_key + as_orderid + DreamPub.pub_dev_key + ls_price;
+            ((AppActivity)_activity).buyItemOk(<span class="string">&quot;ON_PURCHASE_VERIFIED:&quot;</span> + ls_info );
+
+
+        &#125;
+        <span class="keyword">catch</span> (Exception e)&#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<ol>
+<li><p>在C++那边处理一下Java的回调：</p>
+ <pre><code class="highlight cpp"><span class="function"><span class="type">void</span> <span class="title">CandyMagic::of_buy_succ</span><span class="params">(string good_id)</span></span>&#123;
+    <span class="meta">#<span class="keyword">pragma</span> region java or ios callback event</span>
+    <span class="comment">// 内购完成的追踪</span>
+    <span class="comment">// 返回给c++端</span>
+    <span class="comment">// 内购点:订单号:价格</span>
+    <span class="comment">//String ls_info = as_goodid + &quot;+:::::+&quot; + as_orderid + &quot;+:::::+&quot; + ls_price;</span>
+    <span class="comment">//((AppActivity)_activity).buyItemOk(&quot;ON_PURCHASE_VERIFIED:&quot; + ls_info);</span>
+    <span class="comment">// </span>
+    string ls_key_purchase_verified = <span class="string">&quot;ON_PURCHASE_VERIFIED:&quot;</span>;
+    <span class="keyword">if</span> (ls_temp.<span class="built_in">find</span>(ls_key_purchase_verified) == <span class="number">0</span>) &#123;
+        <span class="keyword">auto</span> sss2 = ls_temp.<span class="built_in">substr</span>(ls_key_purchase_verified.<span class="built_in">size</span>());
+        g.candy_yifan_track-&gt;<span class="built_in">of_track_purchase_verified</span>(ls_temp);
+        <span class="keyword">return</span>;
+    &#125;
+    <span class="meta">#<span class="keyword">pragma</span> endregion</span>
+&#125;</code></pre>
+</li>
+<li><p>给<code>CandyYifanTrack</code>类增加一个方法：</p>
+ <pre><code class="highlight cpp"><span class="keyword">class</span> <span class="title class_">CandyYifanTrack</span> &#123;
+    <span class="meta">#<span class="keyword">pragma</span> region 跟踪类的方法</span>
+        <span class="function"><span class="type">void</span> <span class="title">of_track_purchase_verified</span><span class="params">(<span class="type">const</span> string&amp; as_string)</span></span>;
+    <span class="meta">#<span class="keyword">pragma</span> endregion</span>
+&#125;</code></pre>
+
+<p> 定义部分：</p>
+ <pre><code class="highlight cpp"><span class="comment">// 内购完成的追踪</span>
+<span class="comment">// 返回给c++端</span>
+<span class="comment">// 内购点:订单号:价格</span>
+<span class="comment">//String ls_info = as_goodid +PUB_KEY_JAVA_INFO_DEV_STRING + as_orderid + PUB_KEY_JAVA_INFO_DEV_STRING + ls_price;</span>
+<span class="comment">//((AppActivity)_activity).buyItemOk(&quot;ON_PURCHASE_VERIFIED:&quot; + ls_info);</span>
+<span class="function"><span class="type">void</span> <span class="title">CandyYifanTrack::of_track_purchase_verified</span><span class="params">(<span class="type">const</span> string&amp; as_string)</span> </span>&#123;
+    <span class="keyword">auto</span> ss = PF::<span class="built_in">spilt</span>(as_string, PUB_KEY_JAVA_INFO_DEV_STRING);
+    <span class="keyword">if</span> (ss.<span class="built_in">size</span>() &gt;= <span class="number">3</span>) &#123;
+        <span class="keyword">auto</span> ls_msg = <span class="built_in">of_get_pub_string</span>(<span class="string">&quot;purchase_succ&quot;</span>);
+        ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;purchase_good_id&quot;</span>, ss[<span class="number">0</span>]);
+        ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;purchase_order_id&quot;</span>, ss[<span class="number">1</span>]);
+        ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;purchase_price&quot;</span>, ss[<span class="number">2</span>]);
+        PFJava::<span class="built_in">of_satcic_yifan_track</span>(ls_msg);
+    &#125;
+&#125;</code></pre></li>
+</ol>
+<h3 id="处理一下java发来的广告部分回调"><a href="#处理一下java发来的广告部分回调" class="headerlink" title="处理一下java发来的广告部分回调"></a>处理一下java发来的广告部分回调</h3><ol>
+<li><p>处理<code>ON_AD_CLICK:</code>和<code>ON_AD_SHOW:</code>：</p>
+ <pre><code class="highlight cpp"><span class="function"><span class="type">void</span> <span class="title">CandyMagic::of_buy_succ</span><span class="params">(string good_id)</span></span>&#123;
+    <span class="meta">#<span class="keyword">pragma</span> region java or ios callback event</span>
+        <span class="comment">// 广告事件打点的处理</span>
+        <span class="comment">// 此处通过回调进行数据的打点</span>
+        <span class="comment">//  广告类型 interstitial  video</span>
+        <span class="comment">//  广告方    facebook , admob , ,,,</span>
+        <span class="comment">// 广告位ID:广告类型:广告方:广告位置</span>
+        <span class="comment">//String ls_info = var1.adId + &quot;:&quot; + var1.type + &quot;:&quot; + var1.name + &quot;:&quot; + var1.page;</span>
+        <span class="comment">//buyItemOk(&quot;ON_AD_CLICK:&quot; + ls_info);</span>
+        <span class="comment">//buyItemOk(&quot;ON_AD_SHOW:&quot; + ls_info );</span>
+        <span class="keyword">if</span> (ls_temp.<span class="built_in">find</span>(<span class="string">&quot;ON_AD_CLICK:&quot;</span>) == <span class="number">0</span> || ls_temp.<span class="built_in">find</span>(<span class="string">&quot;ON_AD_SHOW:&quot;</span>) == <span class="number">0</span>) &#123;
+            g.candy_yifan_track-&gt;<span class="built_in">of_track_ad</span>(ls_temp);
+            <span class="keyword">return</span>;
+        &#125;
+    <span class="meta">#<span class="keyword">pragma</span> endregion</span>
+&#125;</code></pre>
+</li>
+<li><p>补上缺少的函数：</p>
+ <pre><code class="highlight cpp"><span class="comment">// 广告的追踪，通过回调过来的内容进行处理</span>
+<span class="comment">// 此处通过回调进行数据的打点</span>
+<span class="comment">//  广告类型 interstitial  video</span>
+<span class="comment">//  广告方    facebook , admob , ,,,</span>
+<span class="comment">//  广告位ID:广告类型:广告方:广告位置,对于视频的这个位置并不准确</span>
+<span class="comment">//  String ls_info = var1.adId + &quot;:&quot; + var1.type + &quot;:&quot; + var1.name + &quot;:&quot; + var1.page;</span>
+<span class="comment">//  buyItemOk(&quot;ON_AD_CLICK:&quot; + ls_info); </span>
+<span class="comment">//  buyItemOk(&quot;ON_AD_SHOW:&quot; + ls_info);</span>
+<span class="function"><span class="type">void</span> <span class="title">CandyYifanTrack::of_track_ad</span><span class="params">(<span class="type">const</span> string&amp; as_string)</span> </span>&#123;
+    <span class="keyword">auto</span> ss = PF::<span class="built_in">spilt</span>(as_string, <span class="string">&quot;:&quot;</span>);
+    <span class="keyword">if</span> (ss.<span class="built_in">size</span>() &lt; <span class="number">5</span>) <span class="keyword">return</span>; <span class="comment">// 无法解析，数量不足</span>
+
+                            <span class="comment">//ad_show	广告展示(回调中触发)</span>
+                            <span class="comment">//ad_click	广告点击(回调中触发)</span>
+                            <span class="comment">//ad_video_show	调用端触发。只处理page信息 </span>
+    string ls_event = <span class="string">&quot;none&quot;</span>;
+    <span class="keyword">if</span> (ss[<span class="number">0</span>] == <span class="string">&quot;ON_AD_CLICK&quot;</span>) ls_event = <span class="string">&quot;ad_click&quot;</span>;
+    <span class="keyword">if</span> (ss[<span class="number">0</span>] == <span class="string">&quot;ON_AD_SHOW&quot;</span>) ls_event = <span class="string">&quot;ad_show&quot;</span>;
+
+    <span class="keyword">auto</span> ls_msg = <span class="built_in">of_get_pub_string</span>(ls_event);
+    ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;ad_pid&quot;</span>, ss[<span class="number">0</span>]);
+    ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;ad_adtype&quot;</span>, ss[<span class="number">1</span>]);
+    ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;ad_adnet&quot;</span>, ss[<span class="number">2</span>]);
+    ls_msg += PF::<span class="built_in">create_track_line</span>(<span class="string">&quot;ad_page&quot;</span>, ss[<span class="number">3</span>]);
+    PFJava::<span class="built_in">of_satcic_yifan_track</span>(ls_msg);
+
+&#125;</code></pre></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/14/02Tool/Git/Git005/" rel="prev" title="Git克隆仓库时提示认证失败">
+                  <i class="fa fa-angle-left"></i> Git克隆仓库时提示认证失败
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/20/05History/History005/" rel="next" title="五代十国">
+                  五代十国 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

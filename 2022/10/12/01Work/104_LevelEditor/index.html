@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关卡文件字段说明一级字段config这里边包含了行数、列数、颜色数、剩余步数、剩余时间。 一级字段target过关目标 其他一级字段radio表示概率 magic_charge_need magic_charge_tool magic_charge_color magic_charge_price 一级字段screen二级字段map表示对应格子是否镂空。只有0和1两个值。没有逗号隔开。 例子： [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关卡编辑器">
+<meta property="og:url" content="https://615737749.github.io/2022/10/12/01Work/104_LevelEditor/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="关卡文件字段说明一级字段config这里边包含了行数、列数、颜色数、剩余步数、剩余时间。 一级字段target过关目标 其他一级字段radio表示概率 magic_charge_need magic_charge_tool magic_charge_color magic_charge_price 一级字段screen二级字段map表示对应格子是否镂空。只有0和1两个值。没有逗号隔开。 例子： [">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-12T07:13:28.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.570Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2022/10/12/01Work/104_LevelEditor/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2022/10/12/01Work/104_LevelEditor/","path":"2022/10/12/01Work/104_LevelEditor/","title":"关卡编辑器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关卡编辑器 | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E5%8D%A1%E6%96%87%E4%BB%B6%E5%AD%97%E6%AE%B5%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">关卡文件字段说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BA%A7%E5%AD%97%E6%AE%B5config"><span class="nav-number">1.0.1.</span> <span class="nav-text">一级字段config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BA%A7%E5%AD%97%E6%AE%B5target"><span class="nav-number">1.0.2.</span> <span class="nav-text">一级字段target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%B8%80%E7%BA%A7%E5%AD%97%E6%AE%B5"><span class="nav-number">1.0.3.</span> <span class="nav-text">其他一级字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BA%A7%E5%AD%97%E6%AE%B5screen"><span class="nav-number">1.0.4.</span> <span class="nav-text">一级字段screen</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5map"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">二级字段map</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5from"><span class="nav-number">1.0.4.0.2.</span> <span class="nav-text">二级字段from</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5exit"><span class="nav-number">1.0.4.0.3.</span> <span class="nav-text">二级字段exit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5footcloth"><span class="nav-number">1.0.4.0.4.</span> <span class="nav-text">二级字段footcloth</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5jelly"><span class="nav-number">1.0.4.0.5.</span> <span class="nav-text">二级字段jelly</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5jellybear"><span class="nav-number">1.0.4.0.6.</span> <span class="nav-text">二级字段jellybear</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5new"><span class="nav-number">1.0.4.0.7.</span> <span class="nav-text">二级字段new</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5new-cell-data"><span class="nav-number">1.0.4.0.8.</span> <span class="nav-text">二级字段new_cell_data</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5bar"><span class="nav-number">1.0.4.0.9.</span> <span class="nav-text">二级字段bar</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5symbol"><span class="nav-number">1.0.4.0.10.</span> <span class="nav-text">二级字段symbol</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5stone-0-color"><span class="nav-number">1.0.4.0.11.</span> <span class="nav-text">二级字段stone_0_color</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5tool"><span class="nav-number">1.0.4.0.12.</span> <span class="nav-text">二级字段tool</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5timer"><span class="nav-number">1.0.4.0.13.</span> <span class="nav-text">二级字段timer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5factory-symbol"><span class="nav-number">1.0.4.0.14.</span> <span class="nav-text">二级字段factory_symbol</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5firefly"><span class="nav-number">1.0.4.0.15.</span> <span class="nav-text">二级字段firefly</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5mushroom"><span class="nav-number">1.0.4.0.16.</span> <span class="nav-text">二级字段mushroom</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5hardstone"><span class="nav-number">1.0.4.0.17.</span> <span class="nav-text">二级字段hardstone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5hard-move-stone"><span class="nav-number">1.0.4.0.18.</span> <span class="nav-text">二级字段hard_move_stone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5move-static-stone"><span class="nav-number">1.0.4.0.19.</span> <span class="nav-text">二级字段move_static_stone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5bigstone"><span class="nav-number">1.0.4.0.20.</span> <span class="nav-text">二级字段bigstone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E5%AD%97%E6%AE%B5oil%E5%92%8Cmoveoil"><span class="nav-number">1.0.4.0.21.</span> <span class="nav-text">二级字段oil和moveoil</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2022/10/12/01Work/104_LevelEditor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关卡编辑器 | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关卡编辑器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-12 15:13:28" itemprop="dateCreated datePublished" datetime="2022-10-12T15:13:28+08:00">2022-10-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/01%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">01工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="关卡文件字段说明"><a href="#关卡文件字段说明" class="headerlink" title="关卡文件字段说明"></a>关卡文件字段说明</h1><h3 id="一级字段config"><a href="#一级字段config" class="headerlink" title="一级字段config"></a>一级字段config</h3><p>这里边包含了行数、列数、颜色数、剩余步数、剩余时间。</p>
+<h3 id="一级字段target"><a href="#一级字段target" class="headerlink" title="一级字段target"></a>一级字段target</h3><p>过关目标</p>
+<h3 id="其他一级字段"><a href="#其他一级字段" class="headerlink" title="其他一级字段"></a>其他一级字段</h3><p>radio表示概率</p>
+<p>magic_charge_need</p>
+<p>magic_charge_tool</p>
+<p>magic_charge_color</p>
+<p>magic_charge_price</p>
+<h3 id="一级字段screen"><a href="#一级字段screen" class="headerlink" title="一级字段screen"></a>一级字段screen</h3><h5 id="二级字段map"><a href="#二级字段map" class="headerlink" title="二级字段map"></a>二级字段map</h5><p>表示对应格子是否镂空。只有0和1两个值。没有逗号隔开。</p>
+<p>例子：</p>
+<pre><code class="highlight plaintext">[map]
+000000000
+011101110
+111111111
+111111111
+111111111
+111111111
+011111110
+001111100
+000111000
+[map]</code></pre>
+
+<h5 id="二级字段from"><a href="#二级字段from" class="headerlink" title="二级字段from"></a>二级字段from</h5><p>传送门，当出口空了的时候，会有元素从入口传过来。</p>
+<p>是成对出现的。格式为：出口行，出口列，入口行，入口列</p>
+<p>例子：<br>[from]<br>4,5,6,5<br>[from]</p>
+<p>需要注意的是，这个入口和出口的关系不是独占的，即一个入口可以对应对各出口，一个出口可以对应多个入口。</p>
+<p>并且一个格子可以同时是出口和入口。</p>
+<p>所以在描述这种关系的时候，我用了下面这个结构体。</p>
+<pre><code class="highlight plaintext">struct MyCellDataFromInfo
+&#123;
+    //我这个格子作为哪些格子的出口
+    std::map&lt;std::pair&lt;int, int&gt;, bool&gt; map_as_out;
+    //我这个格子作为哪些格子的入口
+    std::map&lt;std::pair&lt;int, int&gt;, bool&gt; map_as_in;
+&#125;;</code></pre>
+
+<p>当点中某一个格子来删除这个格子的传送门关系时，需要根据这个结构体存的值，找到改格子作为入口和出口关联的格子，并删除对应的传送门关系。</p>
+<h5 id="二级字段exit"><a href="#二级字段exit" class="headerlink" title="二级字段exit"></a>二级字段exit</h5><p>收集口。当收集物运动到这个格子时，完成收集。</p>
+<p>例子：</p>
+<pre><code class="highlight plaintext">[exit]
+0,3
+0,4
+0,5
+[exit]</code></pre>
+
+<h5 id="二级字段footcloth"><a href="#二级字段footcloth" class="headerlink" title="二级字段footcloth"></a>二级字段footcloth</h5><p>地毯，只要出现了地毯，本关的目标就会有把地毯铺满。</p>
+<p>只有0和1两种值。类似于map字段。</p>
+<h5 id="二级字段jelly"><a href="#二级字段jelly" class="headerlink" title="二级字段jelly"></a>二级字段jelly</h5><p>冰块，只有0、1、2三种值。没有逗号分隔，类似map字段。</p>
+<h5 id="二级字段jellybear"><a href="#二级字段jellybear" class="headerlink" title="二级字段jellybear"></a>二级字段jellybear</h5><p>可能的值是0、A、B、C、D、H、I、J、K、1、2、3、4、5、6、7、8、9</p>
+<p>0是没有</p>
+<p>ABCD是躺着的，从小到大</p>
+<p>HIJK是站着的，从小到大</p>
+<p>123456789是正方形的，从小到大</p>
+<h5 id="二级字段new"><a href="#二级字段new" class="headerlink" title="二级字段new"></a>二级字段new</h5><p>例子：</p>
+<pre><code class="highlight plaintext">2,3
+4,5</code></pre>
+
+<p>这个例子表示2行3列的格子和4行5列的格子是新元素产生的地方。</p>
+<p>注意：如果没有new字段，那么程序会把最上面一排当作new。</p>
+<h5 id="二级字段new-cell-data"><a href="#二级字段new-cell-data" class="headerlink" title="二级字段new_cell_data"></a>二级字段new_cell_data</h5><p>指定下落的元素。可以是重复的，也可以不重复。</p>
+<p>例子：</p>
+<pre><code class="highlight plaintext">[new_cell_data]
+8,4,REPEAT(20:0,T4,T1)
+8,5,1,1,1
+[new_cell_data]</code></pre>
+
+<h5 id="二级字段bar"><a href="#二级字段bar" class="headerlink" title="二级字段bar"></a>二级字段bar</h5><p>格式：行1,列1,行2,列2</p>
+<p>注意：必须是两个相邻的格子。</p>
+<h5 id="二级字段symbol"><a href="#二级字段symbol" class="headerlink" title="二级字段symbol"></a>二级字段symbol</h5><p>这个字段里的数据包含：</p>
+<pre><code>- 基础元素：随机颜色、另外6种基础元素
+- 不区分颜色的道具：彩球
+- 区分颜色的道具：
+- 不区分颜色的普通石块（不可移动）：ABCDE（abcde）
+- 石头油（只有一层的障碍物）：F（f）
+- 四格的大蛋糕：G（g）
+- 巧克力（会向周围蔓延）：H（h）一层、I（i）两层
+- 可移动的石块：JKOPQ（jkopq）。对应的图片名字是move_stone1到5
+- 幽灵（会往上跳）：N（n）。对应的图片名字是move_stone_bug
+- 瓶子：W（w）。
+- 收集物一：X（x或者12）。
+- 收集物二：Y（y或者13）。
+- 空白：Z（z）。
+- 不可移动的石块：RSTUV（rstuv）。TODO
+</code></pre>
+<p>注意：</p>
+<pre><code>- 想大蛋糕这种元素，在读取完symbol字段后，需要再检查一边，如果某个格子是大蛋糕，那么另外三个格子里原来的值就失效了。
+- symbol字段里的ABCDE，是没有颜色的石块，可以配合字段stone_0_color来设置成带颜色的石块。
+- symbol字段里的*012345表示随机和6种颜色，配合tool字段就能决定这个格子是个什么颜色的道具。
+</code></pre>
+<h5 id="二级字段stone-0-color"><a href="#二级字段stone-0-color" class="headerlink" title="二级字段stone_0_color"></a>二级字段stone_0_color</h5><p>配合symbol字段设置不可移动的普通石块（即ABCDE）的颜色。</p>
+<h5 id="二级字段tool"><a href="#二级字段tool" class="headerlink" title="二级字段tool"></a>二级字段tool</h5><p>横消：1<br>竖消：2<br>炸弹：4<br>彩球：5<br>蝴蝶：6<br>加五秒：8<br>加五步：9<br>产出其他元素的egg：11<br>产出其他元素的luck：12</p>
+<p>注意：</p>
+<pre><code>- 横消、竖消、炸弹、蝴蝶都是区分颜色的。彩球不区分颜色。
+- 横消、竖消、炸弹、蝴蝶的颜色是根据symbol字段里对应格子的颜色来决定的。
+- 横消、竖消、炸弹、蝴蝶的颜色有012345共6种，另外还有一种随机颜色。
+</code></pre>
+<h5 id="二级字段timer"><a href="#二级字段timer" class="headerlink" title="二级字段timer"></a>二级字段timer</h5><p>倒计步数炸弹。取值范围是0到30步。</p>
+<p>这个字段里的值生效的前提条件是tool字段里对应格子的道具类型是倒计步数道具。</p>
+<h5 id="二级字段factory-symbol"><a href="#二级字段factory-symbol" class="headerlink" title="二级字段factory_symbol"></a>二级字段factory_symbol</h5><p>作用是生成一个新元素。</p>
+<p>可能的值有空值（Z），然后012345对应6种颜色。对应的图片名字是basket0到5。</p>
+<p>这个字段的读取要在symbol字段之后，应为这个字段读取后会覆盖掉symbol字段里的值。</p>
+<h5 id="二级字段firefly"><a href="#二级字段firefly" class="headerlink" title="二级字段firefly"></a>二级字段firefly</h5><p>萤火虫，可能的值是0到999。但是编辑器里只支持0到9。因为实际配置关卡时也不会配置超过9个的萤火虫。</p>
+<p>这个字段的读取要在symbol字段之后，应为这个字段读取后会覆盖掉symbol字段里的值。</p>
+<h5 id="二级字段mushroom"><a href="#二级字段mushroom" class="headerlink" title="二级字段mushroom"></a>二级字段mushroom</h5><p>蘑菇，有开闭两种状态。</p>
+<p>那么这个字段可能的值有三个，0，1，2。分别代表没有蘑菇，开着的蘑菇，闭着的蘑菇。</p>
+<p>当棋盘里的所有蘑菇都处于开状态时，所有蘑菇一起被消除掉。</p>
+<p>闭着的蘑菇可以被旁消形成开状态的蘑菇。由闭到开是一个不可逆的过程。</p>
+<p>这个字段的读取要在symbol字段之后，应为这个字段读取后会覆盖掉symbol字段里的值。</p>
+<p>对应的图片是mushroom1和mushroom2。</p>
+<h5 id="二级字段hardstone"><a href="#二级字段hardstone" class="headerlink" title="二级字段hardstone"></a>二级字段hardstone</h5><p>不可移动的硬石块。</p>
+<p>取值范围是一层到五层。不过只有三层的图片，所以编辑器也只支持了三层。</p>
+<p>注意：一层硬石块可以被旁消。其他层的硬石块是不能被旁消的，只能被道具消除。</p>
+<p>这个字段的读取要在symbol字段之后，应为这个字段读取后会覆盖掉symbol字段里的值。</p>
+<p>对应的图片名字是hardstone1到5。</p>
+<h5 id="二级字段hard-move-stone"><a href="#二级字段hard-move-stone" class="headerlink" title="二级字段hard_move_stone"></a>二级字段hard_move_stone</h5><p>可移动的硬石块。</p>
+<p>取值范围是一到五层。只能被道具打掉，不能被旁消。</p>
+<p>这个字段的读取要在symbol字段之后，应为这个字段读取后会覆盖掉symbol字段里的值。</p>
+<p>对应的图片名字是hard_move_stone1到5。</p>
+<h5 id="二级字段move-static-stone"><a href="#二级字段move-static-stone" class="headerlink" title="二级字段move_static_stone"></a>二级字段move_static_stone</h5><p>可以下落，不能交换的石块。</p>
+<p>会被旁消。</p>
+<p>取值范围是一层到五层。</p>
+<p>这个字段的读取要在symbol字段之后，应为这个字段读取后会覆盖掉symbol字段里的值。</p>
+<h5 id="二级字段bigstone"><a href="#二级字段bigstone" class="headerlink" title="二级字段bigstone"></a>二级字段bigstone</h5><p>大石块。取值范围是0到8。</p>
+<p>0表示没有。</p>
+<p>1234是2*2的大石块。</p>
+<p>5678是3*3的大石块。</p>
+<h5 id="二级字段oil和moveoil"><a href="#二级字段oil和moveoil" class="headerlink" title="二级字段oil和moveoil"></a>二级字段oil和moveoil</h5><p>oil和moveoil都是最多两层。</p>
+<p>oil和moveoil都不可交换。moveoil可以下落，oil不可以下落。</p>
+<p>moveoil不能被旁消。oil可以被旁消。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>石头的属性：</p>
+<ol>
+<li><p>颜色</p>
+</li>
+<li><p>厚度（层数）</p>
+</li>
+<li><p>是否可以移动</p>
+<ul>
+<li><p>可移动（分为两种）：这个带move</p>
+<ul>
+<li><p>只能下落，不能被交换。这个带static</p>
+</li>
+<li><p>可以下落，也可以交换</p>
+</li>
+</ul>
+</li>
+<li><p>不可移动：</p>
+</li>
+</ul>
+</li>
+<li><p>硬度（分为两种）：</p>
+<ul>
+<li><p>普通硬度：可以被道具消除，也可以被旁消。</p>
+</li>
+<li><p>高硬度：能被道具消除，不能被旁消。这个带hard</p>
+</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/12/02Tool/Dependencies/Dependencies001/" rel="prev" title="Dependencies工具查看exe依赖的dll">
+                  <i class="fa fa-angle-left"></i> Dependencies工具查看exe依赖的dll
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/03/03Knowledge/SQL/SQL001/" rel="next" title="SQL学习记录">
+                  SQL学习记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

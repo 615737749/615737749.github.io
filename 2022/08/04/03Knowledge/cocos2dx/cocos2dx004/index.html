@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"615737749.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="JNIJava Native Interface。jni.h封装了Java代码和原生代码的交互功能，Cocos2dx再次封装成了JniHelper类。 C++数据类型转换成Java数据类型   C++ java    void V   bool Z   char C   int I   short S   long J   float F   double D   std::string Ljav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos2dx jni">
+<meta property="og:url" content="https://615737749.github.io/2022/08/04/03Knowledge/cocos2dx/cocos2dx004/index.html">
+<meta property="og:site_name" content="porridgechen890的笔记">
+<meta property="og:description" content="JNIJava Native Interface。jni.h封装了Java代码和原生代码的交互功能，Cocos2dx再次封装成了JniHelper类。 C++数据类型转换成Java数据类型   C++ java    void V   bool Z   char C   int I   short S   long J   float F   double D   std::string Ljav">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-04T08:43:30.000Z">
+<meta property="article:modified_time" content="2024-07-14T15:20:29.586Z">
+<meta property="article:author" content="porridgechen890">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://615737749.github.io/2022/08/04/03Knowledge/cocos2dx/cocos2dx004/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://615737749.github.io/2022/08/04/03Knowledge/cocos2dx/cocos2dx004/","path":"2022/08/04/03Knowledge/cocos2dx/cocos2dx004/","title":"cocos2dx jni"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cocos2dx jni | porridgechen890的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">porridgechen890的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦里不知身是客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JNI"><span class="nav-number">1.</span> <span class="nav-text">JNI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%88%90Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">C++数据类型转换成Java数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E8%B0%83Java"><span class="nav-number">3.</span> <span class="nav-text">C++调Java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E8%B0%83C"><span class="nav-number">4.</span> <span class="nav-text">Java调C++</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">porridgechen890</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://615737749.github.io/2022/08/04/03Knowledge/cocos2dx/cocos2dx004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="porridgechen890">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="cocos2dx jni | porridgechen890的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cocos2dx jni
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-04 16:43:30" itemprop="dateCreated datePublished" datetime="2022-08-04T16:43:30+08:00">2022-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/03%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">03知识点</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="JNI"><a href="#JNI" class="headerlink" title="JNI"></a>JNI</h1><p>Java Native Interface。jni.h封装了Java代码和原生代码的交互功能，Cocos2dx再次封装成了JniHelper类。</p>
+<h1 id="C-数据类型转换成Java数据类型"><a href="#C-数据类型转换成Java数据类型" class="headerlink" title="C++数据类型转换成Java数据类型"></a>C++数据类型转换成Java数据类型</h1><table>
+<thead>
+<tr>
+<th align="center">C++</th>
+<th align="center">java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="center">V</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="center">Z</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">C</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">I</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">S</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">J</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">D</td>
+</tr>
+<tr>
+<td align="center">std::string</td>
+<td align="center">Ljava&#x2F;lang&#x2F;Object;</td>
+</tr>
+</tbody></table>
+<h1 id="C-调Java"><a href="#C-调Java" class="headerlink" title="C++调Java"></a>C++调Java</h1><ol>
+<li><p>Java端要做的事：把要被调用的函数定义好。</p>
+ <pre><code class="highlight java"><span class="comment">// 定义在org/cocos2dx/cpp/AppActivity.java文件里的函数</span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">java_func_1</span><span class="params">(<span class="type">int</span> i, String s)</span> &#123;&#125;</code></pre>
+</li>
+<li><p>C++端要做的事：</p>
+ <pre><code class="highlight cpp"><span class="comment">// 包含头文件</span>
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
+    <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;platform/android/jni/JniHelper.h&quot;</span></span>
+<span class="meta">#<span class="keyword">endif</span></span>
+
+<span class="comment">// 常见一点的写法</span>
+<span class="function"><span class="type">void</span> <span class="title">YourClass::YourFunc</span><span class="params">(<span class="type">int</span> IntPara, <span class="type">const</span> std::string&amp; StrPara)</span></span>
+<span class="function"></span>&#123;
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
+
+    <span class="comment">// 声明jni方法结构体</span>
+    cocos2d::JniMethodInfo jm;
+
+    <span class="comment">// 查找方法是否存在，分为静态方法和实例方法。这里的例子是静态方法。</span>
+    <span class="type">bool</span> bHave = cocos2d::JniHelper::<span class="built_in">getStaticMethodInfo</span>(jm, <span class="string">&quot;org/cocos2dx/cpp/AppActivity&quot;</span>, <span class="string">&quot;java_func_1&quot;</span>, <span class="string">&quot;(ILjava/lang/String;)V&quot;</span>);
+
+    <span class="comment">// 如果方法存在就能调用CallStaticMethod或者CallObjectMethod。</span>
+    <span class="keyword">if</span> (bHave)
+    &#123;
+        <span class="comment">// C++的字符串要转换成Java的字符串</span>
+        jstring k1 = jm.env-&gt;<span class="built_in">NewStringUTF</span>(str.<span class="built_in">c_str</span>());
+        jm.env-&gt;<span class="built_in">CallStaticVoidMethod</span>(jm.classID, jm.methodID, i, k1);
+        jm.env-&gt;<span class="built_in">DeleteLocalRef</span>(jm.classID);
+    &#125;
+<span class="meta">#<span class="keyword">endif</span></span>
+&#125;
+
+<span class="comment">// 更简单一点的写法</span>
+<span class="function"><span class="type">void</span> <span class="title">YourClass::YourFunc</span><span class="params">(<span class="type">int</span> IntPara, <span class="type">const</span> std::string&amp; StrPara)</span></span>
+<span class="function"></span>&#123;
+<span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
+    <span class="comment">// 这么写不用去判断方法是否存在，也不需要去把C++的数据类型转成Java的数据类型。（PS：如果方法不存在，也不会出错）</span>
+    cocos2d::JniHelper::<span class="built_in">callStaticVoidMethod</span>(<span class="string">&quot;org/cocos2dx/cpp/AppActivity&quot;</span>, <span class="string">&quot;java_func_1&quot;</span>, i, str);
+<span class="meta">#<span class="keyword">endif</span></span>
+&#125;</code></pre></li>
+</ol>
+<h1 id="Java调C"><a href="#Java调C" class="headerlink" title="Java调C++"></a>Java调C++</h1><ol>
+<li><p>Java端要做的事：把要被调用的函数声明好。</p>
+ <pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">funcName2</span><span class="params">(<span class="type">int</span> i, String s)</span>;</code></pre>
+
+<p> 在java代码里合适的地方调用这个函数。另外我发现声明不需要写在调用处之前。为啥我也不知道。</p>
+</li>
+<li><p>C++端要做的事：随便找个cpp文件，写上这个函数的实现部分。</p>
+ <pre><code class="highlight cpp"><span class="meta">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
+<span class="keyword">extern</span> <span class="string">&quot;C&quot;</span>
+&#123;
+    <span class="function">JNIEXPORT <span class="type">void</span> <span class="title">Java_org_cocos2dx_cpp_AppActivity_funcName2</span><span class="params">(JNIEnv* env, jobject thiz, <span class="type">int</span> i, jstring str1)</span></span>
+<span class="function">    </span>&#123;
+        std::string str2 = cocos2d::JniHelper::<span class="built_in">jstring2string</span>(str1);
+        cocos2d::<span class="built_in">log</span>(<span class="string">&quot;i=%d s=%s&quot;</span>, i, str<span class="number">2.</span><span class="built_in">c_str</span>());
+    &#125;
+&#125;
+<span class="meta">#<span class="keyword">endif</span></span></code></pre>
+
+<p> 另外，我发现一个问题，这个函数似乎不能带下划线，比方说我写成<code>func_Name2</code>，并且我在声明处、调用处、定义处都做了相应的修改，还是不行，而且会引起崩溃。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/01/03Knowledge/cpp/cpp002/" rel="prev" title="C++中使用空对象指针调用成员函数">
+                  <i class="fa fa-angle-left"></i> C++中使用空对象指针调用成员函数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/15/01Work/003_iOSWebView/" rel="next" title="003_iOS9 WKWebView crash">
+                  003_iOS9 WKWebView crash <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 1375 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">porridgechen890</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>
